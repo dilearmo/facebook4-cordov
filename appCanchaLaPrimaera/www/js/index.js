@@ -44,3 +44,14 @@ var app = {
 };
 
 app.initialize();
+
+$(document).ready(function() {
+    facebookConnectPlugin.login("email", 
+    function() {
+        // success
+        alert('success');
+    },
+    function() {
+        alert('error');
+    })
+});
