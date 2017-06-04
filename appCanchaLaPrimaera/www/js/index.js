@@ -50,70 +50,63 @@ var app = {
 app.initialize();
 
 
-var scopes = 'email';
+var permisos = 'email';
 
-var statusChangeCallback = function(response, callback) {
-    alert('statudChangeCallback');
-    if(response.status === 'connected') {
-        getFacebookData();
-    } else {
-        //document.getElementById('status').innerHTML = 'Por favor, inicie sesión en Facebook';
-        callback(false);
-    }
-}
-
-var checkLoginState = function(callback) {
-    alert('checkLoginState');
-    FB.getLoginStatus(function(response) {
-        alert('FB.getLoginStatus');
-        statusChangeCallback(response, function(data) {
-            callback(data);
-        });
-    });  
-}
-
-var getFacebookData = function() {
-    alert('getFacebookData');
-    FB.api('/me', {fields: 'name,email'}, function(response) {
-        // guardar sesi[on]
-        alert('FB.api obteniendo datos');
-        alert('Bienvenido ' + response.name + ' ' + response.id + ' ' + response.email);
-        var img = document.createElement('img');
-        img.setAttribute('src', 'http://graph.facebook.com/' + response.id + '/picture/type=large');
-        var imgDiv = document.getElementById('img'); 
-        imgDiv.appendChild(img);
-    });
-}
-
-var facebookLogin = function() {
-    alert('facebookLogin');
-    checkLoginState(function(response) {
-        if(!response) {
-            FB.login(function(response) {
-                if(response.status === 'connected') {
-                    getFacebookData();
-                }
-            }, { scope: scopes });
-        } else {
-            alert.info('No respuesta en facebookLogin');
-        }
-    });
-}
-
-var facebookLogout = function() {
-    FB.getLoginStatus(function(response) {
-        if(response.status === 'connected') {
-            if(confirm('¿Está seguro(a) de que desea cerrar sesión?')) {
-                FB.logout(function(response) {
-                    // Cerró sesión
-                });
-            } else {
+function checkFBLoginStatus() {
+    console.info('checking status');
+    return facebookConnectPlugin.getLoginStatus(
+        function(result) {
+            if(result.status === 'connected') {
+                console.info('Check status connected');
+                return true;
+            } else if(result.status === 'unknown' || result.status === 'not_authorized'){
+                console.info('Por favor logueese en facebook');
                 return false;
             }
+        },
+        function() {
+            console.error('Error al checar el status');
+            return false;
         }
-    }); 
+    );
 }
 
-$(document).ready(function() {
-    alert('ready');
-});
+function fbLogin() {
+    console.info('Login ' + checkFBLoginStatus());
+    //if(checkFBLoginStatus() == false) {
+        console.info('Logueando');
+        facebookConnectPlugin.login(
+            [permisos], 
+            function(result) {
+                // success
+                console.info('logueo exitoso ' + result.id);
+                alert(result.status);
+                
+            },
+            function() {
+                // error
+            }
+        );   
+    //}
+}
+
+function fbLogout() {
+    console.info('Logout');
+    //if(checkFBLoginStatus() == true) {
+        console.info('Cerrando sesi[on');
+        facebookConnectPlugin.logout( 
+            function(result) {
+                // success
+                // redirigir
+                console.info('Sesion cerrada');
+                alert('Sesion cerrada');
+                
+            },
+            function() {
+                // error
+                console.info('No se ha podido cerrar sesi[on');
+                alert('No se ha podido cerrar sesi[on');
+            }
+        );   
+    //}
+}
