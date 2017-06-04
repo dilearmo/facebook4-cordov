@@ -28,6 +28,16 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        facebookConnectPlugin.getLoginStatus( 
+            function(result) {
+                // success
+                alert(result.status);
+                
+            },
+            function() {
+                // error
+            });
+            
     },
 
     // Update DOM on a Received Event
@@ -44,3 +54,16 @@ var app = {
 };
 
 app.initialize();
+
+function ready(result) {
+    facebookConnectPlugin.login("email", 
+    function() {
+        // success
+        alert('success');
+        alert(result.state);
+        
+    },
+    function() {
+        alert('error');
+    });
+}
