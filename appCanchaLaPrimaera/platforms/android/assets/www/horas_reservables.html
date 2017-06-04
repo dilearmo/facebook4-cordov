@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>La Primavera</title>
+         
+        <link href="css/materialize.min.css" rel="stylesheet">
+        <link href="css/materializeIcons.css" rel="stylesheet" type="text/css" >
+        <link href="css/toastr.min.css" rel="stylesheet"> 
+        <link href="css/common.css" rel="stylesheet" type="text/css">
+        <link href="css/horas_reservables.css" rel="stylesheet" type="text/css">
+        
+    </head>
+    
+    <header>
+        <nav class="green darken-4">
+            <div class="nav-wrapper">
+                <a href="index.html" class="brand-logo">Logo/Inicio</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <body>
+        <div class="container">
+            <h4>Horas reservables</h4>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Precio por hora</th>
+                        <th>Bloqueada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>6:00am</td>
+                        <td>¢15 000</td>
+                        <td>
+                            <input class="check-color" type="checkbox" id="test1" checked/>
+                            <label for="test1"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6:00am</td>
+                        <td>¢15 000</td>
+                        <td>
+                            <input class="check-color" type="checkbox" id="test2" checked/>
+                            <label for="test2"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6:00am</td>
+                        <td>¢15 000</td>
+                        <td>
+                            <input class="check-color" type="checkbox" id="test3" checked/>
+                            <label for="test3"></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        
+    <script src="js/jquery.min.js"></script>
+    <script src="js/toastr.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/common.js"></script>
+    </body>
+</html> 

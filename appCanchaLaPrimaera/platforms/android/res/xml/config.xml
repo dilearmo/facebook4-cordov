@@ -13,12 +13,9 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="InAppBrowser">
-        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-    </feature>
-    <name>HelloCordova</name>
+    <name>Cancha La Primavera</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Aplicación móvil de la cancha sintética La Primavera
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team

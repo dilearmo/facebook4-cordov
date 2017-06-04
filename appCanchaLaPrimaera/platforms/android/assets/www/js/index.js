@@ -50,18 +50,40 @@ var app = {
 app.initialize();
 
 
+
+var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
 var permisos = 'email';
 
-function checkFBLoginStatus() {
+$(document).ready(function() {
+    if (typeof(Storage) !== "undefined") {
+        var nombreUsuario = localStorage.getItem('NombreUsuario');
+        if(nombreUsuario != undefined && nombreUsuario != "") {
+            window.location.href = 'home.html';
+        }
+    } else {
+        toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
+    }
+});
+
+function checkFBLoginStatus(request) {
     console.info('checking status');
-    return facebookConnectPlugin.getLoginStatus(
+    facebookConnectPlugin.getLoginStatus(
         function(result) {
-            if(result.status === 'connected') {
-                console.info('Check status connected');
-                return true;
-            } else if(result.status === 'unknown' || result.status === 'not_authorized'){
-                console.info('Por favor logueese en facebook');
-                return false;
+            if(request === 'login') {
+                if(result.status === 'connected') {
+                    console.info('La sesi[on ya est[a abierta');
+                } else if(result.status === 'unknown' || result.status === 'not_authorized'){
+                    console.info('Cesi[on cerrada, logueando...');
+                    fbLogin();
+                }   
+            }
+            if(request === 'logout') {
+                if(result.status === 'connected') {
+                    console.info('Conectado, saliendo...');
+                    fbLogout();
+                } else if(result.status === 'unknown' || result.status === 'not_authorized'){
+                    console.info('La sesi[on ya est[a cerrada');
+                }
             }
         },
         function() {
@@ -72,47 +94,146 @@ function checkFBLoginStatus() {
 }
 
 function fbLogin() {
-    
-        alert('url ' + window.location);
-    console.info('Login ' + checkFBLoginStatus());
-    //if(checkFBLoginStatus() == false) {
-        console.info('Logueando');
-        facebookConnectPlugin.login(
-            [permisos], 
-            function(result) {
-                // success
-                console.info('logueo exitoso');
-                alert(result.status);
-                facebookConnectPlugin.api('/me', ['email'], function(datos) {
-                    alert('Datos ' + datos.name);
-                }, function(error) {
-                    alert('Error ' + error);
-                });
-            },
-            function() {
-                // error
-            }
-        );   
-    //}
+    console.info('Logueando');
+    facebookConnectPlugin.login(
+        [permisos], 
+        function(result) {
+            // success
+            console.info('logueo exitoso');
+            facebookConnectPlugin.api('/me', ['email'], function(datos) {
+                console.info('Bienvenido(a) ' + datos.name);
+            }, function(error) {
+                alert('Error ' + error);
+            });
+        },
+        function() {
+            // error
+        }
+    );
 }
 
 function fbLogout() {
     console.info('Logout');
-    //if(checkFBLoginStatus() == true) {
-        console.info('Cerrando sesi[on');
-        facebookConnectPlugin.logout( 
-            function(result) {
-                // success
-                // redirigir
-                console.info('Sesion cerrada');
-                alert('Sesion cerrada');
-                
-            },
-            function() {
-                // error
-                console.info('No se ha podido cerrar sesi[on');
-                alert('No se ha podido cerrar sesi[on');
-            }
-        );   
-    //}
+    console.info('Cerrando sesi[on');
+    facebookConnectPlugin.logout( 
+        function(result) {
+            // success
+            // redirigir
+            console.info('Sesion cerrada');
+            
+        },
+        function() {
+            // error
+            console.info('No se ha podido cerrar sesi[on');
+        }
+    );
 }
+
+
+function existeNombreUsuario() {
+    var contrasena = $("#contrasena").val().trim();
+    var nombreUsuario = $("#nombreUsuario").val().trim();
+    if(nombreUsuario.length > 0 && contrasena.length > 0) { 
+        $.ajax({
+            url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + nombreUsuario,
+            timeout: 10000,
+            dataType: 'jsonp',
+            success: function(response) {
+                if(response == true) {
+                    validarCredenciales(nombreUsuario, contrasena);
+                } else {
+                    toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
+                }
+            },
+            error: function(a, b, c) {
+                toastr.error("Error de conexión");
+            }
+        });
+    } else {
+        toastr.warning("Indique su nombre de usuario<br>y contraseña");
+    }
+}
+
+function validarCredenciales(nombreUsuario, contrasena) {
+    $.ajax({
+        url: base_url + "WSUsuario/validarCredenciales?nombreUsuario="+nombreUsuario+"&contrasena="+contrasena,
+        dataType: "jsonp",
+        timeout: 10000,
+        success: function(response) {
+            if(response == false) {
+                toastr.error("Nombre de usuario o <br>contraseña incorrectos");
+            } else {
+                guardarUsuarioEnSesion(response);
+            }
+        },
+        error: function() {
+            alert('Error');
+            toastr.error("Error de conexión");
+        }
+    });
+}
+
+function guardarUsuarioEnSesion(usuario) {
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("IdUsuario", usuario.IdUsuario);
+        localStorage.setItem("Nombre", usuario.Nombre);
+        localStorage.setItem("Apellidos", usuario.Apellidos);
+        localStorage.setItem("Telefono", usuario.Telefono);
+        localStorage.setItem("NombreUsuario", usuario.NombreUsuario);
+        localStorage.setItem("Correo", usuario.Correo);
+        localStorage.setItem("Es_confiable", usuario.Es_confiable);
+        localStorage.setItem("Es_administrador", usuario.Es_administrador);
+        
+        window.location.href = 'index.html';
+    } else {
+        toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
+    }
+}
+
+// ********************* JS del template *****************************
+
+$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+  
+  var $this = $(this),
+      label = $this.prev('label');
+
+	  if (e.type === 'keyup') {
+			if ($this.val() === '') {
+          label.removeClass('active highlight');
+        } else {
+          label.addClass('active highlight');
+        }
+    } else if (e.type === 'blur') {
+    	if( $this.val() === '' ) {
+    		label.removeClass('active highlight'); 
+			} else {
+		    label.removeClass('highlight');   
+			}   
+    } else if (e.type === 'focus') {
+      
+      if( $this.val() === '' ) {
+    		label.removeClass('highlight'); 
+			} 
+      else if( $this.val() !== '' ) {
+		    label.addClass('highlight');
+			}
+    }
+
+});
+
+$('.tab a').on('click', function (e) {
+  
+  e.preventDefault();
+  
+  $(this).parent().addClass('active');
+  $(this).parent().siblings().removeClass('active');
+  
+  target = $(this).attr('href');
+
+  $('.tab-content > div').not(target).hide();
+  
+  $(target).fadeIn(600);
+  
+});
+
+// *************************** Fin JS del template ************************************

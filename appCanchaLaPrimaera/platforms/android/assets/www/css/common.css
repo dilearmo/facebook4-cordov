@@ -1,0 +1,14 @@
+.check-color:checked + label:before {
+    border-right: 2px solid green; /* You need to change the colour here */
+    border-bottom: 2px solid green; /* And here */
+}
+
+th {
+    background-color: #1B5E20;
+    color: white;
+    border-radius: 0px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

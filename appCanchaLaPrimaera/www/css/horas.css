@@ -1,0 +1,34 @@
+
+.horas {
+    margin-top: 40px;
+   height: 630px;
+   width: 100%;
+  /* background-color: red;*/
+   clear:both;
+   display: none;
+}
+
+
+.botones-horas {
+   
+    background-color:#3bce21;
+    margin-top: 17px;
+    height: 120px;
+    cursor: pointer;
+    border-radius: 16px;
+    text-align: center;
+     box-shadow: 10px 10px 5px #888888;
+    font-weight: bold;
+}
+
+.iconos{
+  margin-top: 5px;
+  color:white;
+   
+}
+
+.datos {
+    margin-top: 10px; 
+    color:white;
+}
+
