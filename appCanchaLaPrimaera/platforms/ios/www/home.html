@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>La Primavera</title>
+         
+        <link href="css/materialize.min.css" rel="stylesheet">
+        <link href="css/materializeIcons.css" rel="stylesheet" type="text/css" >
+        <link href="css/toastr.min.css" rel="stylesheet">
+        <link href="css/common.css" rel="stylesheet" type="text/css">
+        <link href="css/index.css" rel="stylesheet" type="text/css" >
+        
+    </head>
+    
+    <header>
+        <nav class="green darken-4">
+            <div class="nav-wrapper">
+                <a href="index.html" class="brand-logo">Logo/Inicio</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="horas_reservables.html">Horas reservables</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                    <li><a onclick="logout()">Logout</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <body>
+        <div class="container">
+            <h4 id="usuario"></h4>
+            
+            <div id="listaReservas">
+                <h4>Mis reservas</h4>
+                
+            </div>
+            
+            <div id="listaRetos">
+                <h4>Mis retos</h4>
+                
+            </div>
+        </div>
+        
+    <script src="js/jquery.min.js"></script>
+    <script src="js/toastr.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/common.js"></script>
+    </body>
+</html> 
