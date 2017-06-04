@@ -17,5 +17,13 @@
             "APP_ID": "1061872230622284",
             "APP_NAME": "AdminAppCancha"
         }
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.7.1"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
