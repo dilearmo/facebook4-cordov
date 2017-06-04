@@ -53,7 +53,7 @@ app.initialize();
 var scopes = 'email';
 
 var statusChangeCallback = function(response, callback) {
-    console.info('statudChangeCallback');
+    alert.info('statudChangeCallback');
     if(response.status === 'connected') {
         getFacebookData();
     } else {
@@ -63,9 +63,9 @@ var statusChangeCallback = function(response, callback) {
 }
 
 var checkLoginState = function(callback) {
-    console.info('checkLoginState');
+    alert.info('checkLoginState');
     FB.getLoginStatus(function(response) {
-        console.info('FB.getLoginStatus');
+        alert.info('FB.getLoginStatus');
         statusChangeCallback(response, function(data) {
             callback(data);
         });
@@ -73,11 +73,11 @@ var checkLoginState = function(callback) {
 }
 
 var getFacebookData = function() {
-    console.info('getFacebookData');
+    alert.info('getFacebookData');
     FB.api('/me', {fields: 'name,email'}, function(response) {
         // guardar sesi[on]
-        console.info('FB.api obteniendo datos');
-        console.error('Bienvenido ' + response.name + ' ' + response.id + ' ' + response.email);
+        alert.info('FB.api obteniendo datos');
+        alert.error('Bienvenido ' + response.name + ' ' + response.id + ' ' + response.email);
         var img = document.createElement('img');
         img.setAttribute('src', 'http://graph.facebook.com/' + response.id + '/picture/type=large');
         var imgDiv = document.getElementById('img'); 
@@ -86,7 +86,7 @@ var getFacebookData = function() {
 }
 
 var facebookLogin = function() {
-    console.info('facebookLogin');
+    alert.info('facebookLogin');
     checkLoginState(function(response) {
         if(!response) {
             FB.login(function(response) {
@@ -95,7 +95,7 @@ var facebookLogin = function() {
                 }
             }, { scope: scopes });
         } else {
-            console.info('No respuesta en facebookLogin');
+            alert.info('No respuesta en facebookLogin');
         }
     });
 }
