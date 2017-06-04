@@ -72,6 +72,8 @@ function checkFBLoginStatus() {
 }
 
 function fbLogin() {
+    
+        alert('url ' + window.location);
     console.info('Login ' + checkFBLoginStatus());
     //if(checkFBLoginStatus() == false) {
         console.info('Logueando');
@@ -79,9 +81,13 @@ function fbLogin() {
             [permisos], 
             function(result) {
                 // success
-                console.info('logueo exitoso ' + result.id);
+                console.info('logueo exitoso');
                 alert(result.status);
-                
+                facebookConnectPlugin.api('/me', ['email'], function(datos) {
+                    alert('Datos ' + datos.name);
+                }, function(error) {
+                    alert('Error ' + error);
+                });
             },
             function() {
                 // error
