@@ -53,7 +53,7 @@ app.initialize();
 var scopes = 'email';
 
 var statusChangeCallback = function(response, callback) {
-    alert.info('statudChangeCallback');
+    alert('statudChangeCallback');
     if(response.status === 'connected') {
         getFacebookData();
     } else {
@@ -63,9 +63,9 @@ var statusChangeCallback = function(response, callback) {
 }
 
 var checkLoginState = function(callback) {
-    alert.info('checkLoginState');
+    alert('checkLoginState');
     FB.getLoginStatus(function(response) {
-        alert.info('FB.getLoginStatus');
+        alert('FB.getLoginStatus');
         statusChangeCallback(response, function(data) {
             callback(data);
         });
@@ -73,11 +73,11 @@ var checkLoginState = function(callback) {
 }
 
 var getFacebookData = function() {
-    alert.info('getFacebookData');
+    alert('getFacebookData');
     FB.api('/me', {fields: 'name,email'}, function(response) {
         // guardar sesi[on]
-        alert.info('FB.api obteniendo datos');
-        alert.error('Bienvenido ' + response.name + ' ' + response.id + ' ' + response.email);
+        alert('FB.api obteniendo datos');
+        alert('Bienvenido ' + response.name + ' ' + response.id + ' ' + response.email);
         var img = document.createElement('img');
         img.setAttribute('src', 'http://graph.facebook.com/' + response.id + '/picture/type=large');
         var imgDiv = document.getElementById('img'); 
@@ -86,7 +86,7 @@ var getFacebookData = function() {
 }
 
 var facebookLogin = function() {
-    alert.info('facebookLogin');
+    alert('facebookLogin');
     checkLoginState(function(response) {
         if(!response) {
             FB.login(function(response) {
@@ -113,3 +113,7 @@ var facebookLogout = function() {
         }
     }); 
 }
+
+$(document).ready(function() {
+    alert('ready');
+});
