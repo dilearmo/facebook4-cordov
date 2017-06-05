@@ -57,7 +57,7 @@ app.initialize();
 /* global target */
 
 var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
-var permisos = 'email,first_name,last_name';
+var permisos = 'email';
 
 $(document).ready(function() {
     $('#btnRegistroTradicional').hide();
