@@ -50,11 +50,18 @@ var app = {
 app.initialize();
 
 
+/* global $ */
+/* global toastr */
+/* global facebookConnectPlugin */
+/* global localStorage */
+/* global target */
 
 var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
-var permisos = 'email';
+var permisos = 'email,first_name,last_name';
 
 $(document).ready(function() {
+    $('#btnRegistroTradicional').hide();
+    
     if (typeof(Storage) !== "undefined") {
         var nombreUsuario = localStorage.getItem('NombreUsuario');
         if(nombreUsuario != undefined && nombreUsuario != "") {
@@ -74,9 +81,11 @@ function checkFBLoginStatus(request) {
                     console.info('La sesi[on ya est[a abierta');
                 } else if(result.status === 'unknown' || result.status === 'not_authorized'){
                     console.info('Cesi[on cerrada, logueando...');
-                    fbLogin();
-                }   
+                    fbLogin('login');
+                }
+                getFacebookData('login');
             }
+            
             if(request === 'logout') {
                 if(result.status === 'connected') {
                     console.info('Conectado, saliendo...');
@@ -84,6 +93,18 @@ function checkFBLoginStatus(request) {
                 } else if(result.status === 'unknown' || result.status === 'not_authorized'){
                     console.info('La sesi[on ya est[a cerrada');
                 }
+            }
+            
+            if(request === 'registro') {
+                //console.log('Status to registro');
+                fbLogin('registro');
+                getFacebookData('registro');
+                /*if(existeNombreUsuario(result.id)) {
+                    console.info('id ' + result.id);
+                    toastr.info('Usted ya se encuentra registrado<br>Diríjase a la pestaña<br>de login');
+                } else {
+                    getFacebookData('registro');
+                }*/
             }
         },
         function() {
@@ -93,21 +114,17 @@ function checkFBLoginStatus(request) {
     );
 }
 
-function fbLogin() {
+function fbLogin(request) {
     console.info('Logueando');
     facebookConnectPlugin.login(
         [permisos], 
         function(result) {
             // success
-            console.info('logueo exitoso');
-            facebookConnectPlugin.api('/me', ['email'], function(datos) {
-                console.info('Bienvenido(a) ' + datos.name);
-            }, function(error) {
-                alert('Error ' + error);
-            });
+            console.log('logueo exitoso');
         },
         function() {
             // error
+            console.log('logueo fallido');
         }
     );
 }
@@ -129,21 +146,67 @@ function fbLogout() {
     );
 }
 
+function getFacebookData(request) {
+    facebookConnectPlugin.api('me?fields=first_name,last_name,name,email', ['email'],
+        function(datos) {
+            console.info('Bienvenido(a) ' + datos.name);
+            if(request === "registro") {
+                if(existeNombreUsuario(datos.id)) {
+                    console.info('id ' + datos.id);
+                    toastr.info('Usted ya se encuentra registrado<br>Diríjase a la pestaña<br>de login');
+                } else {
+                    console.log('Cargando datos registro');
+                    $("#nombreUsuarioRegistro").hide();
+                    $("#btnRegistroFB").hide();
+                    $("#btnRegistroTradicional").show();
+                     $("#nombre").focusin();
+                    $("#nombre").val(datos.first_name);
+                     $("#apellidos").focusin();
+                    $("#apellidos").val(datos.last_name);
+                    if(datos.email != undefined) {
+                        $("#email").focusin();
+                        $("#email").val(datos.email);
+                        
+                    }
+                }
+            }
+            if(request === "login") {
+                //Se loguea
+                console.log('En login');
+            }
+        },
+        function(error) {
+            alert('Error ' + error);
+        }
+    );
+}
 
-function existeNombreUsuario() {
-    var contrasena = $("#contrasena").val().trim();
-    var nombreUsuario = $("#nombreUsuario").val().trim();
+
+function existeNombreUsuario(request) {
+    var contrasena;
+    var nombreUsuario;
+    if(request != 'login') {
+        contrasena = '##############';
+        nombreUsuario = request;
+    } else {
+        contrasena = $("#contrasena").val().trim();
+        nombreUsuario = $("#nombreUsuario").val().trim();
+    }
     if(nombreUsuario.length > 0 && contrasena.length > 0) { 
         $.ajax({
             url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + nombreUsuario,
             timeout: 10000,
             dataType: 'jsonp',
             success: function(response) {
-                if(response == true) {
-                    validarCredenciales(nombreUsuario, contrasena);
-                } else {
-                    toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
-                }
+                    if(request != 'login') {
+                        return response;
+                    } else {
+                        if(response == true) {
+                            validarCredenciales(nombreUsuario, contrasena);
+                        } else {
+                            toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
+                        }
+                    }
             },
             error: function(a, b, c) {
                 toastr.error("Error de conexión");
@@ -188,6 +251,15 @@ function guardarUsuarioEnSesion(usuario) {
     } else {
         toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
     }
+}
+
+function mostrarRegistroTradicional() {
+    $("#btnRegistroTradicional").hide();
+    $('#nombreUsuarioRegistro').show();
+    $('#btnRegistroFB').show();
+    $("#email").val('');
+    $("#nombre").val('');
+    $("#apellidos").val('');
 }
 
 // ********************* JS del template *****************************

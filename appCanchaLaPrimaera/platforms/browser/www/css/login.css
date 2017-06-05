@@ -217,8 +217,13 @@ input[type=text]:focus:not([readonly]) {
   box-shadow: 0 1px 0 0 rgb(233,76,61);
 }
 
-#FBlogin {
+.btnFB {
   margin-top: 10px;
   background-color: #3B5998;
+  color: white;
+}
+
+.btnRT {
+  margin-top: 10px;
   color: white;
 }

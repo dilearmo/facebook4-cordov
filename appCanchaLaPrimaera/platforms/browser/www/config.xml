@@ -26,6 +26,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="res/icon.png" />
     <preference name="android-minSdkVersion" value="15" />
     <preference name="orientation" value="portrait" />
 </widget>

@@ -80,8 +80,8 @@
                         
                         <p class="forgot"><a href="#">¿Olvidó su contraseña?</a></p>
                         
-                        <button class="button button-block" onclick="existeNombreUsuario()" type="button"/>Iniciar sesión</button>
-                        <button class="button button-block" id="FBlogin" type="button"/>Iniciar sesión con Facebook</button>
+                        <button class="button button-block" onclick="existeNombreUsuario('login')" type="button"/>Iniciar sesión</button>
+                        <button class="button button-block btnFB" type="button"/>Iniciar sesión con Facebook</button>
                         <button id="FBlogout">Cerrar sesión</button>
                         
                     </form>
@@ -98,14 +98,14 @@
                                 <label>
                                     Nombre<span class="req">*</span>
                                 </label>
-                                <input type="text" required autocomplete="off" />
+                                <input type="text" autocomplete="off" id="nombre"/>
                             </div>
                                 
                             <div class="field-wrap">
                                 <label>
                                     Apellidos<span class="req">*</span>
                                 </label>
-                                <input type="text"required autocomplete="off"/>
+                                <input type="text" autocomplete="off" id="apellidos"/>
                             </div>
                             
                         </div>
@@ -115,26 +115,27 @@
                                 <label>
                                 Correo electrónico<span class="req">*</span>
                                 </label>
-                                <input type="email"required autocomplete="off"/>
+                                <input type="email" autocomplete="off" id="email"/>
                             </div>
                             
                             <div class="field-wrap">
                                 <label>
                                     Teléfono<span class="req">*</span>
                                 </label>
-                                <input type="text"required autocomplete="off"/>
+                                <input type="text" autocomplete="off" id="telefono"/>
                             </div>
                         </div>
                         
-                        <div class="field-wrap">
+                        <div class="field-wrap" id="nombreUsuarioRegistro">
                             <label>
                             Nombre de usuario<span class="req">*</span>
                             </label>
-                            <input type="password"required autocomplete="off"/>
+                            <input type="password" autocomplete="off"/>
                         </div>
                         
-                        <button type="submit" class="button button-block"/>Registrarme</button>
-                        <button type="submit" class="button button-block" id="FBlogin"/>Registrarme con Facebook</button>
+                        <button type="button" class="button button-block" id="btnRegistrarse"/>Registrarme</button>
+                        <button type="button" class="button button-block btnFB" onclick="checkFBLoginStatus('registro')" id="btnRegistroFB"/>Registrarme con Facebook</button>
+                        <button type="button" class="button button-block btnRT" onclick="mostrarRegistroTradicional()" id="btnRegistroTradicional"/>Registro tradicional</button>
                         
                     </form>
                 
