@@ -39,7 +39,7 @@ function registrarUsuario(Contrasena, Nombre, Apellidos, NombreUsuario, Telefono
                 toastr.success("Registrado Correctamente");
                 window.setTimeout(function(){
                     $("button").attr('disabled', true);
-                    validarCredenciales(NombreUsuario, Contrasena);
+                    validarCredencialesRegistro(NombreUsuario, Contrasena);
                 }, 2000);
             }
             else {
@@ -54,7 +54,7 @@ function registrarUsuario(Contrasena, Nombre, Apellidos, NombreUsuario, Telefono
     });
 }
 
-function validarCredenciales(nombreUsuario, contrasena) {
+function validarCredencialesRegistro(nombreUsuario, contrasena) {
     $.ajax({
         url: base_url + "WSUsuario/validarCredenciales?nombreUsuario="+nombreUsuario+"&contrasena="+contrasena,
         dataType: "jsonp",

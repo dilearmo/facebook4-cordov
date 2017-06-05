@@ -179,7 +179,7 @@ function getFacebookData(request) {
             }
             if(request === "login") {
                 // Guardar datos obtenidos en sesión
-                validarCredenciales(datos.id, datos.id);
+                validarCredenciales(datos.id, datos.id, 'facebookLogin');
             }
         },
         function(error) {
@@ -202,7 +202,7 @@ function existeNombreUsuario(request) {
             success: function(response) {
                 console.log('WSUsuario/existeNombreUsuario exitoso');
                 if(response == true) {
-                    validarCredenciales(nombreUsuario, contrasena);
+                    validarCredenciales(nombreUsuario, contrasena, 'traditionalLogin');
                 } else {
                     toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
                 }
@@ -216,14 +216,19 @@ function existeNombreUsuario(request) {
     }
 }
 
-function validarCredenciales(nombreUsuario, contrasena) {
+function validarCredenciales(nombreUsuario, contrasena, request) {
+    console.log('nomUs ' + nombreUsuario + ' contrase ' + contrasena);
     $.ajax({
         url: base_url + "WSUsuario/validarCredenciales?nombreUsuario="+nombreUsuario+"&contrasena="+contrasena,
         dataType: "jsonp",
         timeout: 10000,
         success: function(response) {
             if(response == false) {
-                toastr.error("Nombre de usuario o <br>contraseña incorrectos");
+                if(request === 'facebookLogin') {
+                    toastr.info('Debe registrarse con Facebook<br>para utilizar esta función');
+                } else {
+                    toastr.error("Nombre de usuario o <br>contraseña incorrectos");
+                }
             } else {
                 guardarUsuarioEnSesion(response);
             }

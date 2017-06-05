@@ -217,6 +217,7 @@ function existeNombreUsuario(request) {
 }
 
 function validarCredenciales(nombreUsuario, contrasena, request) {
+    console.log('nomUs ' + nombreUsuario + ' contrase ' + contrasena);
     $.ajax({
         url: base_url + "WSUsuario/validarCredenciales?nombreUsuario="+nombreUsuario+"&contrasena="+contrasena,
         dataType: "jsonp",
