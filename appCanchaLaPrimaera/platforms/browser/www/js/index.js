@@ -130,6 +130,7 @@ function fbLogin(request) {
             if(request === 'registro') {
                 toastr.error('Para registrarse con Facebook debe<br>brindar permisos a la aplicación');
             }
+            $('body button').removeAttr('disabled');
             return true;
         }
     );
