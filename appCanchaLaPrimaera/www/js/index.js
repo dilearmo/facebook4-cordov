@@ -97,6 +97,8 @@ function checkFBLoginStatus(request) {
             
             if(request === 'registro') {
                 //console.log('Status to registro');
+                $('body button').attr('disabled', true);
+                $('#hiddenFBSingup').val('true');
                 fbLogin('registro');
                 getFacebookData('registro');
                 /*if(existeNombreUsuario(result.id)) {
@@ -151,24 +153,24 @@ function getFacebookData(request) {
         function(datos) {
             console.info('Bienvenido(a) ' + datos.name);
             if(request === "registro") {
-                if(existeNombreUsuario(datos.id)) {
-                    console.info('id ' + datos.id);
-                    toastr.info('Usted ya se encuentra registrado<br>Diríjase a la pestaña<br>de login');
-                } else {
-                    console.log('Cargando datos registro');
-                    $("#nombreUsuarioRegistro").hide();
-                    $("#btnRegistroFB").hide();
-                    $("#btnRegistroTradicional").show();
-                     $("#nombre").focusin();
-                    $("#nombre").val(datos.first_name);
-                     $("#apellidos").focusin();
-                    $("#apellidos").val(datos.last_name);
-                    if(datos.email != undefined) {
-                        $("#email").focusin();
-                        $("#email").val(datos.email);
-                        
-                    }
+                console.log('Cargando datos registro');
+                $("#signup input").val("");
+                $('#divContrasena').hide();
+                $("#nombreUsuarioRegistro").hide();
+                $("#nombreUsuarioRegistro input").val(datos.id);
+                $("#contrasena1").val(datos.id);
+                $("#contrasena2").val(datos.id);
+                $("#btnRegistroFB").hide();
+                $("#btnRegistroTradicional").show();
+                 $("#nombre").focusin();
+                $("#nombre").val(datos.first_name);
+                 $("#apellidos").focusin();
+                $("#apellidos").val(datos.last_name);
+                if(datos.email != undefined) {
+                    $("#email").focusin();
+                    $("#email").val(datos.email);
                 }
+                $('body button').removeAttr('disabled');
             }
             if(request === "login") {
                 //Se loguea
@@ -177,12 +179,14 @@ function getFacebookData(request) {
         },
         function(error) {
             alert('Error ' + error);
+            $('body button').removeAttr('disabled');
         }
     );
 }
 
 
 function existeNombreUsuario(request) {
+    console.log('En existeNombreUsuario');
     var contrasena;
     var nombreUsuario;
     if(request != 'login') {
@@ -193,20 +197,22 @@ function existeNombreUsuario(request) {
         nombreUsuario = $("#nombreUsuario").val().trim();
     }
     if(nombreUsuario.length > 0 && contrasena.length > 0) { 
-        $.ajax({
+        return $.ajax({
             url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + nombreUsuario,
             timeout: 10000,
             dataType: 'jsonp',
             success: function(response) {
-                    if(request != 'login') {
-                        return response;
+                console.log('WSUsuario/existeNombreUsuario exitoso');
+                if(request != 'login') {
+                    console.log('response = ' + response);
+                    return response;
+                } else {
+                    if(response == true) {
+                        validarCredenciales(nombreUsuario, contrasena);
                     } else {
-                        if(response == true) {
-                            validarCredenciales(nombreUsuario, contrasena);
-                        } else {
-                            toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
-                        }
+                        toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
                     }
+                }
             },
             error: function(a, b, c) {
                 toastr.error("Error de conexión");
@@ -254,12 +260,13 @@ function guardarUsuarioEnSesion(usuario) {
 }
 
 function mostrarRegistroTradicional() {
+    $('#divContrasena').show();
+    $("#signup input").val("");
+    $("#signup input").focusout();
     $("#btnRegistroTradicional").hide();
     $('#nombreUsuarioRegistro').show();
     $('#btnRegistroFB').show();
-    $("#email").val('');
-    $("#nombre").val('');
-    $("#apellidos").val('');
+    $('#hiddenFBSingup').val('false');
 }
 
 // ********************* JS del template *****************************

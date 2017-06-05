@@ -91,7 +91,7 @@
                 <div id="signup">   
                 <h3 class="white-text center">Ingrese sus datos</h3>
                 
-                    <form action="/" method="post">
+                    <form action="/" method="post" id="formRegistro">
                     
                         <div class="top-row">
                             <div class="field-wrap">
@@ -113,27 +113,44 @@
                         <div class="top-row">
                             <div class="field-wrap">
                                 <label>
-                                Correo electrónico<span class="req">*</span>
-                                </label>
-                                <input type="email" autocomplete="off" id="email"/>
-                            </div>
-                            
-                            <div class="field-wrap">
-                                <label>
                                     Teléfono<span class="req">*</span>
                                 </label>
-                                <input type="text" autocomplete="off" id="telefono"/>
+                                <input type="tel" autocomplete="off" id="telefono"/>
+                            </div>
+                            
+                            <div class="field-wrap" id="nombreUsuarioRegistro">
+                                <label>
+                                Nombre de usuario<span class="req">*</span>
+                                </label>
+                                <input type="text" autocomplete="off"/>
                             </div>
                         </div>
                         
-                        <div class="field-wrap" id="nombreUsuarioRegistro">
+                        <div class="field-wrap">
                             <label>
-                            Nombre de usuario<span class="req">*</span>
+                            Correo electrónico<span class="req">*</span>
                             </label>
-                            <input type="password" autocomplete="off"/>
+                            <input type="email" autocomplete="off" id="email"/>
                         </div>
                         
-                        <button type="button" class="button button-block" id="btnRegistrarse"/>Registrarme</button>
+                        <div class="top-row" id="divContrasena">
+                            <div class="field-wrap">
+                                <label>
+                                    Contraseña<span class="req">*</span>
+                                </label>
+                                <input type="password" autocomplete="off" id="contrasena1"/>
+                            </div>
+                                
+                            <div class="field-wrap">
+                                <label>
+                                    Repita la contraseña<span class="req">*</span>
+                                </label>
+                                <input type="password" autocomplete="off" id="contrasena2"/>
+                            </div>
+                            
+                        </div>
+                        
+                        <button type="submit" class="button button-block" id="btnRegistrarse"/>Registrarme</button>
                         <button type="button" class="button button-block btnFB" onclick="checkFBLoginStatus('registro')" id="btnRegistroFB"/>Registrarme con Facebook</button>
                         <button type="button" class="button button-block btnRT" onclick="mostrarRegistroTradicional()" id="btnRegistroTradicional"/>Registro tradicional</button>
                         
@@ -153,12 +170,15 @@
         
         </div>
         
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script src="js/toastr.min.js"></script>
-        <script src="js/materialize.min.js"></script>
-        <script src="js/common.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <input type="hidden" id="hiddenFBSingup" value="false">
+        
+        <script src="cordova.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/toastr.min.js" type="text/javascript"></script>
+        <script src="js/materialize.min.js" type="text/javascript"></script>
+        <script src="js/common.js" type="text/javascript"></script>
+        <script src="js/index.js" type="text/javascript"></script>
+        <script src="js/registro.js" type="text/javascript"></script>
     </body>
     
     

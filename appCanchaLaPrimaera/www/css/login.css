@@ -23,11 +23,11 @@ a:hover {
 
 .form {
   background: #212121;
-  padding: 40px;
+  /*padding: 40px;
   max-width: 600px;
   margin: 40px auto;
   border-radius: 4px;
-  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);*/
 }
 
 .tab-group {
@@ -61,6 +61,10 @@ a:hover {
 .tab-group .active a {
   background: rgb(233,76,61);
   color: #ffffff;
+}
+
+.tab-content {
+  padding: 0 40px 0 40px;
 }
 
 .tab-content > div:last-child {
@@ -152,8 +156,8 @@ textarea {
   border: 0;
   outline: none;
   border-radius: 0;
-  padding: 15px 0;
-  font-size: 2rem;
+  padding: 10px 0;
+  font-size: 1.5rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -204,6 +208,10 @@ textarea {
 #welcomeMessage {
   color: white;
   text-align: center;
+}
+
+h3 {
+  font-size: 2rem !important;
 }
 
 .button {
