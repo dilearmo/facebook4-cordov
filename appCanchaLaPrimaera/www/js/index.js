@@ -187,31 +187,19 @@ function getFacebookData(request) {
 
 function existeNombreUsuario(request) {
     console.log('En existeNombreUsuario');
-    var contrasena;
-    var nombreUsuario;
-    if(request != 'login') {
-        contrasena = '##############';
-        nombreUsuario = request;
-    } else {
-        contrasena = $("#contrasena").val().trim();
-        nombreUsuario = $("#nombreUsuario").val().trim();
-    }
+    var contrasena = $("#contrasena").val().trim();
+    var nombreUsuario = $("#nombreUsuario").val().trim();
     if(nombreUsuario.length > 0 && contrasena.length > 0) { 
-        return $.ajax({
+        $.ajax({
             url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + nombreUsuario,
             timeout: 10000,
             dataType: 'jsonp',
             success: function(response) {
                 console.log('WSUsuario/existeNombreUsuario exitoso');
-                if(request != 'login') {
-                    console.log('response = ' + response);
-                    return response;
+                if(response == true) {
+                    validarCredenciales(nombreUsuario, contrasena);
                 } else {
-                    if(response == true) {
-                        validarCredenciales(nombreUsuario, contrasena);
-                    } else {
-                        toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
-                    }
+                    toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
                 }
             },
             error: function(a, b, c) {
@@ -252,8 +240,7 @@ function guardarUsuarioEnSesion(usuario) {
         localStorage.setItem("Correo", usuario.Correo);
         localStorage.setItem("Es_confiable", usuario.Es_confiable);
         localStorage.setItem("Es_administrador", usuario.Es_administrador);
-        
-        window.location.href = 'index.html';
+        window.location.href = 'home.html';
     } else {
         toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
     }

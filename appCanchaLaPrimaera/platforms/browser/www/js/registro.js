@@ -19,7 +19,7 @@ $(document).ready(function() {
             } else { 
                 if (Contrasena1 != "" && Nombre != "" && Apellidos != "" && NombreUsuario != "" && Telefono != "" && Correo != "") {
                     //return registrarUsuario(Contrasena1, Nombre, Apellidos, NombreUsuario, Telefono, Correo);
-                    existeNombreUsuario(Contrasena1, Nombre, Apellidos, NombreUsuario, Telefono, Correo);
+                    existeNombreUsuarioRegistro(Contrasena1, Nombre, Apellidos, NombreUsuario, Telefono, Correo);
                 } else {
                     toastr.info('Por favor, ingrese los datos solicitados');
                 }
@@ -90,7 +90,7 @@ function guardarUsuarioEnSesion(usuario) {
     }
 }
 
-function existeNombreUsuario(contrasena, nombre, apellidos, username, telefono, correo) {
+function existeNombreUsuarioRegistro(contrasena, nombre, apellidos, username, telefono, correo) {
     $.ajax({
             url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + username,
             timeout: 10000,

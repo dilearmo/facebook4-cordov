@@ -187,31 +187,19 @@ function getFacebookData(request) {
 
 function existeNombreUsuario(request) {
     console.log('En existeNombreUsuario');
-    var contrasena;
-    var nombreUsuario;
-    if(request != 'login') {
-        contrasena = '##############';
-        nombreUsuario = request;
-    } else {
-        contrasena = $("#contrasena").val().trim();
-        nombreUsuario = $("#nombreUsuario").val().trim();
-    }
+    var contrasena = $("#contrasena").val().trim();
+    var nombreUsuario = $("#nombreUsuario").val().trim();
     if(nombreUsuario.length > 0 && contrasena.length > 0) { 
-        return $.ajax({
+        $.ajax({
             url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + nombreUsuario,
             timeout: 10000,
             dataType: 'jsonp',
             success: function(response) {
                 console.log('WSUsuario/existeNombreUsuario exitoso');
-                if(request != 'login') {
-                    console.log('response = ' + response);
-                    return response;
+                if(response == true) {
+                    validarCredenciales(nombreUsuario, contrasena);
                 } else {
-                    if(response == true) {
-                        validarCredenciales(nombreUsuario, contrasena);
-                    } else {
-                        toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
-                    }
+                    toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
                 }
             },
             error: function(a, b, c) {
