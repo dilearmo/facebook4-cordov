@@ -124,7 +124,13 @@ function fbLogin(request) {
             }
         },
         function() {
-            toastr.error('Para loguearse con Facebook debe<br>brindar permisos a la aplicación');
+            if(request === 'login') {
+                toastr.error('Para loguearse con Facebook debe<br>brindar permisos a la aplicación');
+            }
+            if(request === 'registro') {
+                toastr.error('Para registrarse con Facebook debe<br>brindar permisos a la aplicación');
+            }
+            return true;
         }
     );
 }
@@ -176,7 +182,7 @@ function getFacebookData(request) {
             }
         },
         function(error) {
-            alert('Error ' + error);
+            toastr.error('Error al obtener los datos<br>de Facebook');
             $('body button').removeAttr('disabled');
         }
     );
