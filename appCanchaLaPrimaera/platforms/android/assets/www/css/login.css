@@ -167,6 +167,7 @@ textarea {
   transition: all 0.5s ease;
   -webkit-appearance: none;
 }
+
 .button:hover, .button:focus {
   background: #ba2919;
 }
@@ -229,6 +230,11 @@ input[type=text]:focus:not([readonly]) {
   margin-top: 10px;
   background-color: #3B5998;
   color: white;
+  margin-bottom: 20px;
+}
+
+.btnFB:hover, .btnFB:focus {
+  background: #2A467A;
 }
 
 .btnRT {

@@ -84,7 +84,7 @@ function guardarUsuarioEnSesion(usuario) {
         localStorage.setItem("Es_confiable", usuario.Es_confiable);
         localStorage.setItem("Es_administrador", usuario.Es_administrador);
         
-        window.location.href = 'index.html';
+        window.location.href = 'home.html';
     } else {
         toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
     }

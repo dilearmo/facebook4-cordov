@@ -79,11 +79,13 @@ function checkFBLoginStatus(request) {
             if(request === 'login') {
                 if(result.status === 'connected') {
                     console.info('La sesi[on ya est[a abierta');
-                } else if(result.status === 'unknown' || result.status === 'not_authorized'){
-                    console.info('Cesi[on cerrada, logueando...');
+                    getFacebookData('login');
+                } else
+                if(result.status === 'unknown' || result.status === 'not_authorized'){
+                    console.info('Sesi[on cerrada o no autorizada');
+                    // No está logueado o no ha aceptado brindar los datos
                     fbLogin('login');
                 }
-                getFacebookData('login');
             }
             
             if(request === 'logout') {
@@ -96,22 +98,13 @@ function checkFBLoginStatus(request) {
             }
             
             if(request === 'registro') {
-                //console.log('Status to registro');
                 $('body button').attr('disabled', true);
                 $('#hiddenFBSingup').val('true');
                 fbLogin('registro');
-                getFacebookData('registro');
-                /*if(existeNombreUsuario(result.id)) {
-                    console.info('id ' + result.id);
-                    toastr.info('Usted ya se encuentra registrado<br>Diríjase a la pestaña<br>de login');
-                } else {
-                    getFacebookData('registro');
-                }*/
             }
         },
         function() {
             console.error('Error al checar el status');
-            return false;
         }
     );
 }
@@ -121,12 +114,17 @@ function fbLogin(request) {
     facebookConnectPlugin.login(
         [permisos], 
         function(result) {
-            // success
-            console.log('logueo exitoso');
+            if(request === 'login') {
+                console.info('fbLogin request "login"');
+                getFacebookData('login');
+                console.log('logueo exitoso');
+            }
+            if(request === 'registro') {
+                getFacebookData('registro');
+            }
         },
         function() {
-            // error
-            console.log('logueo fallido');
+            toastr.error('Para loguearse con Facebook debe<br>brindar permisos a la aplicación');
         }
     );
 }
@@ -173,8 +171,8 @@ function getFacebookData(request) {
                 $('body button').removeAttr('disabled');
             }
             if(request === "login") {
-                //Se loguea
-                console.log('En login');
+                // Guardar datos obtenidos en sesión
+                validarCredenciales(datos.id, datos.id);
             }
         },
         function(error) {
@@ -240,8 +238,7 @@ function guardarUsuarioEnSesion(usuario) {
         localStorage.setItem("Correo", usuario.Correo);
         localStorage.setItem("Es_confiable", usuario.Es_confiable);
         localStorage.setItem("Es_administrador", usuario.Es_administrador);
-        
-        window.location.href = 'index.html';
+        window.location.href = 'home.html';
     } else {
         toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
     }
