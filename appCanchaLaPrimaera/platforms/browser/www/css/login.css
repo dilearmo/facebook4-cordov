@@ -23,7 +23,6 @@ a:hover {
 
 .form {
   background: #212121;
-  margin-top: 30px;
   /*padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -235,4 +234,8 @@ input[type=text]:focus:not([readonly]) {
 .btnRT {
   margin-top: 10px;
   color: white;
+}
+
+#loginForm {
+  margin-top: 50px;
 }
