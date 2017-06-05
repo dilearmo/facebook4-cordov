@@ -228,8 +228,7 @@ function validarCredenciales(nombreUsuario, contrasena) {
             }
         },
         error: function() {
-            alert('Error');
-            toastr.error("Error de conexión");
+            toastr.error("Error al validar las credenciales");
         }
     });
 }
