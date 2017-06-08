@@ -80,7 +80,7 @@
                         
                         <p class="forgot"><a href="#">¿Olvidó su contraseña?</a></p>
                         
-                        <button class="button button-block" onclick="existeNombreUsuario('login')" type="button"/>Iniciar sesión</button>
+                        <button class="button button-block" onclick="existeNombreUsuario('login', '0', '0')" type="button"/>Iniciar sesión</button>
                         <button class="button button-block btnFB" type="button" onclick="checkFBLoginStatus('login')"/>Iniciar sesión con Facebook</button>
                         
                         
@@ -96,7 +96,7 @@
                 
                     <form action="/" method="post" id="formRegistro">
                     
-                        <div class="top-row">
+                        <div>
                             <div class="field-wrap">
                                 <label>
                                     Nombre<span class="req">*</span>
@@ -113,7 +113,7 @@
                             
                         </div>
                         
-                        <div class="top-row">
+                        <div>
                             <div class="field-wrap">
                                 <label>
                                     Teléfono<span class="req">*</span>
@@ -136,7 +136,7 @@
                             <input type="email" autocomplete="off" id="email"/>
                         </div>
                         
-                        <div class="top-row" id="divContrasena">
+                        <div id="divContrasena">
                             <div class="field-wrap">
                                 <label>
                                     Contraseña<span class="req">*</span>

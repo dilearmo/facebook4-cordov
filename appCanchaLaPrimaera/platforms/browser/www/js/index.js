@@ -179,7 +179,9 @@ function getFacebookData(request) {
             }
             if(request === "login") {
                 // Guardar datos obtenidos en sesión
-                validarCredenciales(datos.id, datos.id, 'facebookLogin');
+                //usuarioHabilitado(datos.id, datos.id, 'facebookLogin');
+                existeNombreUsuario('facebookLogin', datos.id, datos.id);
+                // validarCredenciales(datos.id, datos.id, 'facebookLogin');
             }
         },
         function(error) {
@@ -190,10 +192,15 @@ function getFacebookData(request) {
 }
 
 
-function existeNombreUsuario(request) {
+function existeNombreUsuario(request, nombreUsuarioFB, contrasenaFB) {
     console.log('En existeNombreUsuario');
     var contrasena = $("#contrasena").val().trim();
     var nombreUsuario = $("#nombreUsuario").val().trim();
+    if(request === 'facebookLogin') {
+        console.log('request facebook login, cambiando valores');
+        contrasena = contrasenaFB;
+        nombreUsuario = nombreUsuarioFB;
+    }
     if(nombreUsuario.length > 0 && contrasena.length > 0) { 
         $.ajax({
             url: base_url + "WSUsuario/existeNombreUsuario?nombreUsuario=" + nombreUsuario,
@@ -202,9 +209,19 @@ function existeNombreUsuario(request) {
             success: function(response) {
                 console.log('WSUsuario/existeNombreUsuario exitoso');
                 if(response == true) {
-                    validarCredenciales(nombreUsuario, contrasena, 'traditionalLogin');
+                    if(request === 'facebookLogin') {
+                        usuarioHabilitado(nombreUsuarioFB, contrasenaFB, 'facebookLogin');
+                    }
+                    if(request === 'login') {
+                    //validarCredenciales(nombreUsuario, contrasena, 'traditionalLogin');
+                        usuarioHabilitado(nombreUsuario, contrasena, 'traditionalLogin');
+                    }
                 } else {
-                    toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
+                    if(request === 'facebookLogin') {
+                        toastr.info('Debe registrarse con Facebook<br>para utilizar esta función');
+                    } else {
+                        toastr.error("El nombre de usuario<br><b>" + nombreUsuario + "</b><br>no existe");
+                    }
                 }
             },
             error: function(a, b, c) {
@@ -235,6 +252,24 @@ function validarCredenciales(nombreUsuario, contrasena, request) {
         },
         error: function() {
             toastr.error("Error al validar las credenciales");
+        }
+    });
+}
+
+function usuarioHabilitado(nombreUsuario, contrasena, request) {
+    $.ajax({
+        url: base_url + "WSUsuario/usuarioHabilitado?nombreUsuario="+nombreUsuario,
+        dataType: "jsonp",
+        timeout: 10000,
+        success: function(response) {
+            if(response == false) {
+                toastr.info('Su cuenta ha sido deshabilitada<br>Por favor, contacte a la administración de la cancha');
+            } else {
+                validarCredenciales(nombreUsuario, contrasena, request);
+            }
+        },
+        error: function() {
+            toastr.error("Error al validar su cuenta");
         }
     });
 }

@@ -103,6 +103,25 @@ function existeNombreUsuarioRegistro(contrasena, nombre, apellidos, username, te
                         toastr.error("El nombre de usuario<br><b>" + username + "</b><br>ya existe");
                     }
                 } else {
+                    existeCorreoRegistro(contrasena, nombre, apellidos, username, telefono, correo);
+                }
+            },
+            error: function(a, b, c) {
+                toastr.error("Error de conexión");
+            }
+        }
+    );
+}
+
+function existeCorreoRegistro(contrasena, nombre, apellidos, username, telefono, correo) {
+    $.ajax({
+            url: base_url + "WSUsuario/existeCorreo?correo=" + correo,
+            timeout: 10000,
+            dataType: 'jsonp',
+            success: function(response) {
+                if(response == true) {
+                    toastr.error("El correo ingresado ya está registrado");
+                } else {
                     registrarUsuario(contrasena, nombre, apellidos, username, telefono, correo);
                 }
             },
