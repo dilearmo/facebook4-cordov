@@ -44,8 +44,8 @@ a:hover {
   display: block;
   text-decoration: none;
   padding: 15px;
-  background: rgba(160, 179, 176, 0.25);
-  color: #a0b3b0;
+  background: #424242;
+  color: #BDBDBD;
   font-size: 20px;
   float: left;
   width: 50%;
@@ -64,6 +64,7 @@ a:hover {
 }
 
 .tab-content {
+  margin-top: 85px;
   padding: 0 40px 0 40px;
 }
 
@@ -221,7 +222,8 @@ h3 {
 
 input[type=email]:focus:not([readonly]), 
 input[type=password]:focus:not([readonly]), 
-input[type=text]:focus:not([readonly]) {
+input[type=text]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]){
   border-bottom: 1px solid rgb(233,76,61);
   box-shadow: 0 1px 0 0 rgb(233,76,61);
 }
@@ -244,4 +246,11 @@ input[type=text]:focus:not([readonly]) {
 
 #loginForm {
   margin-top: 50px;
+}
+
+.tab-fijos {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
 }

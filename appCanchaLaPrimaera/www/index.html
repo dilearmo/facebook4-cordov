@@ -52,10 +52,12 @@
         </div>-->
         <div class="form">
         
-            <ul class="tab-group">
-            <li class="tab active"><a href="#login">Inicio de sesión</a></li>
-            <li class="tab"><a href="#signup">Registrarse</a></li>
-            </ul>
+            <div class="tab-fijos">
+                <ul class="tab-group">
+                    <li class="tab active"><a href="#login">Inicio de sesión</a></li>
+                    <li class="tab"><a href="#signup">Registrarse</a></li>
+                </ul>
+            </div>
             
             <div class="tab-content">
             
@@ -113,20 +115,11 @@
                             
                         </div>
                         
-                        <div>
-                            <div class="field-wrap">
-                                <label>
-                                    Teléfono<span class="req">*</span>
-                                </label>
-                                <input type="tel" autocomplete="off" id="telefono"/>
-                            </div>
-                            
-                            <div class="field-wrap" id="nombreUsuarioRegistro">
-                                <label>
-                                Nombre de usuario<span class="req">*</span>
-                                </label>
-                                <input type="text" autocomplete="off"/>
-                            </div>
+                        <div class="field-wrap" id="nombreUsuarioRegistro">
+                            <label>
+                            Nombre de usuario<span class="req">*</span>
+                            </label>
+                            <input type="text" autocomplete="off"/>
                         </div>
                         
                         <div class="field-wrap">
@@ -134,6 +127,13 @@
                             Correo electrónico<span class="req">*</span>
                             </label>
                             <input type="email" autocomplete="off" id="email"/>
+                        </div>
+                        
+                        <div class="field-wrap">
+                            <label>
+                                Teléfono<span class="req">*</span>
+                            </label>
+                            <input type="tel" autocomplete="off" id="telefono"/>
                         </div>
                         
                         <div id="divContrasena">
