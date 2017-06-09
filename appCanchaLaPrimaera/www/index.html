@@ -61,7 +61,8 @@
             
             <div class="tab-content">
             
-                <div id="login">   
+                <div id="login">  
+                    <h2 id="h2Titulo">Cancha La Primavera</h2>
                     <h3 id="welcomeMessage">Bienvenido</h3>
                     
                     <form id="loginForm" action="login/guardarUsuarioEnSesion" method="post">
@@ -82,7 +83,7 @@
                         
                         <!--<p class="forgot"><a href="#">¿Olvidó su contraseña?</a></p>-->
                         
-                        <button class="button button-block" onclick="existeNombreUsuario('login', '0', '0')" type="button"/>Iniciar sesión</button>
+                        <button class="button button-block" onclick="existeNombreUsuario('login', '0', '0')" type="button" id="btnIniciarSesion"/>Iniciar sesión</button>
                         <button class="button button-block btnFB" type="button" onclick="checkFBLoginStatus('login')"/>Iniciar sesión con Facebook</button>
                         
                         
