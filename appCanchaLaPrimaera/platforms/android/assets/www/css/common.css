@@ -12,3 +12,36 @@ th {
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
+.side-nav li>a>i.material-icons {
+    margin-right: 10px !important;
+}
+
+.btn {
+    background-color: #04B431;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 10px;
+    border-radius: 0;
+    padding: 0 1rem;
+}
+
+.btn:hover, .btn:focus {
+  background: #028423;
+}
+
+i.right {
+    margin-left: 5px;
+}
+
+.fondoColorComplementario {
+    background-color: #04B431;
+}
+
+.fondoColorComplementario:hover {
+    background: #028423;
+}
+
+.letraBlanca {
+    color: white !important;
+}

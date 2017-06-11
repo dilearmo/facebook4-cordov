@@ -12,7 +12,7 @@ $(document).ready(function() {
         toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
     }
     
-    $("#usuario").text("Holis " + localStorage.Nombre + " " + localStorage.Apellidos);
+    $("#usuario").html($("#usuario").html() + localStorage.Nombre + " " + localStorage.Apellidos);
     
     $(".button-collapse").sideNav();
 });

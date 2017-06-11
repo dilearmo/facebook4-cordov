@@ -7,24 +7,29 @@
         
         <title>La Primavera</title>
          
-        <link href="css/materialize.min.css" rel="stylesheet">
-        <link href="css/materializeIcons.css" rel="stylesheet" type="text/css" >
-        <link href="css/toastr.min.css" rel="stylesheet">
-        <link href="css/common.css" rel="stylesheet" type="text/css">
-        <link href="css/index.css" rel="stylesheet" type="text/css" >
+        <link  rel="stylesheet" type="text/css" href="css/materialize.min.css">
+        <link  rel="stylesheet" type="text/css" href="css/materializeIcons.css">
+        <link  rel="stylesheet" type="text/css" href="css/toastr.min.css">
+        <link  rel="stylesheet" type="text/css" href="css/common.css">
+        <link  rel="stylesheet" type="text/css" href="css/home.css">
         
     </head>
     
     <header>
-        <nav class="green darken-4">
+        <nav>
             <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo">Logo/Inicio</a>
+                <a href="index.html" class="brand-logo">Mis reservas</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="horas_reservables.html">Horas reservables</a></li>
+                    <li><a href="home.html">Mis reservas</a></li>
+                    <li><a href="retos.html">Mis retos</a></li>
                     <li><a onclick="logout()">Logout</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
+                    <li class="fondoColorComplementario"><a href="#" id="usuario" class="letraBlanca"><i class="material-icons letraBlanca">perm_identity</i></a></li>
+                    <li><a href="home.html">Mis reservas</a></li>
+                    <li><a href="retos.html">Mis retos</a></li>
                     <li><a onclick="logout()">Logout</a></li>
                 </ul>
             </div>
@@ -33,17 +38,31 @@
     
     <body>
         <div class="container">
-            <h4 id="usuario"></h4>
             
             <div id="listaReservas">
-                <h4>Mis reservas</h4>
+                
+                <a class="waves-effect waves-light btn"><i class="material-icons right btnAddIcon">add</i>Nueva reserva</a>
+                
+                <ul class="collapsible" data-collapsible="accordion" id="ulReservas">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i><b>Fecha:</b> 11-06-2017 <b>Hora:</b> 9:00am</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Fecha 11-06-2017 Hora 9:00am</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Fecha 11-06-2017 Hora 9:00am</div>
+                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+                    </li>
+                </ul>
                 
             </div>
-            
-            <div id="listaRetos">
+            <!--<div id="listaRetos">
                 <h4>Mis retos</h4>
                 
-            </div>
+            </div>-->
         </div>
         
     <script src="js/jquery.min.js"></script>
