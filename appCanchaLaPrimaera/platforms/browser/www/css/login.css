@@ -64,7 +64,6 @@ a:hover {
 }
 
 .tab-content {
-  margin-top: 100px;
   padding: 0 40px 0 40px;
 }
 
@@ -264,4 +263,5 @@ input[type=tel]:focus:not([readonly]){
   text-align: center;
   color: white;
   font-size: 2.3rem !important;
+  margin-top: 80px;
 }
