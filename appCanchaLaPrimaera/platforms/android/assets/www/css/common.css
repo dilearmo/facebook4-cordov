@@ -45,3 +45,7 @@ i.right {
 .letraBlanca {
     color: white !important;
 }
+
+.fixed-action-btn.toolbar ul li a {
+    line-height: normal;
+}
