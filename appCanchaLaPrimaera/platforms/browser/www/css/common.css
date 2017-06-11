@@ -47,5 +47,6 @@ i.right {
 }
 
 .fixed-action-btn.toolbar ul li a {
+    margin-top: 10px;
     line-height: normal;
 }
