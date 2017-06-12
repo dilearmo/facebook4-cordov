@@ -5,8 +5,9 @@
 var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
 $(document).ready(function() {
 
-
-
+    
+    $('select').material_select();
+    $('.modal').modal();
 
 
     var opts = {
@@ -95,22 +96,25 @@ $(document).ready(function() {
     });
 
     function showDate(date) {
+        $('#horaYFecha').val(date);
+        $('#fecha').text(date);
+        $('#modalHoras').modal('open');
         // alert('La fecha elegida es ' + date);
         //var spinner = new Spinner().spin()
         //$('#calendario').appendChild(spinner.el)
-        var target = document.getElementById('calendario')
-        var spinner = new Spinner(opts).spin(target);
-        $('#inlineDatepicker').hide()
-        $('#horario').hide();
-        var millisecondsToWait = 2000;
+        //////////var target = document.getElementById('calendario')
+        /////////var spinner = new Spinner(opts).spin(target);
+        //$('#inlineDatepicker').hide()
+        //$('#horario').hide();
+        /**************************var millisecondsToWait = 2000;
         setTimeout(function() {
             spinner.stop();
-            $('#inlineDatepicker').show();
-            $('#horario').show();
+            //$('#inlineDatepicker').show();
+            //$('#horario').show();
         
             window.scroll(0, findPos(document.getElementById("horario")));
          
-        }, millisecondsToWait);
+        }, millisecondsToWait);*/
           
     }
 
