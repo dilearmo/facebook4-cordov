@@ -35,6 +35,11 @@
 
 
 
+.datepick-month-year {
+    text-align-last:center;
+    -webkit-appearance: none;
+}
+
 .datepick {
     width: 100% !important;
     border-radius: 0;
@@ -42,6 +47,10 @@
 
 .outer {
     width: 100%;
+}
+
+.datepick-nav {
+    height: 40px;
 }
 
 .datepick-nav a,
@@ -58,4 +67,19 @@
 .datepick-month-header {
     background-color: #088a08;
     border: none;
+}
+
+.datepick-month td {
+    border-radius: 0;
+}
+
+.datepick-month table {
+    margin-top: 1.95rem;
+}
+
+.datepick-month-header > select:first-child {
+    height: 2rem;
+    display: block;
+    font-size: 1.5rem;
+    background-color: #088a08;
 }
