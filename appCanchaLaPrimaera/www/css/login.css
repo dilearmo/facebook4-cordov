@@ -59,7 +59,7 @@ a:hover {
   color: #ffffff;
 }
 .tab-group .active a {
-  background: #04B431;
+  background: #088A08;
   color: #ffffff;
 }
 
@@ -92,7 +92,7 @@ label {
 }
 label .req {
   margin: 2px;
-  color: #04B431;
+  color: #088A08;
 }
 
 label.active {
@@ -125,7 +125,7 @@ input, textarea {
 }
 input:focus, textarea:focus {
   outline: 0;
-  border-color: #04B431;
+  border-color: #088A08;
 }
 
 textarea {
@@ -161,7 +161,7 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #04B431;
+  background: #088A08;
   color: #ffffff;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -224,8 +224,8 @@ input[type=email]:focus:not([readonly]),
 input[type=password]:focus:not([readonly]), 
 input[type=text]:focus:not([readonly]),
 input[type=tel]:focus:not([readonly]){
-  border-bottom: 1px solid #04B431;
-  box-shadow: 0 1px 0 0 #04B431;
+  border-bottom: 1px solid #088A08;
+  box-shadow: 0 1px 0 0 #088A08;
 }
 
 .btnFB {
