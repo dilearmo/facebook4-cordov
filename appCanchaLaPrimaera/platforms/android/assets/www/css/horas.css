@@ -32,3 +32,30 @@
     color:white;
 }
 
+
+
+
+.datepick {
+    width: 100% !important;
+    border-radius: 0;
+}
+
+.outer {
+    width: 100%;
+}
+
+.datepick-nav a,
+.datepick-nav a:hover {
+    background-color: #088A08;
+}
+
+.datepick th {
+    background-color: #088a08;
+}
+
+.datepick, 
+.datepick-month, 
+.datepick-month-header {
+    background-color: #088a08;
+    border: none;
+}
