@@ -115,6 +115,7 @@ $(document).ready(function() {
     }
 
 
+    $('.datepick-month-header > select:first-child').attr('disabled', 'true');
 });
 
 
