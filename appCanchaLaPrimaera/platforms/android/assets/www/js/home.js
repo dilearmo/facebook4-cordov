@@ -2,17 +2,20 @@
 /* global localStorage */
 /* global toastr */
 
+function onLoad() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+function onDeviceReady() {
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+
+function onBackKeyDown() {
+    $('#modalPreguntarSiSalir').modal('open');   
+}
+
 
 $(document).ready(function() {
-    
-    document.addEventListener(
-        "backbutton", 
-        function() {
-            $('#modalPreguntarSiSalir').modal('open');
-        },
-        false
-    );
-     
     if (typeof(Storage) !== "undefined") {
         var nombreUsuario = localStorage.getItem('NombreUsuario');
         if(nombreUsuario == undefined || nombreUsuario == "" || nombreUsuario == 'undefined') {
