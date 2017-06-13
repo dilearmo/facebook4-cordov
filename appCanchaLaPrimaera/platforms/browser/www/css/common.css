@@ -54,7 +54,8 @@ i.right {
 input[type=email]:focus:not([readonly]), 
 input[type=password]:focus:not([readonly]), 
 input[type=text]:focus:not([readonly]),
-input[type=tel]:focus:not([readonly]){
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]){
   border-bottom: 1px solid #088A08;
   box-shadow: 0 1px 0 0 #088A08;
 }
@@ -62,7 +63,8 @@ input[type=tel]:focus:not([readonly]){
 input[type=email]:focus:not([readonly])+label, 
 input[type=password]:focus:not([readonly])+label, 
 input[type=text]:focus:not([readonly])+label,
-input[type=tel]:focus:not([readonly])+label{
+input[type=tel]:focus:not([readonly])+label,
+input[type=number]:focus:not([readonly])+label{
     color: #088A08;
 }
 

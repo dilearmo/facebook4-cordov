@@ -96,9 +96,7 @@ $(document).ready(function() {
     });
 
     function showDate(date) {
-        $('#horaYFecha').val(date);
-        $('#fecha').text(date);
-        listarHorasDisponibles('Miercoles', '2017-06-21');
+        formatearFecha(date);
         // alert('La fecha elegida es ' + date);
         //var spinner = new Spinner().spin()
         //$('#calendario').appendChild(spinner.el)
@@ -122,8 +120,86 @@ $(document).ready(function() {
     $('.datepick-month-header > select:first-child').attr('disabled', 'true');
 });
 
+function formatearFecha(fecha) {
+    var array = fecha.toString().split(' ');
+    var dia = 'dia';
+    var diaFecha = array[2];
+    var mes = 'mes';
+    var anno = array[3];
+    // Saca el día
+    switch (array[0]) {
+        case 'Mon':
+            dia = 'Lunes';
+            break;
+        case 'Tue':
+            dia = 'Martes';
+            break;
+        case 'Wed':
+            dia = 'Miercoles';
+            break;
+        case 'Thu':
+            dia = 'Jueves';
+            break;
+        case 'Fri':
+            dia = 'Viernes';
+            break;
+        case 'Sat':
+            dia = 'Sabado';
+            break;
+        case 'Sun':
+            dia = 'Domingo';
+            break;
+        default:
+            // code
+    }
+    // Saca el mes
+    switch (array[1]) {
+        case 'Ene':
+            mes = '01';
+            break;
+        case 'Feb':
+            mes = '02';
+            break;
+        case 'Mar':
+            mes = '03';
+            break;
+        case 'Abr':
+            mes = '04';
+            break;
+        case 'May':
+            mes = '05';
+            break;
+        case 'Jun':
+            mes = '06';
+            break;
+        case 'Jul':
+            mes = '07';
+            break;
+        case 'Ago':
+            mes = '08';
+            break;
+        case 'Sep':
+            mes = '09';
+            break;
+        case 'Oct':
+            mes = '10';
+            break;
+        case 'Nov':
+            mes = '11';
+            break;
+        case 'Dic':
+            mes = '12';
+            break;
+        default:
+            // code
+    }
+    listarHorasDisponibles(dia, anno + '-' + mes + '-' + diaFecha);
+}
+
 function limpiarModal() {
-     $('.modal-content div').remove();
+    $('.modal-content div').remove();
+    $('#horaPrecioTemp').val('-1');
+    $('#fechaSeleccTemp').val('-1');
 }
 /* web services*/
 
@@ -134,6 +210,9 @@ function listarHorasDisponibles(dia, fecha) {
         timeout: 10000,
         dataType: 'jsonp',
         success: function(response) {
+            $('#btnSelecHora').attr('disabled', 'disabled');
+            $('#fechaSeleccTemp').val(fecha);
+            $('#diaSelecTemp').val(dia);
             if (response != false) {
                 $('#mensajeModal').text('Seleccione la hora en la que desea proponer el reto');
                 $('.modal-content div').remove();
@@ -142,8 +221,12 @@ function listarHorasDisponibles(dia, fecha) {
                 $.each(response, function() {
                     var div = document.createElement('div');
                     div.setAttribute('onclick', 'seleccionarHora(this)');
+                    var inputHidden = document.createElement('input');
+                    inputHidden.setAttribute('type', 'hidden');
+                    $(inputHidden).val(this.Id);
                     var divContent = 'Hora: ' + convertirHora(this.Hora) + '<br>' + 'Precio: ¢' + this.Precio;
                     $(div).html(divContent);
+                    div.appendChild(inputHidden);
                     if(i % 2 == 0) {
                         var row = document.createElement('div');
                         row.setAttribute('class', 'row');
@@ -163,12 +246,13 @@ function listarHorasDisponibles(dia, fecha) {
                 $('#modalHoras').modal('open');
             }
             else {
+                $('#btnSelecHora').attr('disabled', 'disabled');
                 $('#mensajeModal').text('No hay horas disponibles en el día seleccionado');
                 return false;
             }
         },
         error: function() {
-            
+            $('#btnSelecHora').attr('disabled', 'disabled');
         }
 
 
@@ -223,6 +307,26 @@ function convertirHora(hora) {
 function seleccionarHora(div) {
     $('.modal-content div').attr('active', 'false');
     $(div).attr('active', 'true');
+    $('#horaPrecioTemp').val($(div).children('input').val());
+    $('#btnSelecHora').removeAttr('disabled');
+}
+
+function seleccionarFechaDef() {
+    $('#horaSeleccionada').val($('#horaPrecioTemp').val());
+    $('#diaSeleccionado').val($('#diaSelecTemp').val());
+    $('#fechaSeleccionada').val($('#fechaSeleccTemp').val());
+    $('#fechaPreview').val($('#diaSeleccionado').val() + ' ' + $('#fechaSeleccionada').val());
+    $('#fechaPreview').focusin();
+    $('#fechaPreview').attr('content', 'filled');
+}
+
+function mostrarResumen() {
+    $('#resumenResponsable').html('<b>Responsable:</b> ' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
+    $('#resumenEquipo').html('<b>Equipo:</b> ' + $('#nombreEquipo').val());
+    $('#resumenCantidadJugadores').html('<b>Cantidad de jugadores:</b> ' + $('#cantidadJugadores').val());
+    $('#resumenFecha').html('<b>Fecha:</b> ' + $('#fechaPreview').val());
+    $('#resumenPrecio').html('<b>Precio:</b> ¢32131');
+    $('#modalResumen').modal('open');
 }
 
 function findPos(obj) {

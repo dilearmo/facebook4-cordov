@@ -83,3 +83,26 @@
 .cuadrosHoras[active=true] {
     background-color: #088A08;
 }
+
+input[content=filled]:disabled {
+    border-bottom: 1px solid #088a08;
+    color: black;
+}
+
+input[content=filled]:disabled+label {
+    color: #088A08;
+}
+
+.labelInfo {
+    color: black;
+    font-size: 14px;
+}
+
+.btn-centrado-modal {
+    width: 50%;
+    text-align: center;
+}
+
+.resumen-content {
+    margin: 10px 15px;
+}
