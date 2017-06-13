@@ -69,3 +69,19 @@ input[type=tel]:focus:not([readonly])+label{
 .input-field label:not(.label-icon).active {
     font-size: 1rem;
 }
+
+li #usuario {
+    height: 64px;
+    line-height: 64px;
+}
+
+#usuario > i {
+    line-height: 64px;
+}
+
+@media (max-width: 600px) {
+    li #usuario {
+        height: 56px;
+        line-height: 56px;
+    }
+}

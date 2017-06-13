@@ -28,7 +28,11 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         //this.receivedEvent('deviceready');
+        document.addEventListener("backbutton", preguntarSiSalir, false);
         
+        function preguntarSiSalir() {
+            
+        }
     },
 
     // Update DOM on a Received Event
