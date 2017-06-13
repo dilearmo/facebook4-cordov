@@ -4,18 +4,12 @@
 
 function onLoad() {
     alert('onLoad');
-    document.addEventListener("deviceready", onDeviceReady, false);
-}
-
-    
-function onDeviceReady() {
-    alert('onDeviceReady');
     document.addEventListener("backbutton", onBackKeyDown, false);
 }
 
-function onBackKeyDown() {
-    alert('onBackKeyDown');
-    $('#modalPreguntarSiSalir').modal();
+function onBackKeyDown(e) {
+   e.preventDefault();
+   alert('Back Button is Pressed!');
 }
 
 
