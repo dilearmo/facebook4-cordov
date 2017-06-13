@@ -3,19 +3,19 @@
 /* global toastr */
 
 function onLoad() {
-    document.addEventListener("deviceready", onDeviceReady, false);
-    
     alert('onLoad');
+    document.addEventListener("deviceready", onDeviceReady, false);
 }
 
+    
 function onDeviceReady() {
+    alert('onDeviceReady');
     document.addEventListener("backbutton", onBackKeyDown, false);
-    alert('onDivecesadasd');
 }
 
 function onBackKeyDown() {
-    alert('atras');
-    $('#modalPreguntarSiSalir').modal('open');   
+    alert('onBackKeyDown');
+    $('#modalPreguntarSiSalir').modal();
 }
 
 
