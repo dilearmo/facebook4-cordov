@@ -4,13 +4,17 @@
 
 function onLoad() {
     document.addEventListener("deviceready", onDeviceReady, false);
+    
+    alert('onLoad');
 }
 
 function onDeviceReady() {
     document.addEventListener("backbutton", onBackKeyDown, false);
+    alert('onDivecesadasd');
 }
 
 function onBackKeyDown() {
+    alert('atras');
     $('#modalPreguntarSiSalir').modal('open');   
 }
 
