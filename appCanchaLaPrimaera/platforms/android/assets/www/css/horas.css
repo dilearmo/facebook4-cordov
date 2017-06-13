@@ -66,5 +66,20 @@
 }
 
 .horitas {
-    background-color: #088a08;
+    background-color: #212121;
+}
+
+.cuadrosHoras {
+    width: 48%;
+    float: left;
+    padding: 5px 10px;
+    color: white;
+}
+
+.espacioEntreHoras {
+    margin-left: 4%;
+}
+
+.cuadrosHoras[active=true] {
+    background-color: #088A08;
 }

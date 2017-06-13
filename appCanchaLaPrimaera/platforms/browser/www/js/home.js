@@ -2,12 +2,12 @@
 /* global localStorage */
 /* global toastr */
 
-document.addEventListener("backbutton", onBackKeyDown, false);
+/*document.addEventListener("backbutton", onBackKeyDown, false);
 
 function onBackKeyDown(e) {
    e.preventDefault();
    alert('Back Button is Pressed!');
-}
+}*/
 
 
 $(document).ready(function() {
@@ -20,12 +20,12 @@ $(document).ready(function() {
         toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
     }
     
-    document.addEventListener("backbutton", onBackKeyDown, false);
+    /*document.addEventListener("backbutton", onBackKeyDown, false);
 
     function onBackKeyDown(e) {
        e.preventDefault();
        alert('Back Button is Pressed!');
-    }
+    }*/
     
     $("#usuario").html($("#usuario").html() + localStorage.Nombre + " " + localStorage.Apellidos);
     

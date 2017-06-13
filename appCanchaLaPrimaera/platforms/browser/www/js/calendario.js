@@ -98,7 +98,7 @@ $(document).ready(function() {
     function showDate(date) {
         $('#horaYFecha').val(date);
         $('#fecha').text(date);
-        $('#modalHoras').modal('open');
+        listarHorasDisponibles('Miercoles', '2017-06-21');
         // alert('La fecha elegida es ' + date);
         //var spinner = new Spinner().spin()
         //$('#calendario').appendChild(spinner.el)
@@ -122,38 +122,108 @@ $(document).ready(function() {
     $('.datepick-month-header > select:first-child').attr('disabled', 'true');
 });
 
-
+function limpiarModal() {
+     $('.modal-content div').remove();
+}
 /* web services*/
 
 
-function registrarUsuario(Contrasena, Nombre, Apellidos, NombreUsuario, Telefono, Correo) {
-
-
-
+function listarHorasDisponibles(dia, fecha) {
     $.ajax({
-        url: base_url + "WSUsuario/RegistroUsuario?Contrasena=" + Contrasena + "&Nombre=" + Nombre + "&Apellidos=" +
-            Apellidos + "&Telefono=" + Telefono + "&NombreUsuario=" + NombreUsuario + "&Correo=" + Correo,
-        timeout: 200000,
+        url: base_url + 'WSRetos/listarHorasDisponibles?dia=' + dia + '&fecha=' + fecha,
+        timeout: 10000,
         dataType: 'jsonp',
         success: function(response) {
-            if (response == true) {
-                toastr.success("Registrado Correctamente");
-                window.location.replace("https://app-cancha-la-primavera-dilearmo.c9users.io/login.html");
+            if (response != false) {
+                $('#mensajeModal').text('Seleccione la hora en la que desea proponer el reto');
+                $('.modal-content div').remove();
+                var i = 0;
+                var rowAnterior;
+                $.each(response, function() {
+                    var div = document.createElement('div');
+                    div.setAttribute('onclick', 'seleccionarHora(this)');
+                    var divContent = 'Hora: ' + convertirHora(this.Hora) + '<br>' + 'Precio: ¢' + this.Precio;
+                    $(div).html(divContent);
+                    if(i % 2 == 0) {
+                        var row = document.createElement('div');
+                        row.setAttribute('class', 'row');
+                        div.setAttribute('class', 'cuadrosHoras horitas');
+                        row.appendChild(div);
+                        rowAnterior = row;
+                        if(i == response.length - 1) {
+                            $('.modal-content').append(rowAnterior);
+                        }
+                    } else {
+                        div.setAttribute('class', 'cuadrosHoras espacioEntreHoras horitas');
+                        rowAnterior.appendChild(div);
+                        $('.modal-content').append(rowAnterior);
+                    }
+                    i++;
+                });
+                $('#modalHoras').modal('open');
             }
             else {
-                toastr.error("Usuario ya existe o sus datos deben ser bien llenados");
+                $('#mensajeModal').text('No hay horas disponibles en el día seleccionado');
+                return false;
             }
         },
         error: function() {
-            toastr.error("Error al registrar");
-            //  window.alert("AJAX error in request: " + JSON.stringify(err, null, 2) + err.message);
-            //  alert('Error message: '+msg.message+'\nURL: '+url+'\nLine Number: '+linenumber);
+            
         }
 
 
     });
 }
 
+function convertirHora(hora) {
+    switch (hora) {
+        case '12':
+            hora += ':00md';
+            break;
+        case '13':
+            hora = '1:00pm';
+            break;
+        case '14':
+           hora = '2:00pm';
+            break;
+        case '15':
+            hora = '3:00pm';
+            break;
+        case '16':
+            hora = '4:00pm';
+            break;
+        case '17':
+            hora = '5:00pm';
+            break;
+        case '18':
+            hora = '6:00pm';
+            break;
+        case '19':
+            hora = '7:00pm';
+            break;
+        case '20':
+            hora = '8:00pm';
+            break;
+        case '21':
+            hora = '9:00pm';
+            break;
+        case '22':
+            hora = '10:00pm';
+            break;
+        case '23':
+            hora = '11:00pm';
+            break;
+        default:
+            hora += ':00am';
+    }
+    return hora;
+        
+}
+
+function seleccionarHora(div) {
+    $('.modal-content div').attr('active', 'false');
+    $(div).attr('active', 'true');
+}
 
 function findPos(obj) {
     var curtop = 0;
