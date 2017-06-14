@@ -41,7 +41,7 @@
     <body>
         <div class="container">
             
-            <form>
+            <form id="formNuevoReto">
                 <br>
                 <span>Seleccione la fecha para el reto</span>
                 <br>
@@ -95,7 +95,7 @@
             <div id="modalResumen" class="modal modal-fixed-footer">
                 <div class="resumen-content">
                     <h4>Resumen</h4>
-                    <p>Se creará un reto con la siguiente información:</p>
+                    <p id='pModal'>Se creará un reto con la siguiente información:</p>
                     <label id="resumenResponsable" class="labelInfo"></label>
                     <br>
                     <label id="resumenEquipo" class="labelInfo"></label>
@@ -105,9 +105,16 @@
                     <label id="resumenFecha" class="labelInfo"></label>
                     <br>
                     <label id="resumenPrecio" class="labelInfo"></label>
+                    <br>
+                    <br>
+                    <span id="nota"><b>Notas</b></span>
+                    <ul id="ulNotas">
+                        <li>No tendrás que pagar la cancha, a menos de que alguien acepte el reto</li>
+                        <li>Si otra persona reserva la cancha antes que el reto sea aceptado, el reto será cancelado</li>
+                    </ul>
                 </div>
-                <div class="modal-footer">
-                    <a href="#!" class="modal-action waves-effect btn-flat btn-centrado-modal" onclick="mostrarResumen()">Proponer</a>
+                <div class="modal-footer footer-resumen">
+                    <a href="#!" class="modal-action modal-close waves-effect btn-flat btn-centrado-modal" onclick="enviarReto()" id="btnProponer">Proponer</a>
                     <a href="#!" class="modal-action modal-close btn-flat btn-centrado-modal">Editar</a>
                 </div>
             </div>

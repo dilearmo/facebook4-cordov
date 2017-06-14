@@ -106,3 +106,38 @@ input[content=filled]:disabled+label {
 .resumen-content {
     margin: 10px 15px;
 }
+
+#formNuevoReto {
+    margin-bottom: 15px;
+}
+
+.footer-resumen {
+    background-color: #212121 !important;
+}
+
+.footer-resumen a {
+    color: white;
+    border-radius: 0;
+}
+
+#btnProponer {
+    border-left: 1px solid white;
+}
+
+#ulNotas {
+    list-style-type: disc !important;
+    margin: 0;
+}
+
+#ulNotas li {
+    list-style-type: disc !important;
+    margin-left: 16px;
+}
+
+#pModal {
+    margin-top: 0;
+}
+
+.modal h4 {
+    margin-bottom: 0.5rem;
+}

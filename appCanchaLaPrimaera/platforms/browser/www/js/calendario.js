@@ -224,9 +224,14 @@ function listarHorasDisponibles(dia, fecha) {
                     var inputHidden = document.createElement('input');
                     inputHidden.setAttribute('type', 'hidden');
                     $(inputHidden).val(this.Id);
+                    var inputPrecio = document.createElement('input');
+                    inputPrecio.setAttribute('type', 'hidden');
+                    inputPrecio.setAttribute('id', 'precioHidden' + this.Id);
+                    $(inputPrecio).val(this.Precio);
                     var divContent = 'Hora: ' + convertirHora(this.Hora) + '<br>' + 'Precio: ¢' + this.Precio;
                     $(div).html(divContent);
                     div.appendChild(inputHidden);
+                    div.appendChild(inputPrecio);
                     if(i % 2 == 0) {
                         var row = document.createElement('div');
                         row.setAttribute('class', 'row');
@@ -253,6 +258,7 @@ function listarHorasDisponibles(dia, fecha) {
         },
         error: function() {
             $('#btnSelecHora').attr('disabled', 'disabled');
+            toastr.error('Error de conexión con la base de datos');
         }
 
 
@@ -321,12 +327,75 @@ function seleccionarFechaDef() {
 }
 
 function mostrarResumen() {
-    $('#resumenResponsable').html('<b>Responsable:</b> ' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
-    $('#resumenEquipo').html('<b>Equipo:</b> ' + $('#nombreEquipo').val());
-    $('#resumenCantidadJugadores').html('<b>Cantidad de jugadores:</b> ' + $('#cantidadJugadores').val());
-    $('#resumenFecha').html('<b>Fecha:</b> ' + $('#fechaPreview').val());
-    $('#resumenPrecio').html('<b>Precio:</b> ¢32131');
-    $('#modalResumen').modal('open');
+    $('#idUsuario').val(localStorage.getItem('IdUsuario'));
+    var nomEquipo = $('#nombreEquipo').val().trim();
+    var cantJug = $('#cantidadJugadores').val().trim();
+    var fecha = $('#fechaPreview').val().trim();
+    var precio = $('#precioHidden' + $('#horaSeleccionada').val()).val();
+    if(precio == undefined) {
+        toastr.info('Por favor, seleccione una fecha');
+    } else {
+        if(nomEquipo.length > 0 && cantJug.length > 0 && fecha != -1 && precio.length > 0) {
+            $('#resumenResponsable').html('<b>Responsable:</b> ' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
+            $('#resumenEquipo').html('<b>Equipo:</b> ' + nomEquipo);
+            $('#resumenCantidadJugadores').html('<b>Cantidad de jugadores:</b> ' + cantJug);
+            $('#resumenFecha').html('<b>Fecha:</b> ' + fecha);
+            $('#resumenPrecio').html('<b>Precio:</b> ' + precio);
+            $('#modalResumen').modal('open');
+        } else {
+            toastr.info('Por favor, llene todos los campos');
+        }
+    }
+}
+
+/*function enviarReto() {
+    $('#formNuevoReto').submit();
+    setTimeout(
+        function() {
+            window.location.href('retos.html');
+        }, 
+        2000
+    );
+}*/
+
+function enviarReto() {
+    $('#btnProponer').attr('disabled', 'disabled');
+    var cantidadJugadores = $('#cantidadJugadores').val();
+    var nombreEquipo = $('#nombreEquipo').val();
+    var fechaSeleccionada = $('#fechaSeleccionada').val();
+    var horaSeleccionada = $('#horaSeleccionada').val();
+    console.log(base_url + 'WSRetos/guardarReto?idUsuario=' + localStorage.getItem('IdUsuario') 
+                        + '&nombreEquipo=' + nombreEquipo
+                        + '&fechaSeleccionada=' + fechaSeleccionada
+                        + '&horaSeleccionada=' + horaSeleccionada
+                        + '&cantidadJugadores= ' + cantidadJugadores);
+    $.ajax({
+        url: base_url + 'WSRetos/guardarReto?idUsuario=' + localStorage.getItem('IdUsuario') 
+                        + '&nombreEquipo=' + nombreEquipo
+                        + '&fechaSeleccionada=' + fechaSeleccionada
+                        + '&horaSeleccionada=' + horaSeleccionada
+                        + '&cantidadJugadores=' + cantidadJugadores,
+        timeout: 10000,
+        dataType: 'jsonp',
+        success: function(result) {
+            if(result == true) {
+                toastr.success('¡Se ha propuesto tu reto!');
+                setTimeout(
+                    function() {
+                        window.location.href = 'retos.html';
+                    },
+                    2000
+                );
+            } else {
+                toastr.error('Error al proponer el reto');
+            }
+            $('#btnProponer').removeAttr('disabled');
+        },
+        error: function(a, b, c) {
+            toastr.error('Error de conexión con la base de datos ' + a.responseText + b+ c);
+            $('#btnProponer').removeAttr('disabled');
+        }
+    });
 }
 
 function findPos(obj) {
