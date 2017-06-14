@@ -96,6 +96,10 @@ li #usuario {
     margin-right: 5px;
 }
 
+.collapsible-body {
+    background: #fafafa;
+}
+
 @media (max-width: 600px) {
     li #usuario {
         height: 56px;

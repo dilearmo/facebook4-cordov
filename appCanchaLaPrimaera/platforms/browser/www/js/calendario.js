@@ -150,7 +150,7 @@ function formatearFecha(fecha) {
             dia = 'Domingo';
             break;
         default:
-            // code
+            dia = 'Error';
     }
     // Saca el mes
     switch (array[1]) {
