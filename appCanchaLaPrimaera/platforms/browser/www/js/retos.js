@@ -4,6 +4,7 @@
 var base_url = 'https://cancha-la-primavera-dilearmo.c9users.io/index.php/';
 
 $(document).ready(function() {
+    $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
     listarRetos();
 });
 

@@ -90,4 +90,8 @@ li #usuario {
         height: 56px;
         line-height: 56px;
     }
+    
+    #usuario > i {
+    line-height: 56px;
+}
 }
