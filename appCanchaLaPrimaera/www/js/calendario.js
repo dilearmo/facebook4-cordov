@@ -334,13 +334,15 @@ function mostrarResumen() {
     var precio = $('#precioHidden' + $('#horaSeleccionada').val()).val();
     if(precio == undefined) {
         toastr.info('Por favor, seleccione una fecha');
+    } else if(cantJug < 6 || cantJug > 16) {
+        toastr.info('La cantidad de jugadores debe ser<br>mayor a 6 y menor a 16');
     } else {
         if(nomEquipo.length > 0 && cantJug.length > 0 && fecha != -1 && precio.length > 0) {
             $('#resumenResponsable').html('<b>Responsable:</b> ' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
             $('#resumenEquipo').html('<b>Equipo:</b> ' + nomEquipo);
             $('#resumenCantidadJugadores').html('<b>Cantidad de jugadores:</b> ' + cantJug);
             $('#resumenFecha').html('<b>Fecha:</b> ' + fecha);
-            $('#resumenPrecio').html('<b>Precio:</b> ' + precio);
+            $('#resumenPrecio').html('<b>Precio:</b> ¢' + precio);
             $('#modalResumen').modal('open');
         } else {
             toastr.info('Por favor, llene todos los campos');
