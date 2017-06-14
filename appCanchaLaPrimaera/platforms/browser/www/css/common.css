@@ -92,6 +92,10 @@ li #usuario {
     line-height: 64px;
 }
 
+.collapsible-header i {
+    margin-right: 5px;
+}
+
 @media (max-width: 600px) {
     li #usuario {
         height: 56px;

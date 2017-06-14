@@ -27,7 +27,7 @@ function listarRetos() {
                     var divHeader = document.createElement('div');
                     divHeader.setAttribute("class", "collapsible-header");
                     $(divHeader).html('<i class="material-icons">compare_arrows</i><b>Fecha:</b> '
-                    + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1] + '-' + fecha[0]
+                    + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
                     + ' <b>Hora:</b> ' + convertirHora(this.Hora));
                     var divBody = document.createElement('div');
                     divBody.setAttribute('class', 'collapsible-body');
