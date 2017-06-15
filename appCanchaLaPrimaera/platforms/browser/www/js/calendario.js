@@ -200,6 +200,7 @@ function limpiarModal() {
     $('.modal-content div').remove();
     $('#horaPrecioTemp').val('-1');
     $('#fechaSeleccTemp').val('-1');
+    //$('#horaPrecioValTemp').val('-1');
 }
 /* web services*/
 
@@ -227,11 +228,16 @@ function listarHorasDisponibles(dia, fecha) {
                     var inputPrecio = document.createElement('input');
                     inputPrecio.setAttribute('type', 'hidden');
                     inputPrecio.setAttribute('id', 'precioHidden' + this.Id);
+                    var inputHora = document.createElement('input');
+                    inputHora.setAttribute('type', 'hidden');
+                    inputHora.setAttribute('id', 'horaHidden' + this.Id);
                     $(inputPrecio).val(this.Precio);
+                    $(inputHora).val(convertirHora(this.Hora));
                     var divContent = 'Hora: ' + convertirHora(this.Hora) + '<br>' + 'Precio: ¢' + this.Precio;
                     $(div).html(divContent);
                     div.appendChild(inputHidden);
                     div.appendChild(inputPrecio);
+                    div.appendChild(inputHora);
                     if(i % 2 == 0) {
                         var row = document.createElement('div');
                         row.setAttribute('class', 'row');
@@ -321,7 +327,7 @@ function seleccionarFechaDef() {
     $('#horaSeleccionada').val($('#horaPrecioTemp').val());
     $('#diaSeleccionado').val($('#diaSelecTemp').val());
     $('#fechaSeleccionada').val($('#fechaSeleccTemp').val());
-    $('#fechaPreview').val($('#diaSeleccionado').val() + ' ' + $('#fechaSeleccionada').val());
+    $('#fechaPreview').val($('#diaSeleccionado').val() + ' ' + $('#fechaSeleccionada').val() + ' - ' + $('#horaHidden' + $('#horaSeleccionada').val()).val());
     $('#fechaPreview').focusin();
     $('#fechaPreview').attr('content', 'filled');
 }
