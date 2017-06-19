@@ -11,17 +11,16 @@
         <link  rel="stylesheet" type="text/css" href="css/materializeIcons.css">
         <link  rel="stylesheet" type="text/css" href="css/toastr.min.css">
         <link  rel="stylesheet" type="text/css" href="css/common.css">
-        <link  rel="stylesheet" type="text/css" href="css/home.css">
+        <link  rel="stylesheet" type="text/css" href="css/retos.css">
         
     </head>
     
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo">Mis reservas</a>
+                <a href="index.html" class="brand-logo">Mis retos</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="horas_reservables.html">Horas reservables</a></li>
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
                     <li><a onclick="logout()">Logout</a></li>
@@ -29,7 +28,7 @@
             </div>
         </nav>
         <ul class="side-nav" id="mobile-demo">
-            <li class="fondoColorComplementario"><a href="#" id="usuario" class="letraBlanca"><i class="material-icons letraBlanca">perm_identity</i></a></li>
+            <li class="fondoColorComplementario"><a href="#" id="usuario" class="letraBlanca"></a></li>
             <li><a href="home.html">Mis reservas</a></li>
             <li><a href="retos.html">Mis retos</a></li>
             <li><a onclick="logout()">Logout</a></li>
@@ -41,57 +40,44 @@
             
             <div id="listaReservas">
                 
-                <a class="waves-effect waves-light btn"><i class="material-icons right btnAddIcon">add</i>Nueva reserva</a>
-                
-                <ul class="collapsible" data-collapsible="accordion" id="ulReservas">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i><b>Fecha:</b> 11-06-2017 <b>Hora:</b> 9:00am</div>
-                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Fecha 11-06-2017 Hora 9:00am</div>
-                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">assignment_turned_in</i>Fecha 11-06-2017 Hora 9:00am</div>
-                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                    </li>
+                <a href="nuevaReserva.html" class="waves-effect waves-light btn" href="nuevoReto.html"><i class="material-icons right btnAddIcon">add</i>Reservar</a>
+
+                <ul id="ulRetos">
+                    
                 </ul>
-                
-            </div>
+            
             <!--<div id="listaRetos">
                 <h4>Mis retos</h4>
                 
             </div>-->
+            </div>
         </div>
-        
         <div class="fixed-action-btn toolbar">
-            <a class="btn-floating fondoColorComplementario">
+            <a class="btn-floating fondoColorComplementario" onclick="">
                 <i class="large material-icons">help_outline</i>
             </a>
             <ul>
                 <li class="waves-effect waves-light">
                     <a href="#!">
-                        Aquí puedes ver la lista de reservas que has realizado
+                        En esta página puedes proponer retos para que otras personas los vean y acepten jugar contra ti y tu equipo
                     </a>
                 </li>
             </ul>
         </div>
-        
-        <div id="modalPreguntarSiSalir" class="modal">
+         <div id="modalEliminarReto" class="modal fade modal-fixed-footer">
             <div class="modal-content">
-                <h4>¿Desea salir de la aplicación?</h4>
+                <span>¿Está seguro que desea eliminar este reto?</span>
+                <span id="infoRetoEliminando"></span>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close btn-flat">No</a>
-                <a onclick="logout()" class="modal-action modal-close btn-flat">Sí</a>
+                <a href="#!" class="modal-action modal-close waves-effect btn-flat ">Atrás</a>
+                <a id="econfirmar"  class="modal-action modal-close waves-effect btn-flat ">Cancelar reserva</a>
             </div>
         </div>
-                
         <script src="js/jquery.min.js"></script>
         <script src="js/toastr.min.js"></script>
         <script src="js/materialize.min.js"></script>
-        <script src="js/home.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/reservas.js"></script>
     </body>
 </html> 

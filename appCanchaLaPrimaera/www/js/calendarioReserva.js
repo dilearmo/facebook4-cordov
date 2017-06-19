@@ -193,7 +193,7 @@ function formatearFecha(fecha) {
         default:
             // code
     }
-    listarHorasDisponibles(dia, anno + '-' + mes + '-' + diaFecha);
+    listarHorasDisponibles(dia, anno + '-' + mes + '-' + diaFecha, fecha);
 }
 
 function limpiarModal() {
@@ -205,12 +205,17 @@ function limpiarModal() {
 /* web services*/
 
 
-function listarHorasDisponibles(dia, fecha) {
+function listarHorasDisponibles(dia, fecha, fechaRaw) {
     $.ajax({
-        url: base_url + 'WSRetos/listarHorasDisponibles?dia=' + dia + '&fecha=' + fecha,
+        url: base_url + 'WsReservas/listarHorasDisponibles?dia=' + dia + '&fecha=' + fecha,
         timeout: 10000,
         dataType: 'jsonp',
         success: function(response) {
+             var d = new Date();
+             var s = new Date(fechaRaw);
+             var n = d.getHours();
+             var f = d.getDay()+ " " + d.getMonth() + d.getDate();
+             var r = s.getDay() + " " + s.getMonth() + s.getDate();
             $('#btnSelecHora').attr('disabled', 'disabled');
             $('#fechaSeleccTemp').val(fecha);
             $('#diaSelecTemp').val(dia);
@@ -219,8 +224,14 @@ function listarHorasDisponibles(dia, fecha) {
                 $('.modal-content div').remove();
                 var i = 0;
                 var rowAnterior;
+                
                 $.each(response, function() {
-                    var div = document.createElement('div');
+                  
+                    if(f === r) {
+                           
+                       if(this.Hora > n) {
+                          
+                  var div = document.createElement('div');
                     div.setAttribute('onclick', 'seleccionarHora(this)');
                     var inputHidden = document.createElement('input');
                     inputHidden.setAttribute('type', 'hidden');
@@ -245,15 +256,88 @@ function listarHorasDisponibles(dia, fecha) {
                         row.appendChild(div);
                         rowAnterior = row;
                         if(i == response.length - 1) {
-                            $('#modalHoras .modal-content').append(rowAnterior);
+                            $('.modal-content').append(rowAnterior);
                         }
                     } else {
                         div.setAttribute('class', 'cuadrosHoras espacioEntreHoras horitas');
                         rowAnterior.appendChild(div);
-                        $('#modalHoras .modal-content').append(rowAnterior);
+                        $('.modal-content').append(rowAnterior);
                     }
                     i++;
-                });
+                }  else {
+                    var div = document.createElement('div');
+                    
+                    var inputHidden = document.createElement('input');
+                    inputHidden.setAttribute('type', 'hidden');
+                    $(inputHidden).val(this.Id);
+                    var inputPrecio = document.createElement('input');
+                    inputPrecio.setAttribute('type', 'hidden');
+                    inputPrecio.setAttribute('id', 'precioHidden' + this.Id);
+                    var inputHora = document.createElement('input');
+                    inputHora.setAttribute('type', 'hidden');
+                    inputHora.setAttribute('id', 'horaHidden' + this.Id);
+                    $(inputPrecio).val(this.Precio);
+                    $(inputHora).val(convertirHora(this.Hora));
+                    var divContent = 'Hora: ' + convertirHora(this.Hora) + '<br>' + 'Precio: ¢' + this.Precio;
+                    $(div).html(divContent);
+                    div.appendChild(inputHidden);
+                    div.appendChild(inputPrecio);
+                    div.appendChild(inputHora);
+                    $(div).css("background-color","red");
+                    if(i % 2 == 0) {
+                        var row = document.createElement('div');
+                        row.setAttribute('class', 'row');
+                        div.setAttribute('class', 'cuadrosHoras horitas');
+                        row.appendChild(div);
+                        rowAnterior = row;
+                        if(i == response.length - 1) {
+                            $('.modal-content').append(rowAnterior);
+                        }
+                    } else {
+                        div.setAttribute('class', 'cuadrosHoras espacioEntreHoras horitas');
+                        rowAnterior.appendChild(div);
+                        $('.modal-content').append(rowAnterior);
+                    }
+                    i++;
+                }
+                    } else {
+                       var div = document.createElement('div');
+                    div.setAttribute('onclick', 'seleccionarHora(this)');
+                    var inputHidden = document.createElement('input');
+                    inputHidden.setAttribute('type', 'hidden');
+                    $(inputHidden).val(this.Id);
+                    var inputPrecio = document.createElement('input');
+                    inputPrecio.setAttribute('type', 'hidden');
+                    inputPrecio.setAttribute('id', 'precioHidden' + this.Id);
+                    var inputHora = document.createElement('input');
+                    inputHora.setAttribute('type', 'hidden');
+                    inputHora.setAttribute('id', 'horaHidden' + this.Id);
+                    $(inputPrecio).val(this.Precio);
+                    $(inputHora).val(convertirHora(this.Hora));
+                    var divContent = 'Hora: ' + convertirHora(this.Hora) + '<br>' + 'Precio: ¢' + this.Precio;
+                    $(div).html(divContent);
+                    div.appendChild(inputHidden);
+                    div.appendChild(inputPrecio);
+                    div.appendChild(inputHora);
+                    if(i % 2 == 0) {
+                        var row = document.createElement('div');
+                        row.setAttribute('class', 'row');
+                        div.setAttribute('class', 'cuadrosHoras horitas');
+                        row.appendChild(div);
+                        rowAnterior = row;
+                        if(i == response.length - 1) {
+                            $('.modal-content').append(rowAnterior);
+                        }
+                    } else {
+                        div.setAttribute('class', 'cuadrosHoras espacioEntreHoras horitas');
+                        rowAnterior.appendChild(div);
+                        $('.modal-content').append(rowAnterior);
+                    }
+                    i++; 
+                    }
+                    
+                    
+                 });
                 $('#modalHoras').modal('open');
             }
             else {
@@ -270,6 +354,7 @@ function listarHorasDisponibles(dia, fecha) {
 
     });
 }
+
 
 function convertirHora(hora) {
     switch (hora) {
@@ -372,13 +457,13 @@ function enviarReto() {
     var nombreEquipo = $('#nombreEquipo').val();
     var fechaSeleccionada = $('#fechaSeleccionada').val();
     var horaSeleccionada = $('#horaSeleccionada').val();
-    console.log(base_url + 'WSRetos/guardarReto?idUsuario=' + localStorage.getItem('IdUsuario') 
+    console.log(base_url + 'WsReservas/reservar?idUsuario=' + localStorage.getItem('IdUsuario') 
                         + '&nombreEquipo=' + nombreEquipo
                         + '&fechaSeleccionada=' + fechaSeleccionada
                         + '&horaSeleccionada=' + horaSeleccionada
                         + '&cantidadJugadores= ' + cantidadJugadores);
     $.ajax({
-        url: base_url + 'WSRetos/guardarReto?idUsuario=' + localStorage.getItem('IdUsuario') 
+        url: base_url + 'WsReservas/reservar?idUsuario=' + localStorage.getItem('IdUsuario') 
                         + '&nombreEquipo=' + nombreEquipo
                         + '&fechaSeleccionada=' + fechaSeleccionada
                         + '&horaSeleccionada=' + horaSeleccionada
@@ -387,20 +472,20 @@ function enviarReto() {
         dataType: 'jsonp',
         success: function(result) {
             if(result == true) {
-                toastr.success('¡Se ha propuesto tu reto!');
+                toastr.success('¡Se ha realizado tu reserva!');
                 setTimeout(
                     function() {
-                        window.location.href = 'retos.html';
+                        window.location.href = 'home.html';
                     },
                     2000
                 );
             } else {
-                toastr.error('Error al proponer el reto');
+                toastr.error('Error al reservar');
             }
             $('#btnProponer').removeAttr('disabled');
         },
         error: function(a, b, c) {
-            toastr.error('Error de conexión con la base de datos ' + a.responseText + b+ c);
+            toastr.error('Error al momento de reservar, intentelo de nuevo ');
             $('#btnProponer').removeAttr('disabled');
         }
     });

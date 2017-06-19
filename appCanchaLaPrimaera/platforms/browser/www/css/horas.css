@@ -103,10 +103,6 @@ input[content=filled]:disabled+label {
     text-align: center;
 }
 
-.resumen-content {
-    margin: 10px 15px;
-}
-
 #formNuevoReto {
     margin-bottom: 15px;
 }

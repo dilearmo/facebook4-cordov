@@ -245,12 +245,12 @@ function listarHorasDisponibles(dia, fecha) {
                         row.appendChild(div);
                         rowAnterior = row;
                         if(i == response.length - 1) {
-                            $('.modal-content').append(rowAnterior);
+                            $('#modalHoras .modal-content').append(rowAnterior);
                         }
                     } else {
                         div.setAttribute('class', 'cuadrosHoras espacioEntreHoras horitas');
                         rowAnterior.appendChild(div);
-                        $('.modal-content').append(rowAnterior);
+                        $('#modalHoras .modal-content').append(rowAnterior);
                     }
                     i++;
                 });

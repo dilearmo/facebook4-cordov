@@ -6,3 +6,22 @@
     color: black;
     font-size: 14px;
 }
+
+.btnEliminarReto {
+    background-color: #088A08;
+}
+
+.footer-resumen {
+    background-color: #212121 !important;
+}
+
+.footer-resumen a {
+    color: white;
+    border-radius: 0;
+    width: 50%;
+    text-align: center;
+}
+
+#btnCancelar {
+    border-left: 1px solid white;
+}
