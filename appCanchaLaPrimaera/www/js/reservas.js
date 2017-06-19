@@ -7,6 +7,7 @@ var base_url = 'https://cancha-la-primavera-dilearmo.c9users.io/index.php/';
 
 $(document).ready(function() {
     $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
+    $('.modal').modal();
     listarRetos();
 });
 
@@ -32,18 +33,18 @@ function listarRetos() {
                     + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
                     + ' <b>Hora:</b> ' + convertirHora(this.Hora));
                     var divBody = document.createElement('div');
+                    var argumentos = this.idReserva + ', "' + this.NombreDia + " " + fecha[2] + "-" + fecha[1] + '", "' + convertirHora(this.Hora) + '"';
                     divBody.setAttribute('class', 'collapsible-body');
-                   $(divBody).html("<label class='labelInfo'><b>Responsable: </b>" + nombre + " " + apellidos + "</label>"
+                    $(divBody).html("<label class='labelInfo'><b>Responsable: </b>" + nombre + " " + apellidos + "</label>"
                     + "<br>"
-                    + "<label class='labelInfo'><b>Equipo: </b>" + this.NombreEquipo + "</label>" 
+                    + "<label class='labelInfo'><b>Equipo: </b>" + this.Mi_Equipo + "</label>" 
                     + "<br>" 
                     + "<label class='labelInfo'><b>Cantidad de jugadores: </b>" + this.CantidadDeJugadores +"</label>"
                     + "<br>"
                     + "<label class='labelInfo'><b>Precio: </b>¢" + this.Precio + "</label>"
                     + "<br>"
-                    + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiEliminar(" + this.Id 
-                        + ", '" + this.NombreDia + " " + fecha[2] + "-" + fecha[1] + "', '" + convertirHora(this.Hora) + "')'>"
-                        + "<i class='material-icons right'>cancel</i>Cancelar</a>");
+                    + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiEliminar(" + argumentos + ")'>"
+                    + "<i class='material-icons right'>cancel</i>Cancelar</a>");
                     li.appendChild(divHeader);
                     li.appendChild(divBody);
                     $('#ulRetos').append(li);
@@ -102,15 +103,16 @@ function convertirHora(hora) {
 }
 
 function preguntarSiEliminar(idReto, fecha, hora) {
+   
     $("#infoRetoEliminando").text('Reserva hecha  para el ' + fecha + ' a las ' + hora);
-    $('#econfirmar').attr('onclick','eliminar('+ idReto +')');
-    $('#modalEliminarReto').modal();
+    $('#btnCancelar').attr('onclick','eliminar('+ idReto +')');
+    $('#modalEliminarReto').modal('open');
     
 }
 
 function eliminar(i) {
   $(function() {
-  
+
         $.ajax({
             type: 'GET',
             url: 'https://cancha-la-primavera-dilearmo.c9users.io/index.php/WsReservas/cancelarApp?id='+i,

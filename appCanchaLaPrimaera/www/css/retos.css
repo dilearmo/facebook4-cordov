@@ -25,3 +25,7 @@
 #btnCancelar {
     border-left: 1px solid white;
 }
+
+#modalEliminarReto {
+    max-height: 50%;
+}
