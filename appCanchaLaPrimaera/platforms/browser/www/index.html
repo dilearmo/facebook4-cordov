@@ -1,22 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <!--
@@ -37,154 +20,24 @@
         <link href="css/materializeIcons.css" rel="stylesheet" type="text/css" >
         <link href="css/toastr.min.css" rel="stylesheet">
         <link href="css/common.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="css/pantallaInicial.css">
         <meta charset="UTF-8">
-        <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
         
         <title>La Primavera</title>
     </head>
     <body>
-        <!--<div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>-->
-        <div class="form">
-        
-            <div class="tab-fijos">
-                <ul class="tab-group">
-                    <li class="tab active"><a href="#login">Inicio de sesión</a></li>
-                    <li class="tab"><a href="#signup">Registrarse</a></li>
-                </ul>
-            </div>
-            
-            <h2 id="h2Titulo">Cancha La Primavera</h2>
-            
-            <div class="tab-content">
-                
-                <div id="login">  
-                    <h3 id="welcomeMessage">Bienvenido</h3>
-                    
-                    <form id="loginForm" action="login/guardarUsuarioEnSesion" method="post">
-                    
-                        <div class="field-wrap">
-                            <label>
-                                Nombre de usuario<span class="req">*</span>
-                            </label>
-                            <input type="text" autocomplete="off" id="nombreUsuario" name="nombreUsuario"/>
-                        </div>
-                        
-                        <div class="field-wrap">
-                            <label>
-                                Contraseña<span class="req">*</span>
-                            </label>
-                            <input type="password" autocomplete="off" id="contrasena" name="contrasena"/>
-                        </div>
-                        
-                        <!--<p class="forgot"><a href="#">¿Olvidó su contraseña?</a></p>-->
-                        
-                        <button class="btn button-block" onclick="existeNombreUsuario('login', '0', '0')" type="button" id="btnIniciarSesion"/>Iniciar sesión</button>
-                        <button class="btn button-block btnFB" type="button" onclick="checkFBLoginStatus('login')"/>Iniciar sesión con Facebook</button>
-                        
-                        
-                        
-                        <!--<button id="FBlogout">Cerrar sesión</button>-->
-                        
-                    </form>
-                
-                </div>
-                
-                <div id="signup">   
-                <h3 class="white-text center">Ingrese sus datos</h3>
-                
-                    <form action="/" method="post" id="formRegistro">
-                    
-                        <div>
-                            <div class="field-wrap">
-                                <label>
-                                    Nombre<span class="req">*</span>
-                                </label>
-                                <input type="text" autocomplete="off" id="nombre"/>
-                            </div>
-                                
-                            <div class="field-wrap">
-                                <label>
-                                    Apellidos<span class="req">*</span>
-                                </label>
-                                <input type="text" autocomplete="off" id="apellidos"/>
-                            </div>
-                            
-                        </div>
-                        
-                        <div class="field-wrap" id="nombreUsuarioRegistro">
-                            <label>
-                            Nombre de usuario<span class="req">*</span>
-                            </label>
-                            <input type="text" autocomplete="off"/>
-                        </div>
-                        
-                        <div class="field-wrap">
-                            <label>
-                            Correo electrónico<span class="req">*</span>
-                            </label>
-                            <input type="email" autocomplete="off" id="email"/>
-                        </div>
-                        
-                        <div class="field-wrap">
-                            <label>
-                                Teléfono<span class="req">*</span>
-                            </label>
-                            <input type="tel" autocomplete="off" id="telefono"/>
-                        </div>
-                        
-                        <div id="divContrasena">
-                            <div class="field-wrap">
-                                <label>
-                                    Contraseña<span class="req">*</span>
-                                </label>
-                                <input type="password" autocomplete="off" id="contrasena1"/>
-                            </div>
-                                
-                            <div class="field-wrap">
-                                <label>
-                                    Repita la contraseña<span class="req">*</span>
-                                </label>
-                                <input type="password" autocomplete="off" id="contrasena2"/>
-                            </div>
-                            
-                        </div>
-                        
-                        <button type="submit" class="btn button-block" id="btnRegistrarse"/>Registrarme</button>
-                        <button type="button" class="btn button-block btnFB" onclick="checkFBLoginStatus('registro')" id="btnRegistroFB"/>Registrarme con Facebook</button>
-                        <button type="button" class="btn button-block btnRT" onclick="mostrarRegistroTradicional()" id="btnRegistroTradicional"/>Registro tradicional</button>
-                        
-                    </form>
-                
-                </div>
-                
-            
-            </div><!-- tab-content -->
-        
-        </div> <!-- /form -->
-        
-        
-        
-        <!--<button onclick='checkFBLoginStatus("login")'>Login</button>
-        <button onclick='checkFBLoginStatus("logout")'>Logout</button>-->
-        
+
+        <div class="container">
+            <br>
+            <h5 id="nombreCancha">Cancha La Primavera</h5>
         </div>
-        
-        <input type="hidden" id="hiddenFBSingup" value="false">
-        
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/toastr.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript" src="js/common.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/registro.js"></script>
+        <script type="text/javascript" src="js/pantallaInicial.js"></script>
     </body>
     
     

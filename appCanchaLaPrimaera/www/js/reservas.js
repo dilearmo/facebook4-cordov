@@ -9,6 +9,13 @@ $(document).ready(function() {
     $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
     $('.modal').modal();
     listarRetos();
+    
+    /*if (window.history && window.history.pushState) {
+        window.history.pushState('forward', null, './#forward');
+        $(window).on('popstate', function() {
+            alert('Back button was pressed.');
+        });
+    }*/
 });
 
 function listarRetos() {
