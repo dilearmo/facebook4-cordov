@@ -265,3 +265,7 @@ input[type=tel]:focus:not([readonly]){
   font-size: 2.3rem !important;
   margin-top: 80px;
 }
+
+body::after {
+  background-image: none;
+}

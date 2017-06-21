@@ -1,3 +1,4 @@
+/* Esto es si se le pone imagen */
 body::after {
     background-image: url(../img/bola.png);
     background-repeat: no-repeat;
@@ -12,10 +13,12 @@ body::after {
     z-index: -1;  
 }
 
+/* Esto es si se le pone imagen */
 body {
     overflow: hidden;
 }
 
+/* Esto es si se le pone imagen */
 html {
     height: 100%;
     width: 100%;
