@@ -137,3 +137,8 @@ input[content=filled]:disabled+label {
 .modal h4 {
     margin-bottom: 0.5rem;
 }
+
+.container {
+    height: 90vh;
+    overflow: auto;
+}
