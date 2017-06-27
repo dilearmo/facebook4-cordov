@@ -255,8 +255,8 @@ function listarHorasDisponibles(dia, fecha) {
                     i++;
                 });
                 $('#modalHoras').modal('open');
-            }
-            else {
+            } else {
+                toastr.info('No hay horas');
                 $('#btnSelecHora').attr('disabled', 'disabled');
                 $('#mensajeModal').text('No hay horas disponibles en el día seleccionado');
                 return false;

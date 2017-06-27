@@ -147,4 +147,6 @@ input[content=filled]:disabled+label {
 .container {
     height: 90vh;
     overflow: auto;
+    background-color: white;
+    padding: 0 10px;
 }
