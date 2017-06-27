@@ -23,14 +23,16 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
+                    <li><a href="retosPropuestos.html">Retos disponibles</a></li>
                     <li><a onclick="logout()">Logout</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="side-nav" id="mobile-demo">
-            <li class="fondoColorComplementario"><a href="#" id="usuario" class="letraBlanca"></a></li>
+            <li class="fondoColorComplementario"><a href="usuario.html" id="usuario" class="letraBlanca"></a></li>
             <li><a href="home.html">Mis reservas</a></li>
-            <li><a href="retos.html">Mis retos</a></li>
+            <li class='active'><a href="retos.html">Mis retos</a></li>
+            <li><a href="retosPropuestos.html">Retos disponibles</a></li>
             <li><a onclick="logout()">Logout</a></li>
         </ul>
     </header>
@@ -42,10 +44,18 @@
                 
                 <a class="waves-effect waves-light btn" href="nuevoReto.html"><i class="material-icons right btnAddIcon">add</i>Proponer reto</a>
 
+                <div id="divBtnListasRetos">
+                    <a href="#" onclick="mostrarListaPropuestos()" id="verRetosProp" class="btnListaRetos listaActiva">Propuestos</a>
+                    <a href="#" onclick="mostrarListaAceptados()" id="verRetosPropAcep" class="btnListaRetos">Aceptados</a>
+                </div>
+                
                 <ul id="ulRetos">
                     
                 </ul>
-            
+
+                <ul id="ulRetosAceptados" class="listaHidde">
+                    <li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li><li>Aceptado</li>
+                </ul>            
             <!--<div id="listaRetos">
                 <h4>Mis retos</h4>
                 

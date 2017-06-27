@@ -26,14 +26,20 @@
                     <li><a href="horas_reservables.html">Horas reservables</a></li>
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
+                    <li><a href="retosPropuestos.html">Retos disponibles</a></li>
                     <li><a onclick="logout()">Logout</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="side-nav" id="mobile-demo">
-            <li class="fondoColorComplementario"><a href="#" id="usuario" class="letraBlanca"><i class="material-icons letraBlanca">perm_identity</i></a></li>
+            <li class="fondoColorComplementario"><a href="usuario.html" id="usuario" class="letraBlanca"><i class="material-icons letraBlanca">perm_identity</i></a></li>
+            <!--<span>Reservas</span>-->
             <li><a href="home.html">Mis reservas</a></li>
+            <!--<li><a href="nuevaReserva.html">Nueva reservas</a></li>-->
+            <!--<span>Retos</span>-->
             <li><a href="retos.html">Mis retos</a></li>
+            <li><a href="retosPropuestos.html">Retos disponibles</a></li>
+            <!--<li class='active'><a href="nuevoReto.html">Nuevo reto</a></li>-->
             <li><a onclick="logout()">Logout</a></li>
         </ul>
     </header>
@@ -91,7 +97,7 @@
                     <label for="cantidadJugadores">Cantidad de jugadores</label>
                 </div>
                 <a class="waves-effect waves-light btn" href="retos.html" id="btnCancelar">Cancelar</a>
-                <button class="waves-effect waves-light btn" onclick="mostrarResumen()" type="button">Continuar</button>
+                <button class="waves-effect waves-light btn" onclick="mostrarResumen()" type="button" id="btnContinuar">Continuar</button>
             </form>
             
             <div id="modalResumen" class="modal modal-fixed-footer">

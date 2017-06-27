@@ -31,6 +31,44 @@
 }
 
 .container {
+    /*height: 90vh;*/
+    /*overflow: auto;*/
+}
+
+#ulRetos {
+    margin-top: 0;   
     height: 90vh;
     overflow: auto;
+}
+
+#ulRetosAceptados {
+    margin-top: 0;   
+    height: 90vh;
+    overflow: auto;
+}
+
+.btnListaRetos {
+    width: 50%;
+    color: #1ab188;
+    background-color: #424242;
+    display: block;
+    float: left;
+    text-align: center;
+    color: white;
+    height: 36px;
+    line-height: 36px;
+}
+
+.listaActiva {
+    background-color: #088A08;}
+
+
+#divBtnListasRetos {
+    width: 100%;
+    margin-top: 10px;
+    height: 36px;
+}
+
+.listaHidde {
+    display: none;
 }

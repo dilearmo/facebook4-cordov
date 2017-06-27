@@ -138,7 +138,15 @@ input[content=filled]:disabled+label {
     margin-bottom: 0.5rem;
 }
 
+.modal-footer a {
+    width: 50%;
+    text-align: center;
+}
 
+#btnSelecHora {
+    border-left: black solid 1px;
+    border-radius: 0;
+}
 
 
 

@@ -256,9 +256,9 @@ function listarHorasDisponibles(dia, fecha) {
                 });
                 $('#modalHoras').modal('open');
             } else {
-                toastr.info('No hay horas');
                 $('#btnSelecHora').attr('disabled', 'disabled');
                 $('#mensajeModal').text('No hay horas disponibles en el día seleccionado');
+                $('#modalHoras').modal('open');
                 return false;
             }
         },
@@ -368,6 +368,7 @@ function mostrarResumen() {
 
 function enviarReto() {
     $('#btnProponer').attr('disabled', 'disabled');
+    $('#btnContinuar').attr('disabled', 'disabled');
     var cantidadJugadores = $('#cantidadJugadores').val();
     var nombreEquipo = $('#nombreEquipo').val();
     var fechaSeleccionada = $('#fechaSeleccionada').val();
@@ -387,6 +388,7 @@ function enviarReto() {
         dataType: 'jsonp',
         success: function(result) {
             if(result == true) {
+                $('#btnContinuar').attr('disabled', 'disabled');
                 toastr.success('¡Se ha propuesto tu reto!');
                 setTimeout(
                     function() {
@@ -396,12 +398,14 @@ function enviarReto() {
                 );
             } else {
                 toastr.error('Error al proponer el reto');
+                $('#btnProponer').removeAttr('disabled');
+                $('#btnContinuar').removeAttr('disabled');
             }
-            $('#btnProponer').removeAttr('disabled');
         },
         error: function(a, b, c) {
             toastr.error('Error de conexión con la base de datos ' + a.responseText + b+ c);
             $('#btnProponer').removeAttr('disabled');
+            $('#btnContinuar').removeAttr('disabled');
         }
     });
 }

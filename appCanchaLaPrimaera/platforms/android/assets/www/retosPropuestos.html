@@ -11,26 +11,28 @@
         <link  rel="stylesheet" type="text/css" href="css/materializeIcons.css">
         <link  rel="stylesheet" type="text/css" href="css/toastr.min.css">
         <link  rel="stylesheet" type="text/css" href="css/common.css">
-        <link  rel="stylesheet" type="text/css" href="css/home.css">
+        <link  rel="stylesheet" type="text/css" href="css/retosPropuestos.css">
         
     </head>
     
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo">Mis reservas</a>
+                <a href="index.html" class="brand-logo">Retos disponibles</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
+                    <li><a href="retosPropuestos.html">Retos disponibles</a></li>
                     <li><a onclick="logout()">Logout</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="side-nav" id="mobile-demo">
-            <li class="fondoColorComplementario"><a href="#" id="usuario" class="letraBlanca"></a></li>
+            <li class="fondoColorComplementario"><a href="usuario.html" id="usuario" class="letraBlanca"></a></li>
             <li><a href="home.html">Mis reservas</a></li>
             <li><a href="retos.html">Mis retos</a></li>
+            <li><a href="retosPropuestos.html">Retos disponibles</a></li>
             <li><a onclick="logout()">Logout</a></li>
         </ul>
     </header>
@@ -38,20 +40,15 @@
     <body>
         <div class="container">
             
-            <div id="listaReservas">
+            <div id="listaRetosDisponibles">
                 
-                <a href="nuevaReserva.html" class="waves-effect waves-light btn" href="nuevoReto.html"><i class="material-icons right btnAddIcon">add</i>Reservar</a>
-
-                <ul id="ulRetos">
+                <ul id="ulRetosDisponibles">
                     
                 </ul>
-            
-            <!--<div id="listaRetos">
-                <h4>Mis retos</h4>
                 
-            </div>-->
             </div>
         </div>
+        
         <div class="fixed-action-btn toolbar">
             <a class="btn-floating fondoColorComplementario" onclick="">
                 <i class="large material-icons">help_outline</i>
@@ -59,25 +56,27 @@
             <ul>
                 <li class="waves-effect waves-light">
                     <a href="#!">
-                        En esta página puedes proponer retos para que otras personas los vean y acepten jugar contra ti y tu equipo
+                        Aquí puedes ver la lista de retos propuestos por otros usuarios<br>¡Acepta el que mejor te convenga a ti y a tu equipo!
                     </a>
                 </li>
             </ul>
         </div>
-        <div id="modalEliminarReserva" class="modal modal-fixed-footer">
+        
+        <!--<div id="modalEliminarReto" class="modal modal-fixed-footer">
             <div class="modal-content">
-                <h4>¿Está seguro que desea cancelar esta reserva?</h4>
-                <span id="infoRetoEliminando"></span>
+                <h5>¿Está seguro que desea cancelar este reto?</h5>
+                <p id="infoRetoEliminando"></p>
             </div>
             <div class="modal-footer footer-resumen">
                 <a href="#!" class="modal-action modal-close waves-effect btn-flat " id="btnCancelar">Sí</a>
                 <a href="#!" class="modal-action modal-close waves-effect btn-flat ">No</a>
             </div>
-        </div>
+        </div>-->
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/toastr.min.js"></script>
         <script src="js/materialize.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/reservas.js"></script>
+        <script src="js/retosPropuestos.js"></script>
     </body>
 </html> 

@@ -125,3 +125,19 @@ function cancelarReto(idReto) {
         }
     });
 }
+
+function mostrarListaAceptados() {
+    $('#verRetosProp').removeClass('listaActiva');
+    $('#verRetosPropAcep').addClass('listaActiva');
+    
+    $('#ulRetos').addClass('listaHidde');
+    $('#ulRetosAceptados').removeClass('listaHidde');
+}
+
+function mostrarListaPropuestos() {
+    $('#verRetosPropAcep').removeClass('listaActiva');
+    $('#verRetosProp').addClass('listaActiva');
+    
+    $('#ulRetosAceptados').addClass('listaHidde');
+    $('#ulRetos').removeClass('listaHidde');
+}
