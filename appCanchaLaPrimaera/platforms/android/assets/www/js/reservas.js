@@ -113,7 +113,7 @@ function preguntarSiEliminar(idReto, fecha, hora) {
    
     $("#infoRetoEliminando").text('Reserva hecha  para el ' + fecha + ' a las ' + hora);
     $('#btnCancelar').attr('onclick','eliminar('+ idReto +')');
-    $('#modalEliminarReto').modal('open');
+    $('#modalEliminarReserva').modal('open');
     
 }
 

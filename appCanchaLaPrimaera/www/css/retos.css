@@ -29,3 +29,8 @@
 #modalEliminarReto {
     max-height: 50%;
 }
+
+.container {
+    height: 90vh;
+    overflow: auto;
+}

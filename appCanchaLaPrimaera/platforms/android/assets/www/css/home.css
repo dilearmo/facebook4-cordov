@@ -1,0 +1,33 @@
+.collapsible-body {
+    padding: 1rem;
+}
+
+.labelInfo {
+    color: black;
+    font-size: 14px;
+}
+
+h4 {
+    font-size: 1.64rem;
+    line-height: 110%;
+    margin: .82rem 0 .656rem 0;
+}
+
+.footer-resumen {
+    background-color: #212121 !important;
+}
+
+.footer-resumen a {
+    color: white;
+    border-radius: 0;
+    width: 50%;
+    text-align: center;
+}
+
+#btnCancelar {
+    border-left: 1px solid white;
+}
+
+#modalEliminarReserva {
+    max-height: 50%;
+}
