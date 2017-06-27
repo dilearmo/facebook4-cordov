@@ -34,7 +34,7 @@ nav {
 }
 
 .container {
-    margin-top: 65px;
+    margin-top: 75px;
 }
 
 .check-color:checked + label:before {
@@ -144,6 +144,6 @@ li #usuario {
     }
     
     .container {
-        margin-top: 56px;
+        margin-top: 66px;
     }
 }

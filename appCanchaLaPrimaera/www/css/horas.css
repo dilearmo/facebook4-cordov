@@ -148,5 +148,8 @@ input[content=filled]:disabled+label {
     height: 90vh;
     overflow: auto;
     background-color: white;
-    padding: 0 10px;
 }
+
+.container > form > span, .container > form > .input-field, #btnCancelar {
+    margin-left: 15px;
+} 
