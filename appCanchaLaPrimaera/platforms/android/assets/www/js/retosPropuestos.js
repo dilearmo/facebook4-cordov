@@ -6,21 +6,21 @@ var base_url = 'https://cancha-la-primavera-dilearmo.c9users.io/index.php/';
 $(document).ready(function() {
     $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
     $('.modal').modal();
-    listarRetos();
+    listarRetosPropuestos();
 });
 
-function listarRetos() {
+function listarRetosPropuestos() {
     var idUsuario = localStorage.getItem('IdUsuario');
     $.ajax({
-        url: base_url + 'WSRetos/obtnerRetosporUsuario?IdUsuario=' + idUsuario,
+        url: base_url + 'WSRetos/obtnerRetosPropuestos?IdUsuario=' + idUsuario,
         timeout: 10000,
         dataType: 'jsonp',
         success: function(result) {
             var nombre = localStorage.getItem('Nombre');
             var apellidos = localStorage.getItem('Apellidos');
             if(result != false) {
-                $('#ulRetos').attr('class', 'collapsible');
-                $('#ulRetos').attr('data-collapsible', 'accordion');
+                $('#ulRetosDisponibles').attr('class', 'collapsible');
+                $('#ulRetosDisponibles').attr('data-collapsible', 'accordion');
                 $('.collapsible').collapsible();
                 $.each(result, function() {
                     var fecha = this.Fecha.split('-');
@@ -42,11 +42,11 @@ function listarRetos() {
                     + "<br>"
                     + "<label class='labelInfo'><b>Precio: </b>¢" + this.Precio + "</label>"
                     + "<br>"
-                    + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiEliminar(" + argumentos + ")'>"
-                    + "<i class='material-icons right'>cancel</i>Cancelar</a>");
+                    + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiAceptar(" + argumentos + ")'>"
+                    + "<i class='material-icons right'>sentiment_very_satisfied</i>Aceptar reto</a>");
                     li.appendChild(divHeader);
                     li.appendChild(divBody);
-                    $('#ulRetos').append(li);
+                    $('#ulRetosDisponibles').append(li);
                 });
             }
         }, 
@@ -101,13 +101,13 @@ function convertirHora(hora) {
         
 }
 
-function preguntarSiEliminar(idReto, fecha, hora) {
+/*function preguntarSiAceptar(idReto, fecha, hora) {
     $('#btnCancelar').attr('onclick', 'cancelarReto(' + idReto + ')');
     $("#infoRetoEliminando").text('Reto propuesto para el ' + fecha + ' a las ' + hora);
     $('#modalEliminarReto').modal('open');
-}
+}*/
 
-function cancelarReto(idReto) {
+/*function cancelarReto(idReto) {
     $.ajax({
         url: base_url + 'WSRetos/cancelarReto?idReto=' + idReto,
         timeout: 10000,
@@ -124,4 +124,4 @@ function cancelarReto(idReto) {
             toastr.error('Error de conexión con la base de datos');
         }
     });
-}
+}*/

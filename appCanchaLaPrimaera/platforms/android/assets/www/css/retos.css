@@ -31,8 +31,8 @@
 }
 
 .container {
-    /*height: 90vh;*/
-    /*overflow: auto;*/
+    height: 90vh;
+    overflow: hidden;
 }
 
 #ulRetos {

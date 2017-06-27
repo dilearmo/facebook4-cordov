@@ -1,0 +1,149 @@
+/* Esto es si se le pone imagen */
+body::after {
+    background-image: url(../img/bola.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: "";
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    /*filter: blur(5px);*/
+}
+
+/* Esto es si se le pone imagen */
+body {
+    overflow: hidden;
+}
+
+/* Esto es si se le pone imagen */
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+nav {
+    background-color: #212121;
+    top: 0;
+    position: fixed;
+    z-index: 100;
+}
+
+.container {
+    margin-top: 75px;
+}
+
+.check-color:checked + label:before {
+    border-right: 2px solid green; /* You need to change the colour here */
+    border-bottom: 2px solid green; /* And here */
+}
+
+th {
+    background-color: #1B5E20;
+    color: white;
+    border-radius: 0px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.side-nav li>a>i.material-icons {
+    margin-right: 10px !important;
+}
+
+.btn {
+    background-color: #088A08;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 10px;
+    border-radius: 0;
+    padding: 0 1rem;
+}
+
+.btn:hover, .btn:focus {
+  background: #028423;
+}
+
+i.right {
+    margin-left: 5px;
+}
+
+.fondoColorComplementario {
+    background-color: #088A08;
+}
+
+.fondoColorComplementario:hover {
+    background: #028423;
+}
+
+.letraBlanca {
+    color: white !important;
+}
+
+.fixed-action-btn.toolbar ul li a {
+    margin-top: 10px;
+    line-height: normal;
+}
+
+input[type=email]:focus:not([readonly]), 
+input[type=password]:focus:not([readonly]), 
+input[type=text]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]){
+  border-bottom: 1px solid #088A08;
+  box-shadow: 0 1px 0 0 #088A08;
+}
+
+input[type=email]:focus:not([readonly])+label, 
+input[type=password]:focus:not([readonly])+label, 
+input[type=text]:focus:not([readonly])+label,
+input[type=tel]:focus:not([readonly])+label,
+input[type=number]:focus:not([readonly])+label{
+    color: #088A08;
+}
+
+.input-field label:not(.label-icon).active {
+    font-size: 1rem;
+}
+
+li #usuario {
+    height: 64px;
+    line-height: 64px;
+}
+
+#usuario > i {
+    line-height: 64px;
+}
+
+.collapsible-header i {
+    margin-right: 5px;
+}
+
+.collapsible-body {
+    background: #f7f7f7;
+}
+
+#fondoPantalla {
+    z-index: -5;
+    background-image: url(http://www.wallpapersbrowse.com/images/w7/w7kifuz.jpg);
+}
+
+@media (max-width: 600px) {
+    li #usuario {
+        height: 56px;
+        line-height: 56px;
+    }
+    
+    #usuario > i {
+        line-height: 56px;
+    }
+    
+    .container {
+        margin-top: 66px;
+    }
+}

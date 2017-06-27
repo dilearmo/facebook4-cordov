@@ -1,0 +1,163 @@
+.botones-horas {
+    background-color: #088a08;
+    text-align: center;
+}
+
+.iconos{
+  color:white;
+}
+
+.datos { 
+    color:white;
+}
+
+.botones-horas > .row:first-child {
+    margin-bottom: 0;
+}
+
+
+.datepick-month-year {
+    text-align-last:center;
+    -webkit-appearance: none;
+}
+
+.datepick {
+    width: 100% !important;
+    border-radius: 0;
+}
+
+.outer {
+    width: 100%;
+}
+
+.datepick-nav {
+    height: 1.8rem;
+}
+
+.datepick-nav a,
+.datepick-nav a:hover {
+    background-color: #088A08;
+}
+
+.datepick th {
+    background-color: #088a08;
+}
+
+.datepick, 
+.datepick-month, 
+.datepick-month-header {
+    background-color: #088a08;
+    border: none;
+}
+
+.datepick-month td {
+    border-radius: 0;
+}
+
+.datepick-month table {
+    margin-top: 1.95rem;
+}
+
+.datepick-month-header > select:first-child {
+    height: 2rem;
+    display: block;
+    font-size: 1.5rem;
+    background-color: #088a08;
+}
+
+.horitas {
+    background-color: #212121;
+}
+
+.cuadrosHoras {
+    width: 48%;
+    float: left;
+    padding: 5px 10px;
+    color: white;
+}
+
+.espacioEntreHoras {
+    margin-left: 4%;
+}
+
+.cuadrosHoras[active=true] {
+    background-color: #088A08;
+}
+
+input[content=filled]:disabled {
+    border-bottom: 1px solid #088a08;
+    color: black;
+}
+
+input[content=filled]:disabled+label {
+    color: #088A08;
+}
+
+.labelInfo {
+    color: black;
+    font-size: 14px;
+}
+
+.btn-centrado-modal {
+    width: 50%;
+    text-align: center;
+}
+
+#formNuevoReto {
+    margin-bottom: 15px;
+}
+
+.footer-resumen {
+    background-color: #212121 !important;
+}
+
+.footer-resumen a {
+    color: white;
+    border-radius: 0;
+}
+
+#btnProponer {
+    border-left: 1px solid white;
+}
+
+#ulNotas {
+    list-style-type: disc !important;
+    margin: 0;
+}
+
+#ulNotas li {
+    list-style-type: disc !important;
+    margin-left: 16px;
+}
+
+#pModal {
+    margin-top: 0;
+}
+
+.modal h4 {
+    margin-bottom: 0.5rem;
+}
+
+.modal-footer a {
+    width: 50%;
+    text-align: center;
+}
+
+#btnSelecHora {
+    border-left: black solid 1px;
+    border-radius: 0;
+}
+
+
+
+
+/* Esto es si se le pone imagen */
+.container {
+    height: 90vh;
+    overflow: auto;
+    background-color: white;
+}
+
+.container > form > span, .container > form > .input-field, #btnCancelar {
+    margin-left: 15px;
+} 
