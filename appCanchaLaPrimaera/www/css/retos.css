@@ -31,19 +31,19 @@
 }
 
 .container {
-    height: 90vh;
-    overflow: hidden;
+    /*height: 90vh;*/
+    /*overflow: auto;*/
 }
 
 #ulRetos {
     margin-top: 0;   
-    height: 90vh;
+    height: 70vh;
     overflow: auto;
 }
 
 #ulRetosAceptados {
     margin-top: 0;   
-    height: 90vh;
+    height: 70vh;
     overflow: auto;
 }
 
