@@ -1,0 +1,32 @@
+.collapsible-body {
+    padding: 1rem;
+}
+
+.labelInfo {
+    color: black;
+    font-size: 14px;
+}
+
+.footer-resumen {
+    background-color: #212121 !important;
+}
+
+.footer-resumen a {
+    color: white;
+    border-radius: 0;
+    text-align: center;
+}
+
+#btnCancelar {
+    border-left: 1px solid white;
+}
+
+/* #modalEliminarReto {
+    max-height: 50%;
+}*/
+
+#ulRetosDisponibles {
+    margin-top: 0;   
+    max-height: 70vh;
+    overflow: auto;
+}

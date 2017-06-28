@@ -34,13 +34,13 @@ function listarRetosPropuestos() {
                     var divBody = document.createElement('div');
                     var argumentos = this.IdDesafio + ', "' + this.NombreDia + " " + fecha[2] + "-" + fecha[1] + '", "' + convertirHora(this.Hora) + '"';
                     divBody.setAttribute('class', 'collapsible-body');
-                    $(divBody).html("<label class='labelInfo'><b>Responsable: </b>" + nombre + " " + apellidos + "</label>"
+                    $(divBody).html("<label class='labelInfo' id='retador" + this.IdDesafio + "'><b>Retador: </b>" + nombre + " " + apellidos + "</label>"
                     + "<br>"
-                    + "<label class='labelInfo'><b>Equipo: </b>" + this.NombreEquipo + "</label>" 
+                    + "<label class='labelInfo' id='equipo" + this.IdDesafio + "'><b>Equipo: </b>" + this.NombreEquipo + "</label>" 
                     + "<br>" 
-                    + "<label class='labelInfo'><b>Cantidad de jugadores: </b>" + this.CantidadDeJugadores +"</label>"
+                    + "<label class='labelInfo' id='cantidadJ" + this.IdDesafio + "'><b>Cantidad de jugadores: </b>" + this.CantidadDeJugadores +"</label>"
                     + "<br>"
-                    + "<label class='labelInfo'><b>Precio: </b>¢" + this.Precio + "</label>"
+                    + "<label class='labelInfo' id='precio" + this.IdDesafio + "'><b>Precio: </b>¢" + this.Precio + "</label>"
                     + "<br>"
                     + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiAceptar(" + argumentos + ")'>"
                     + "<i class='material-icons right'>sentiment_very_satisfied</i>Aceptar reto</a>");
@@ -102,26 +102,42 @@ function convertirHora(hora) {
 }
 
 /*function preguntarSiAceptar(idReto, fecha, hora) {
-    $('#btnCancelar').attr('onclick', 'cancelarReto(' + idReto + ')');
-    $("#infoRetoEliminando").text('Reto propuesto para el ' + fecha + ' a las ' + hora);
-    $('#modalEliminarReto').modal('open');
+    $('#btnAceptar').attr('onclick', 'aceptarReto(' + idReto + ')');
+    $("#infoRetoAceptando").text('El reto será el ' + fecha + ' a las ' + hora);
+    $('#modalAceptarReto').modal('open');
 }*/
 
-/*function cancelarReto(idReto) {
+function preguntarSiAceptar(idReto, fecha, hora) {
+    var nombreUsuario = localStorage.getItem('Nombre') + localStorage.getItem('Apellidos');
+    var nomEquipo = $('#equipo' + idReto).text();
+    var cantJug = $('#cantidadJ' + idReto).text();
+    var precio = $('#precio' + idReto).text();
+    $('#btnAceptar').attr('onclick', 'aceptarReto(' + idReto + ')');
+    $('#resumenResponsable').html('<b>Responsable:</b> ' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
+    $('#resumenEquipo').html('<b>Equipo:</b> ' + nomEquipo);
+    $('#resumenCantidadJugadores').html('<b>Cantidad de jugadores:</b> ' + cantJug);
+    $('#resumenFecha').html('<b>Fecha y hora:</b> ' + fecha + ' - ' + hora);
+    $('#resumenPrecio').html('<b>Precio:</b> ¢' + precio);
+    $('#resumenContrincante').html('<b>Contrincante:</b> ' + nombreUsuario);
+    $('#modalAceptarReto').modal('open');
+}
+
+function aceptarReto(idReto) {
+    var idUsuario = localStorage.getItem('IdUsuario');
     $.ajax({
-        url: base_url + 'WSRetos/cancelarReto?idReto=' + idReto,
+        url: base_url + 'WSRetos/aceptarReto?idReto=' + idReto + '&idContrincante=' + idUsuario,
         timeout: 10000,
         dataType: 'jsonp',
         success: function(result) {
             if(result == true) {
                 $('#li' + idReto).remove();
-                toastr.success('Reto cancelado');
+                toastr.success('¡Reto aceptado!');
             } else {
-                toastr.error('Error al cancelar el reto');
+                toastr.error('Error al aceptar el reto');
             }
         },
         error: function() {
-            toastr.error('Error de conexión con la base de datos');
+            toastr.error('Error de conexión con el servidor');
         }
     });
-}*/
+}
