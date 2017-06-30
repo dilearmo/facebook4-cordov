@@ -11,6 +11,7 @@
         <link  rel="stylesheet" type="text/css" href="css/materializeIcons.css">
         <link  rel="stylesheet" type="text/css" href="css/toastr.min.css">
         <link  rel="stylesheet" type="text/css" href="css/common.css">
+        <link  rel="stylesheet" type="text/css" href="css/usuario.css">
         
     </head>
     
@@ -36,27 +37,69 @@
         </ul>
     </header>
     
-    <body>
-        <div class="container">
+    <body >
+        <div class="container fondoSolido">
+            <form  id="formEditarUsuario" class="col s12" action=""> 
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input required="required" id="nombre" type="text" class="validate" name= "nombre" value=>
+                <label for="nombre">Nombre</label>
+              </div>
+            </div>
             
+            <div class="row">
+              <div class="input-field col s12">
+                <input required="required" id="apellidos" type="text" class="validate" name= "apellidos">
+                <label for="apellidos">Apellidos</label>
+              </div>
+            </div>
             
+            <div class="row">
+              <div class="input-field col s12">
+                <input required="required" id="contraseña" type="text" class="validate" name= "contraseña">
+                <label for="contraseña">Contraseña</label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <input required="required" id="contrasena2" type="text" class="validate" name= "contrasena2">
+                <label for="contrasena2">Confirmar contraseña</label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <input required="required" id="telefono" type="number" class="validate" name= "telefono"  onKeyPress="if(this.value.length==8) return false;">
+                <label for="telefono">Teléfono</label>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <input required="required" id="correo" type="email" class="validate" name= "correo" onblur=existeCorreoBlur()>
+                <label for="correo">Correos</label>
+              </div>
+            </div>
+        
+        
+            </form>
+            
+        <div class="row">
+          <div class="col s12">
+            <div class="input-field inline">
+              <button  class="btn waves-effect waves-light bloquearBtn" class="validate" onclick="validarDatos()">Editar Datos</button>
+            </div>
+          </div>
         </div>
-        <div class="fixed-action-btn toolbar">
-            <a class="btn-floating fondoColorComplementario" onclick="">
-                <i class="large material-icons">help_outline</i>
-            </a>
-            <ul>
-                <li class="waves-effect waves-light">
-                    <a href="#!">
-                        En esta página puedes proponer retos para que otras personas los vean y acepten jugar contra ti y tu equipo
-                    </a>
-                </li>
-            </ul>
+            
         </div>
         
         <script src="js/jquery.min.js"></script>
         <script src="js/toastr.min.js"></script>
         <script src="js/materialize.min.js"></script>
         <script src="js/common.js"></script>
+        <script src="js/usuario.js"></script>
     </body>
 </html> 

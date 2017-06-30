@@ -21,12 +21,35 @@
     border-left: 1px solid white;
 }
 
+.btn-centrado-modal {
+    width: 50%;
+    text-align: center;
+}
+
 /* #modalEliminarReto {
     max-height: 50%;
 }*/
 
+#ulNotas li {
+    list-style-type: disc !important;
+    margin-left: 16px;
+}
+
 #ulRetosDisponibles {
     margin-top: 0;   
-    max-height: 70vh;
+    max-height: 82vh;
     overflow: auto;
+}
+
+#modalAceptarReto {
+    min-height: 75vh !important;
+}
+
+#equipoRival {
+    height: 35px;
+}
+
+#liNoRetos {
+    padding: 6px 15px;
+    background-color: white;
 }

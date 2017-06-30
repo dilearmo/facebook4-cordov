@@ -148,7 +148,9 @@ input[content=filled]:disabled+label {
     border-radius: 0;
 }
 
-
+#modalResumen {
+    min-height: 75vh !important;
+}
 
 
 /* Esto es si se le pone imagen */

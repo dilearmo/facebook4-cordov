@@ -1,0 +1,6 @@
+.fondoSolido {
+    background-color: white;
+    padding: 15px;
+    max-height: 85vh;
+    overflow: auto;
+}

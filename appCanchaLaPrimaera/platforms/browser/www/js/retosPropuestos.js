@@ -16,8 +16,6 @@ function listarRetosPropuestos() {
         timeout: 10000,
         dataType: 'jsonp',
         success: function(result) {
-            var nombre = localStorage.getItem('Nombre');
-            var apellidos = localStorage.getItem('Apellidos');
             if(result != false) {
                 $('#ulRetosDisponibles').attr('class', 'collapsible');
                 $('#ulRetosDisponibles').attr('data-collapsible', 'accordion');
@@ -34,7 +32,7 @@ function listarRetosPropuestos() {
                     var divBody = document.createElement('div');
                     var argumentos = this.IdDesafio + ', "' + this.NombreDia + " " + fecha[2] + "-" + fecha[1] + '", "' + convertirHora(this.Hora) + '"';
                     divBody.setAttribute('class', 'collapsible-body');
-                    $(divBody).html("<label class='labelInfo' id='retador" + this.IdDesafio + "'><b>Retador: </b>" + nombre + " " + apellidos + "</label>"
+                    $(divBody).html("<label class='labelInfo' id='retador" + this.IdDesafio + "'><b>Retador: </b>" + this.NombreU + " " + this.ApellidosU + "</label>"
                     + "<br>"
                     + "<label class='labelInfo' id='equipo" + this.IdDesafio + "'><b>Equipo: </b>" + this.NombreEquipo + "</label>" 
                     + "<br>" 
@@ -48,6 +46,12 @@ function listarRetosPropuestos() {
                     li.appendChild(divBody);
                     $('#ulRetosDisponibles').append(li);
                 });
+            } else {
+                var li = document.createElement('li');
+                li.setAttribute('id', 'liNoRetos');
+                li.innerHTML = '<b>No hay retos disponibles en este momento</b>' +
+                    '<br><span>¡Vuelve más tarde por un reto!</span>';
+                $('#ulRetosDisponibles').append(li);
             }
         }, 
         error: function() {
@@ -108,36 +112,52 @@ function convertirHora(hora) {
 }*/
 
 function preguntarSiAceptar(idReto, fecha, hora) {
-    var nombreUsuario = localStorage.getItem('Nombre') + localStorage.getItem('Apellidos');
-    var nomEquipo = $('#equipo' + idReto).text();
-    var cantJug = $('#cantidadJ' + idReto).text();
-    var precio = $('#precio' + idReto).text();
+    var nombreUsuario = localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos');
+    var nomEquipo = $('#equipo' + idReto).html();
+    var cantJug = $('#cantidadJ' + idReto).html();
+    var precio = $('#precio' + idReto).html();
+    var retador = $('#retador' + idReto).html();
     $('#btnAceptar').attr('onclick', 'aceptarReto(' + idReto + ')');
-    $('#resumenResponsable').html('<b>Responsable:</b> ' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
-    $('#resumenEquipo').html('<b>Equipo:</b> ' + nomEquipo);
-    $('#resumenCantidadJugadores').html('<b>Cantidad de jugadores:</b> ' + cantJug);
+    $('#btnNoAceptar').attr('onclick', 'borrarValorEquipoRival()')
+    $('#resumenResponsable').html(retador);
+    $('#resumenEquipo').html(nomEquipo);
+    $('#resumenCantidadJugadores').html(cantJug);
     $('#resumenFecha').html('<b>Fecha y hora:</b> ' + fecha + ' - ' + hora);
-    $('#resumenPrecio').html('<b>Precio:</b> ¢' + precio);
+    $('#resumenPrecio').html(precio);
     $('#resumenContrincante').html('<b>Contrincante:</b> ' + nombreUsuario);
+    $('#equipoRival').val('');
     $('#modalAceptarReto').modal('open');
 }
 
 function aceptarReto(idReto) {
     var idUsuario = localStorage.getItem('IdUsuario');
-    $.ajax({
-        url: base_url + 'WSRetos/aceptarReto?idReto=' + idReto + '&idContrincante=' + idUsuario,
-        timeout: 10000,
-        dataType: 'jsonp',
-        success: function(result) {
-            if(result == true) {
-                $('#li' + idReto).remove();
-                toastr.success('¡Reto aceptado!');
-            } else {
-                toastr.error('Error al aceptar el reto');
+    var equipoRival = $('#equipoRival').val().trim();
+    if(equipoRival.length > 0) {
+        $.ajax({
+            url: base_url + 'WSRetos/aceptarReto?idReto=' + idReto + '&idContrincante=' + idUsuario + '&equipoRival=' + equipoRival,
+            timeout: 10000,
+            dataType: 'jsonp',
+            success: function(result) {
+                if(result == true) {
+                    $('#li' + idReto).remove();
+                    $('#modalAceptarReto').modal('close');
+                    toastr.success('¡Reto aceptado!');
+                    if($('#ulRetosDisponibles').children().length <= 0) {
+                        var li = document.createElement('li');
+                        li.setAttribute('id', 'liNoRetos');
+                        li.innerHTML = '<b>No hay retos disponibles en este momento</b>' +
+                            '<br><span>¡Vuelve más tarde por un reto!</span>';
+                        $('#ulRetosDisponibles').append(li);
+                    }
+                } else {
+                    toastr.error('Error al aceptar el reto');
+                }
+            },
+            error: function() {
+                toastr.error('Error de conexión con el servidor');
             }
-        },
-        error: function() {
-            toastr.error('Error de conexión con el servidor');
-        }
-    });
+        });
+    } else {
+        toastr.error('Debe especificar el nombre de su equipo');
+    }
 }

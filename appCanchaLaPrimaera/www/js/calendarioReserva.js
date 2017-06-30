@@ -283,7 +283,8 @@ function listarHorasDisponibles(dia, fecha, fechaRaw) {
                     div.appendChild(inputHidden);
                     div.appendChild(inputPrecio);
                     div.appendChild(inputHora);
-                    $(div).css("background-color","red");
+                    $(div).attr("disabled","disabled");
+                    $(div).css("background-color","#ccc");
                     if(i % 2 == 0) {
                         var row = document.createElement('div');
                         row.setAttribute('class', 'row');

@@ -76,29 +76,31 @@
         <div id="modalAceptarReto" class="modal modal-fixed-footer">
             <div class="resumen-content modal-content">
                 <h5>¿Está seguro que desea aceptar este reto?</h5>
-                <p id='pModal'>Se aceptará el siguiente reto:</p>
                 <label id="resumenResponsable" class="labelInfo"></label>
                 <br>
                 <label id="resumenEquipo" class="labelInfo"></label>
                 <br>
                 <label id="resumenCantidadJugadores" class="labelInfo"></label>
                 <br>
-                <label id="resumenContrincante" class="labelInfo"></label>
-                <br>
                 <label id="resumenFecha" class="labelInfo"></label>
                 <br>
                 <label id="resumenPrecio" class="labelInfo"></label>
                 <br>
+                <label id="resumenContrincante" class="labelInfo"></label>
+                <br>
+                <br>
+                <label id="equipoRivalLabel" class="labelInfo"><b>Nombre de tu equipo:</b></label>
+                <input id="equipoRival" class="labelInfo" type="text" value='' placeholder="Ej: Los mejengueros..."/>
                 <br>
                 <span id="nota"><b>Notas</b></span>
                 <ul id="ulNotas">
-                    <li>No tendrás que pagar la cancha, a menos de que alguien acepte el reto</li>
-                    <li>Si otra persona reserva la cancha antes que el reto sea aceptado, el reto será cancelado</li>
+                    <li>El costo de la cancha lo pueden cubrir entre los dos equipos</li>
+                    <li>Recuerda ser puntual con la hora pactada para el reto</li>
                 </ul>
             </div>
             <div class="modal-footer footer-resumen">
-                <a href="#!" class="modal-action modal-close waves-effect btn-flat " id="btnAceptar">Sí</a>
-                <a href="#!" class="modal-action modal-close waves-effect btn-flat ">No</a>
+                <a href="#!" class="modal-action waves-effect btn-flat btn-centrado-modal" id="btnAceptar">Sí</a>
+                <a href="#!" class="modal-action modal-close waves-effect btn-flat btn-centrado-modal" id="btnNoAceptar">No</a>
             </div>
         </div>
         
