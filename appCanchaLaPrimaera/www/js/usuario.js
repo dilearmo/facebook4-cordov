@@ -7,19 +7,19 @@
     
 var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
     $(document).ready(function() {
-       /*  toastr.warning(localStorage.IdUsuario); 
-        localStorage.setItem("IdUsuario", usuario.IdUsuario);
-        localStorage.setItem("Nombre", usuario.Nombre);
-        localStorage.setItem("Apellidos", usuario.Apellidos);
-        localStorage.setItem("Telefono", usuario.Telefono);
-        localStorage.setItem("NombreUsuario", usuario.NombreUsuario);
-        localStorage.setItem("Correo", usuario.Correo);
-        localStorage.setItem("Es_confiable", usuario.Es_confiable);
-        localStorage.setItem("Es_administrador", usuario.Es_administrador);
-        */
+        if (typeof(Storage) !== "undefined") {
+            var nombreUsuario = localStorage.getItem('NombreUsuario');
+            if(nombreUsuario == undefined || nombreUsuario == "" || nombreUsuario == 'undefined') {
+                window.location.href = 'login.html';
+            }
+        } else {
+            toastr.info("Lo sentimos,<br>su teléfono no es<br>compatible con esta<br>aplicación");
+        }
+        $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
+        
         if (typeof(Storage) !== "undefined") {
             if(localStorage.Nombre != null && localStorage.Apellidos != null &&
-            localStorage.Telefono != null && localStorage.Correo != null){
+                localStorage.Telefono != null && localStorage.Correo != null){
                $('#nombre').attr('value', localStorage.Nombre);
                $('#apellidos').attr('value', localStorage.Apellidos);
                $('#telefono').attr('value', localStorage.Telefono);
@@ -32,18 +32,47 @@ var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
         
     });
     
-    
-    function validarDatos(){
-        
+    function editarDatosUsuario(){
+        //WSUsuario/actualizarUsuario?idUsuario=4&Contrasena=contrasena&Nombre=Nombre&Apellidos=Apellidos&Telefono=123&Correo=jij@live.com
+        $.ajax({
+            url: base_url + "WSUsuario/actualizarUsuario?idUsuario=" + localStorage.IdUsuario + "&Contrasena=" + $('#contrasena').val() +
+            "&Nombre=" + $('#nombre').val() + "&Apellidos=" + $('#apellidos').val() + "&Telefono=" + $('#telefono').val() + "&Correo=" + $('#correo').val(),
+            timeout: 10000,
+            dataType: 'jsonp',
+            success: function(response) {
+                if(response == true) {
+                    localStorage.Nombre = $('#nombre').val();
+                    localStorage.Apellidos = $('#apellidos').val();
+                    localStorage.Telefono = $('#telefono').val();
+                    localStorage.Correo = $('#correo').val();
+                    toastr.success("Datos modificados exitosamente");
+                    setTimeout(function(){
+                       window.location.href = 'home.html';
+                    }, 3000);
+                    //toastr.success("Datos modificados exitosamente");
+                    
+
+                } else {
+                    $('.bloquearBtn').attr('disabled', false);
+                    toastr.warning("Hay problemas en la conexión");
+                }
+            },
+            error: function(a, b, c) {
+                $('.bloquearBtn').attr('disabled', false);
+                toastr.error("Error de conexión");
+            }
+        }
+    );
     }
     
+    
     // Valida si el nombre de usuario existe mediante un web service
-    function existeNombreUsuario() {
+    function validarDatos() {
         $('.bloquearBtn').attr('disabled', true);
         if(camposValidos()) { // Valida que los campos necesarios no estén vacíos
             if(compararContrasenas()) { // Valida si las contraseñas son iguales
                 if(validarCorreo()) {
-                    $('#formEditarUsuario').submit();
+                    editarDatosUsuario();
                 } else { // Si el correo no es válido
                     $('.bloquearBtn').attr('disabled', false);
                     toastr.warning('Correo no válido');
