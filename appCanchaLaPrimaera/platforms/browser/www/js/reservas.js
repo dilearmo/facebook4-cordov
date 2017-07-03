@@ -36,7 +36,7 @@ function listarRetos() {
                     var li = document.createElement('li');
                     var divHeader = document.createElement('div');
                     divHeader.setAttribute("class", "collapsible-header");
-                    $(divHeader).html('<i class="material-icons">compare_arrows</i><b>Fecha:</b> '
+                    $(divHeader).html('<i class="custom-icon icono-reserva"></i><b>Fecha:</b> '
                     + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
                     + ' <b>Hora:</b> ' + convertirHora(this.Hora));
                     var divBody = document.createElement('div');
@@ -56,6 +56,12 @@ function listarRetos() {
                     li.appendChild(divBody);
                     $('#ulRetos').append(li);
                 });
+            } else {
+                var li = document.createElement('li');
+                li.setAttribute('id', 'liNoRetos');
+                li.innerHTML = '<b>No has hecho ningúna reserva aún</b>' +
+                    "<br><span>¡Haz reservas y asegura tu espacio en la mejor cancha de Grecia!</span>";
+                $('#ulRetos').append(li);
             }
         }, 
         error: function() {

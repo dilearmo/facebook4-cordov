@@ -7,6 +7,7 @@ $(document).ready(function() {
     $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
     $('.modal').modal();
     listarRetos();
+    listarRetosAceptados();
 });
 
 function listarRetos() {
@@ -28,7 +29,7 @@ function listarRetos() {
                     $(li).attr('id', 'li' + this.IdDesafio);
                     var divHeader = document.createElement('div');
                     divHeader.setAttribute("class", "collapsible-header");
-                    $(divHeader).html('<i class="material-icons">compare_arrows</i><b>Fecha:</b> '
+                    $(divHeader).html('<i class="custom-icon icono-player-waiting"></i><b>Fecha:</b> '
                     + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
                     + ' <b>Hora:</b> ' + convertirHora(this.Hora));
                     var divBody = document.createElement('div');
@@ -48,10 +49,71 @@ function listarRetos() {
                     li.appendChild(divBody);
                     $('#ulRetos').append(li);
                 });
+            } else {
+                var li = document.createElement('li');
+                li.setAttribute('id', 'liNoRetos');
+                li.innerHTML = '<b>No has propuesto retos aún</b>' +
+                    "<br><span>¡Propón un reto para que otros usuarios lo vean y acepten jugar contra tí!</span>";
+                $('#ulRetos').append(li);
             }
         }, 
         error: function() {
             toastr.error('Error de conexión con la base de datos');
+        }
+    });
+}
+
+function listarRetosAceptados() {
+    var idUsuario = localStorage.getItem('IdUsuario');
+    $.ajax({
+        url: base_url + 'WSRetos/obtenerRetosAceptadosDelUsuario?IdUsuario=' + idUsuario,
+        timeout: 10000,
+        dataType: 'jsonp',
+        success: function(result) {
+            var nombre = localStorage.getItem('Nombre');
+            var apellidos = localStorage.getItem('Apellidos');
+            if(result != false) {
+                $('#ulRetosAceptados').addClass('collapsible');
+                $('#ulRetosAceptados').attr('data-collapsible', 'accordion');
+                $('.collapsible').collapsible();
+                $.each(result, function() {
+                    var fecha = this.Fecha.split('-');
+                    var li = document.createElement('li');
+                    $(li).attr('id', 'li' + this.IdReserva);
+                    var divHeader = document.createElement('div');
+                    divHeader.setAttribute("class", "collapsible-header");
+                    $(divHeader).html('<i class="custom-icon icono-retoA"></i><b>Fecha:</b> '
+                    + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
+                    + ' <b>Hora:</b> ' + convertirHora(this.Hora));
+                    var divBody = document.createElement('div');
+                    var argumentos = this.IdReserva + ', "' + this.NombreDia + " " + fecha[2] + "-" + fecha[1] + '", "' + convertirHora(this.Hora) + '"';
+                    divBody.setAttribute('class', 'collapsible-body');
+                    $(divBody).html("<label class='labelInfo'><b>Retador: </b>" + nombre + " " + apellidos + "</label>"
+                    + "<br>"
+                    + "<label class='labelInfo'><b>Equipo: </b>" + this.Mi_Equipo + "</label>" 
+                    + "<br>" 
+                    + "<label class='labelInfo'><b>Cantidad de jugadores: </b>" + this.CantidadDeJugadores +"</label>"
+                    + "<br>"
+                    + "<label class='labelInfo'><b>Precio: </b>¢" + this.Precio + "</label>"
+                    + "<br>"
+                    + "<br>"
+                    + "<label class='labelInfo'><b>Contrincante: </b>" + this.NombreContrincante + " " + this.ApellidosContrincante + "</label>"
+                    + "<br>"
+                    + "<label class='labelInfo'><b>Equipo contrincante: </b>" + this.Equipo_rival + "</label>");
+                    li.appendChild(divHeader);
+                    li.appendChild(divBody);
+                    $('#ulRetosAceptados').append(li);
+                });
+            } else {
+                var li = document.createElement('li');
+                li.setAttribute('id', 'liNoRetos');
+                li.innerHTML = '<b>Nadie ha aceptadoo tus retos aún</b>' +
+                    "<br><span>¡Propón un reto si no lo has hecho aún!</span>";
+                $('#ulRetosAceptados').append(li);
+            }
+        }, 
+        error: function() {
+            toastr.error('Error al recuperar los retos<br>aceptados');
         }
     });
 }

@@ -1,0 +1,41 @@
+.custom-icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 3rem;
+    height: 3rem;
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+}
+
+.icono-retoA {
+    background-image: url(../img/icons-soccer/010-retoA.png);
+    background-position: center center;
+}
+
+.icono-contra {
+    background-image: url(../img/icons-soccer/contra.png);
+    background-position: center center;
+}
+
+.icono-player-waiting {
+    background-image: url(../img/icons-soccer/player-waiting.png);
+    background-position: center center;
+}
+
+.icono-reserva {
+    background-image: url(../img/icons-soccer/game.png);
+    background-position: center center;
+}

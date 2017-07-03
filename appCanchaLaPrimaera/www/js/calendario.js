@@ -3,8 +3,10 @@
 /* global localStorage */
 /* global Spinner */
 var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
+var nombreCompleto = null;
 $(document).ready(function() {
 
+    nombreCompleto = localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos');
     
     $('select').material_select();
     $('.modal').modal();
@@ -193,7 +195,7 @@ function formatearFecha(fecha) {
         default:
             // code
     }
-    listarHorasDisponibles(dia, anno + '-' + mes + '-' + diaFecha);
+    listarHorasDisponibles(dia, anno + '-' + mes + '-' + diaFecha, fecha);
 }
 
 function limpiarModal() {
@@ -205,12 +207,17 @@ function limpiarModal() {
 /* web services*/
 
 
-function listarHorasDisponibles(dia, fecha) {
+function listarHorasDisponibles(dia, fecha, fechaActual) {
     $.ajax({
         url: base_url + 'WSRetos/listarHorasDisponibles?dia=' + dia + '&fecha=' + fecha,
         timeout: 10000,
         dataType: 'jsonp',
         success: function(response) {
+            var d = new Date();
+            var s = new Date(fechaActual);
+            var n = d.getHours();
+            var f = d.getDay()+ " " + d.getMonth() + d.getDate();
+            var r = s.getDay() + " " + s.getMonth() + s.getDate();
             $('#btnSelecHora').attr('disabled', 'disabled');
             $('#fechaSeleccTemp').val(fecha);
             $('#diaSelecTemp').val(dia);
@@ -238,6 +245,12 @@ function listarHorasDisponibles(dia, fecha) {
                     div.appendChild(inputHidden);
                     div.appendChild(inputPrecio);
                     div.appendChild(inputHora);
+                    if(f === r) {
+                        if(this.Hora <= n) {
+                            $(div).removeAttr("onclick");
+                            $(div).css("background-color","#ccc");
+                        }
+                    }
                     if(i % 2 == 0) {
                         var row = document.createElement('div');
                         row.setAttribute('class', 'row');
@@ -389,7 +402,18 @@ function enviarReto() {
         success: function(result) {
             if(result == true) {
                 $('#btnContinuar').attr('disabled', 'disabled');
-                toastr.success('¡Se ha propuesto tu reto!');
+                enviarCorreo('Reto propuesto', 'Hola <b>' + nombreCompleto + '</b><br><br>'
+                    + 'Se ha propuesto tu reto con éxito y otros jugadores ahora podrán verlo y aceptar jugar contra tí y tu equipo<br>'
+                    + '<br>Información del reto:<br><b>Fecha y hora: </b>' + $('#fechaPreview').val().trim() + '<br><b>Precio: </b>' + $('#precioHidden' + $('#horaSeleccionada').val()).val()
+                    + '<br><b>Equipo: </b>' + nombreEquipo
+                    + '<br><b>Cantidad de jugadores: </b>' + cantidadJugadores + '<br>'
+                    + '<br>Te recordamos que no se ha reservado la cancha aún<br>'
+                    + 'El reto se cancelará si alguien realiza una reserva a la misma hora antes de que alguien lo acepte<br>'
+                    + '<ul><li>La cancha se reservará automaticamente cuando alguien acepte tu reto</li>'
+                    + '<li>No tendrás que pagar la cancha a menos que alguien acepte el reto</li>'
+                    + '<li>El total a pagar puede ser dividido entre tú y quien acepte tu reto</li></ul><br>'
+                    + 'Muchas gracias por preferirnos<br>');
+                toastr.success('¡Se ha propuesto tu reto!<br>Se ha enviado una confirmación a tu correo<br>' + localStorage.getItem('Correo'));
                 setTimeout(
                     function() {
                         window.location.href = 'retos.html';
@@ -418,4 +442,22 @@ function findPos(obj) {
         } while (obj = obj.offsetParent);
         return [curtop];
     }
+}
+
+function enviarCorreo(asunto, mensaje) {
+    var email = localStorage.getItem('Correo');
+    var nombreDelUsuario = localStorage.getItem('Nombre') + " " + localStorage.getItem('Apellidos');
+    $.ajax({
+        url: base_url + 'WSCorreo/sendMail?asunto=' + asunto + '&mensaje=' + mensaje + '&email=' + email,
+        dataType: 'jsonp',
+        timeout: 10000,
+        success: function(result) {
+            if(result == false) {
+                toastr.error('Ha ocurrido un error al enviar<br>el correo de confirmación<br>Por favor contacta a la administación de la cancha');
+            }
+        },
+        error: function() {
+            toastr.error('Ha ocurrido un error al enviar<br>el correo de confirmación<br>Por favor contacta a la administación de la cancha');
+        }
+    });
 }

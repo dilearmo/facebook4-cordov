@@ -133,6 +133,11 @@ li #usuario {
     background-image: url(http://www.wallpapersbrowse.com/images/w7/w7kifuz.jpg);
 }
 
+#liNoRetos {
+    padding: 6px 15px;
+    background-color: white;
+}
+
 @media (max-width: 600px) {
     li #usuario {
         height: 56px;

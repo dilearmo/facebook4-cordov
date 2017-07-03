@@ -27,16 +27,18 @@
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
                     <li><a href="retosPropuestos.html">Retos disponibles</a></li>
-                    <li><a onclick="logout()">Logout</a></li>
+                    <li><a href="retosAceptados.html">Retos que acepté</a></li>
+                    <li><a onclick="logout()">Salir</a></li>
                 </ul>
             </div>
         </nav>
         <ul class="side-nav" id="mobile-demo">
             <li class="fondoColorComplementario"><a href="usuario.html" id="usuario" class="letraBlanca"><i class="material-icons letraBlanca">perm_identity</i></a></li>
-            <li><a href="home.html">Mis reservas</a></li>
+            <li class='active'><a href="home.html">Mis reservas</a></li>
             <li><a href="retos.html">Mis retos</a></li>
             <li><a href="retosPropuestos.html">Retos disponibles</a></li>
-            <li><a onclick="logout()">Logout</a></li>
+            <li><a href="retosAceptados.html">Retos que acepté</a></li>
+            <li><a onclick="logout()">Salir</a></li>
         </ul>
     </header>
     
@@ -92,7 +94,7 @@
                     <input id="cantidadJugadores" name="cantidadJugadores" type="number" class="validate" min="6" max="16">
                     <label for="cantidadJugadores">Cantidad de jugadores</label>
                 </div>
-                <a class="waves-effect waves-light btn" href="retos.html">Cancelar</a>
+                <a class="waves-effect waves-light btn btnCancelarNuevaReserva" href="retos.html">Cancelar</a>
                 <button class="waves-effect waves-light btn" onclick="mostrarResumen()" type="button">Continuar</button>
             </form>
             

@@ -26,7 +26,7 @@ function listarRetosPropuestos() {
                     $(li).attr('id', 'li' + this.IdDesafio);
                     var divHeader = document.createElement('div');
                     divHeader.setAttribute("class", "collapsible-header");
-                    $(divHeader).html('<i class="material-icons">compare_arrows</i><b>Fecha:</b> '
+                    $(divHeader).html('<i class="custom-icon icono-contra"></i><b>Fecha:</b> '
                     + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
                     + ' <b>Hora:</b> ' + convertirHora(this.Hora));
                     var divBody = document.createElement('div');
@@ -41,7 +41,7 @@ function listarRetosPropuestos() {
                     + "<label class='labelInfo' id='precio" + this.IdDesafio + "'><b>Precio: </b>¢" + this.Precio + "</label>"
                     + "<br>"
                     + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiAceptar(" + argumentos + ")'>"
-                    + "<i class='material-icons right'>sentiment_very_satisfied</i>Aceptar reto</a>");
+                    + "<i class='material-icons right'>thumb_up</i>Aceptar reto</a>");
                     li.appendChild(divHeader);
                     li.appendChild(divBody);
                     $('#ulRetosDisponibles').append(li);

@@ -12,6 +12,7 @@
         <link  rel="stylesheet" type="text/css" href="css/toastr.min.css">
         <link  rel="stylesheet" type="text/css" href="css/common.css">
         <link  rel="stylesheet" type="text/css" href="css/retosPropuestos.css">
+        <link  rel="stylesheet" type="text/css" href="css/custom-icons.css">
         
     </head>
     
@@ -24,7 +25,8 @@
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
                     <li><a href="retosPropuestos.html">Retos disponibles</a></li>
-                    <li><a onclick="logout()">Logout</a></li>
+                    <li><a href="retosAceptados.html">Retos que acepté</a></li>
+                    <li><a onclick="logout()">Salir</a></li>
                 </ul>
             </div>
         </nav>
@@ -32,8 +34,9 @@
             <li class="fondoColorComplementario"><a href="usuario.html" id="usuario" class="letraBlanca"></a></li>
             <li><a href="home.html">Mis reservas</a></li>
             <li><a href="retos.html">Mis retos</a></li>
-            <li><a href="retosPropuestos.html">Retos disponibles</a></li>
-            <li><a onclick="logout()">Logout</a></li>
+            <li class='active'><a href="retosPropuestos.html">Retos disponibles</a></li>
+            <li><a href="retosAceptados.html">Retos que acepté</a></li>
+            <li><a onclick="logout()">Salir</a></li>
         </ul>
     </header>
     
@@ -90,7 +93,7 @@
                 <br>
                 <br>
                 <label id="equipoRivalLabel" class="labelInfo"><b>Nombre de tu equipo:</b></label>
-                <input id="equipoRival" class="labelInfo" type="text" value='' placeholder="Ej: Los mejengueros..."/>
+                <input id="equipoRival" class="labelInfo" type="text" value='' placeholder="Ej: Los mejengueros..." maxlength="25"/>
                 <br>
                 <span id="nota"><b>Notas</b></span>
                 <ul id="ulNotas">

@@ -27,7 +27,8 @@
                     <li><a href="home.html">Mis reservas</a></li>
                     <li><a href="retos.html">Mis retos</a></li>
                     <li><a href="retosPropuestos.html">Retos disponibles</a></li>
-                    <li><a onclick="logout()">Logout</a></li>
+                    <li><a href="retosAceptados.html">Retos que acepté</a></li>
+                    <li><a onclick="logout()">Salir</a></li>
                 </ul>
             </div>
         </nav>
@@ -37,10 +38,11 @@
             <li><a href="home.html">Mis reservas</a></li>
             <!--<li><a href="nuevaReserva.html">Nueva reservas</a></li>-->
             <!--<span>Retos</span>-->
-            <li><a href="retos.html">Mis retos</a></li>
+            <li class='active'><a href="retos.html">Mis retos</a></li>
             <li><a href="retosPropuestos.html">Retos disponibles</a></li>
             <!--<li class='active'><a href="nuevoReto.html">Nuevo reto</a></li>-->
-            <li><a onclick="logout()">Logout</a></li>
+            <li><a href="retosAceptados.html">Retos que acepté</a></li>
+            <li><a onclick="logout()">Salir</a></li>
         </ul>
     </header>
     
@@ -89,7 +91,7 @@
                     <label class="inputDisabledColor" for="fechaPreview">Fecha seleccionada</label>
                 </div>
                 <div class="input-field">
-                    <input id="nombreEquipo" name="nombreEquipo" type="text" class="validate">
+                    <input id="nombreEquipo" name="nombreEquipo" type="text" class="validate" maxlength="25">
                     <label for="nombreEquipo">Nombre del equipo</label>
                 </div>
                 <div class="input-field">

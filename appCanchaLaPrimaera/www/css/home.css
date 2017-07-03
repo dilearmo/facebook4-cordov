@@ -31,3 +31,7 @@ h4 {
 #modalEliminarReserva {
     max-height: 50%;
 }
+
+.btnCancelarNuevaReserva {
+    margin-left: 15px;
+}
