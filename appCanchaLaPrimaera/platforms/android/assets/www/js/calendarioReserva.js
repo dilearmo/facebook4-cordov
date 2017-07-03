@@ -220,7 +220,7 @@ function listarHorasDisponibles(dia, fecha, fechaRaw) {
             $('#fechaSeleccTemp').val(fecha);
             $('#diaSelecTemp').val(dia);
             if (response != false) {
-                $('#mensajeModal').text('Seleccione la hora en la que desea proponer el reto');
+                $('#mensajeModal').text('Seleccione la hora en la que desea realizar la reserva');
                 $('.modal-content div').remove();
                 var i = 0;
                 var rowAnterior;
@@ -452,7 +452,7 @@ function mostrarResumen() {
     );
 }*/
 
-function enviarReto() {
+function enviarReserva() {
     $('#btnProponer').attr('disabled', 'disabled');
     var cantidadJugadores = $('#cantidadJugadores').val();
     var nombreEquipo = $('#nombreEquipo').val();

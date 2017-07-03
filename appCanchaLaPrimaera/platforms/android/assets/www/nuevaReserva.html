@@ -7,7 +7,7 @@
         
         <title>La Primavera</title>
          
-        <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+          <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
         <link rel="stylesheet" type="text/css" href="css/materializeIcons.css">
         <link rel="stylesheet" type="text/css" href="css/toastr.min.css">
         <link rel="stylesheet" type="text/css" href="css/common.css">
@@ -94,12 +94,12 @@
                     <input id="cantidadJugadores" name="cantidadJugadores" type="number" class="validate" min="6" max="16">
                     <label for="cantidadJugadores">Cantidad de jugadores</label>
                 </div>
-                <a class="waves-effect waves-light btn btnCancelarNuevaReserva" href="retos.html">Cancelar</a>
+                <a class="waves-effect waves-light btn btnCancelarNuevaReserva" href="home.html">Cancelar</a>
                 <button class="waves-effect waves-light btn" onclick="mostrarResumen()" type="button">Continuar</button>
             </form>
             
             <div id="modalResumen" class="modal modal-fixed-footer">
-                <div class="resumen-content mensajeResumen">
+                <div class="resumen-content mensajeResumen arreglo" >
                     <h4>Resumen</h4>
                     <p id='pModal'>Se creará una reserva con la siguiente información:</p>
                     <label id="resumenResponsable" class="labelInfo"></label>
@@ -117,7 +117,7 @@
                     
                 </div>
                 <div class="modal-footer footer-resumen">
-                    <a href="#!" class="modal-action modal-close waves-effect btn-flat btn-centrado-modal" onclick="enviarReto()" id="btnProponer">Reservar</a>
+                    <a href="#!" class="modal-action modal-close waves-effect btn-flat btn-centrado-modal" onclick="enviarReserva()" id="btnProponer">Reservar</a>
                     <a href="#!" class="modal-action modal-close btn-flat btn-centrado-modal">Editar</a>
                 </div>
             </div>

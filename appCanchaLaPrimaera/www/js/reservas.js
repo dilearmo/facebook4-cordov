@@ -8,7 +8,7 @@ var base_url = 'https://cancha-la-primavera-dilearmo.c9users.io/index.php/';
 $(document).ready(function() {
     $("#usuario").html('<i class="material-icons letraBlanca">perm_identity</i>' + localStorage.getItem('Nombre') + ' ' + localStorage.getItem('Apellidos'));
     $('.modal').modal();
-    listarRetos();
+    listarReservas();
     
     /*if (window.history && window.history.pushState) {
         window.history.pushState('forward', null, './#forward');
@@ -18,18 +18,18 @@ $(document).ready(function() {
     }*/
 });
 
-function listarRetos() {
+function listarReservas() {
     var idUsuario = localStorage.getItem('IdUsuario');
     $.ajax({
-        url: base_url + 'WsReservas/obtnerRetosporUsuario?IdUsuario=' + idUsuario,
+        url: base_url + 'WsReservas/obtnerReservasporUsuario?IdUsuario=' + idUsuario,
         timeout: 10000,
         dataType: 'jsonp',
         success: function(result) {
             var nombre = localStorage.getItem('Nombre');
             var apellidos = localStorage.getItem('Apellidos');
             if(result != false) {
-                $('#ulRetos').attr('class', 'collapsible');
-                $('#ulRetos').attr('data-collapsible', 'accordion');
+                $('#ulReservas').attr('class', 'collapsible');
+                $('#ulReservas').attr('data-collapsible', 'accordion');
                 $('.collapsible').collapsible();
                 $.each(result, function() {
                     var fecha = this.Fecha.split('-');
@@ -54,14 +54,14 @@ function listarRetos() {
                     + "<i class='material-icons right'>cancel</i>Cancelar</a>");
                     li.appendChild(divHeader);
                     li.appendChild(divBody);
-                    $('#ulRetos').append(li);
+                    $('#ulReservas').append(li);
                 });
             } else {
                 var li = document.createElement('li');
                 li.setAttribute('id', 'liNoRetos');
                 li.innerHTML = '<b>No has hecho ningúna reserva aún</b>' +
                     "<br><span>¡Haz reservas y asegura tu espacio en la mejor cancha de Grecia!</span>";
-                $('#ulRetos').append(li);
+                $('#ulReservas').append(li);
             }
         }, 
         error: function() {
@@ -115,10 +115,10 @@ function convertirHora(hora) {
         
 }
 
-function preguntarSiEliminar(idReto, fecha, hora) {
+function preguntarSiEliminar(idReserva, fecha, hora) {
    
-    $("#infoRetoEliminando").text('Reserva hecha  para el ' + fecha + ' a las ' + hora);
-    $('#btnCancelar').attr('onclick','eliminar('+ idReto +')');
+    $("#infoReservaEliminando").text('Reserva hecha  para el ' + fecha + ' a las ' + hora);
+    $('#btnCancelar').attr('onclick','eliminar('+ idReserva +')');
     $('#modalEliminarReserva').modal('open');
     
 }

@@ -403,17 +403,17 @@ function enviarReto() {
             if(result == true) {
                 $('#btnContinuar').attr('disabled', 'disabled');
                 enviarCorreo('Reto propuesto', 'Hola <b>' + nombreCompleto + '</b><br><br>'
-                + 'Se ha propuesto tu reto con éxito y otros jugadores ahora podrán verlo y aceptar jugar contra tí y tu equipo<br>'
-                + '<br>Información del reto:<br><b>Fecha y hora: </b>' + $('#fechaPreview').val().trim() + '<br><b>Precio: </b>' + $('#precioHidden' + $('#horaSeleccionada').val()).val()
-                + '<br><b>Equipo: </b>' + nombreEquipo
-                + '<br><b>Cantidad de jugadores: </b>' + cantidadJugadores + '<br>'
-                + '<br>Te recordamos que no se ha reservado la cancha aún<br>'
-                + 'El reto se cancelará si alguien realiza una reserva a la misma hora antes de que alguien lo acepte<br>'
-                + '<ul><li>La cancha se reservará automaticamente cuando alguien acepte tu reto</li>'
-                + '<li>No tendrás que pagar la cancha a menos que alguien acepte el reto</li>'
-                + '<li>El total a pagar puede ser dividido entre tú y quien acepte tu reto</li></ul><br>'
-                + 'Muchas gracias por preferirnos<br>');
-                toastr.success('¡Se ha propuesto tu reto!<br>Se ha enviado una confirmación a tu correo ' + localStorage.getItem('Correo'));
+                    + 'Se ha propuesto tu reto con éxito y otros jugadores ahora podrán verlo y aceptar jugar contra tí y tu equipo<br>'
+                    + '<br>Información del reto:<br><b>Fecha y hora: </b>' + $('#fechaPreview').val().trim() + '<br><b>Precio: </b>' + $('#precioHidden' + $('#horaSeleccionada').val()).val()
+                    + '<br><b>Equipo: </b>' + nombreEquipo
+                    + '<br><b>Cantidad de jugadores: </b>' + cantidadJugadores + '<br>'
+                    + '<br>Te recordamos que no se ha reservado la cancha aún<br>'
+                    + 'El reto se cancelará si alguien realiza una reserva a la misma hora antes de que alguien lo acepte<br>'
+                    + '<ul><li>La cancha se reservará automaticamente cuando alguien acepte tu reto</li>'
+                    + '<li>No tendrás que pagar la cancha a menos que alguien acepte el reto</li>'
+                    + '<li>El total a pagar puede ser dividido entre tú y quien acepte tu reto</li></ul><br>'
+                    + 'Muchas gracias por preferirnos<br>');
+                toastr.success('¡Se ha propuesto tu reto!<br>Se ha enviado una confirmación a tu correo<br>' + localStorage.getItem('Correo'));
                 setTimeout(
                     function() {
                         window.location.href = 'retos.html';
