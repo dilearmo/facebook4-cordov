@@ -139,6 +139,7 @@ function aceptarReto(idReto) {
             dataType: 'jsonp',
             success: function(result) {
                 if(result == true) {
+                    enviarCorreosRetadorContrincante(nombreCompletoR, nombreEquipoR, cantidadJugadoresR, nombreCompletoC, nombreEquipoC);
                     $('#li' + idReto).remove();
                     $('#modalAceptarReto').modal('close');
                     toastr.success('¡Reto aceptado!');
@@ -160,4 +161,49 @@ function aceptarReto(idReto) {
     } else {
         toastr.error('Debe especificar el nombre de su equipo');
     }
+}
+
+function enviarCorreo(asunto, mensaje) {
+    var email = localStorage.getItem('Correo');
+    var nombreDelUsuario = localStorage.getItem('Nombre') + " " + localStorage.getItem('Apellidos');
+    $.ajax({
+        url: base_url + 'WSCorreo/sendMail?asunto=' + asunto + '&mensaje=' + mensaje + '&email=' + email,
+        dataType: 'jsonp',
+        timeout: 10000,
+        success: function(result) {
+            if(result == false) {
+                toastr.error('Ha ocurrido un error al enviar<br>el correo de confirmación<br>Por favor contacta a la administación de la cancha');
+            }
+        },
+        error: function() {
+            toastr.error('Ha ocurrido un error al enviar<br>el correo de confirmación<br>Por favor contacta a la administación de la cancha');
+        }
+    });
+}
+
+function enviarCorreosRetadorContrincante(nombreCompletoR, nombreEquipoR, cantidadJugadoresR, nombreCompletoC, nombreEquipoC) {
+    // Correo retador
+    enviarCorreo('Reto propuesto', 'Hola <b>' + nombreCompletoR + '</b><br><br>'
+        + 'Se ha propuesto tu reto con éxito y otros jugadores ahora podrán verlo y aceptar jugar contra tí y tu equipo<br>'
+        + '<br>Información del reto:<br><b>Fecha y hora: </b>' + $('#fechaPreview').val().trim() + '<br><b>Precio: </b>' + $('#precioHidden' + $('#horaSeleccionada').val()).val()
+        + '<br><b>Equipo: </b>' + nombreEquipoR
+        + '<br><b>Cantidad de jugadores: </b>' + cantidadJugadoresR + '<br>'
+        + '<br>Te recordamos que no se ha reservado la cancha aún<br>'
+        + 'El reto se cancelará si alguien realiza una reserva a la misma hora antes de que alguien lo acepte<br>'
+        + '<ul><li>La cancha se reservará automaticamente cuando alguien acepte tu reto</li>'
+        + '<li>No tendrás que pagar la cancha a menos que alguien acepte el reto</li>'
+        + '<li>El total a pagar puede ser dividido entre tú y quien acepte tu reto</li></ul><br>'
+        + 'Muchas gracias por preferirnos<br>');
+        
+    // Correo contrincante
+    enviarCorreo('Reto propuesto', 'Hola <b>' + nombreCompletoC + '</b><br><br>'
+        + 'Se ha propuesto tu reto con éxito y otros jugadores ahora podrán verlo y aceptar jugar contra tí y tu equipo<br>'
+        + '<br>Información del reto:<br><b>Fecha y hora: </b>' + $('#fechaPreview').val().trim() + '<br><b>Precio: </b>' + $('#precioHidden' + $('#horaSeleccionada').val()).val()
+        + '<br><b>Equipo: </b>' + nombreEquipoC
+        + '<br>Te recordamos que no se ha reservado la cancha aún<br>'
+        + 'El reto se cancelará si alguien realiza una reserva a la misma hora antes de que alguien lo acepte<br>'
+        + '<ul><li>La cancha se reservará automaticamente cuando alguien acepte tu reto</li>'
+        + '<li>No tendrás que pagar la cancha a menos que alguien acepte el reto</li>'
+        + '<li>El total a pagar puede ser dividido entre tú y quien acepte tu reto</li></ul><br>'
+        + 'Muchas gracias por preferirnos<br>');
 }
