@@ -64,8 +64,10 @@ function listarReservas() {
                 $('#ulReservas').append(li);
             }
         }, 
-        error: function() {
-            toastr.error('Error de conexión con la base de datos');
+        error: function(xhr, status, error) {
+            toastr.error('Error de conexión al servidor');
+             // var err = eval("(" + xhr.responseText + " " + status + " " + error);
+            //  alert(err.Message);
         }
     });
 }

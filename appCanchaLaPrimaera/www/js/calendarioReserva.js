@@ -416,6 +416,7 @@ function seleccionarFechaDef() {
     $('#fechaPreview').val($('#diaSeleccionado').val() + ' ' + $('#fechaSeleccionada').val() + ' - ' + $('#horaHidden' + $('#horaSeleccionada').val()).val());
     $('#fechaPreview').focusin();
     $('#fechaPreview').attr('content', 'filled');
+    $("#precioSelectDef").val($('#precioHidden' + $('#horaSeleccionada').val()).val());
 }
 
 function mostrarResumen() {
@@ -423,8 +424,8 @@ function mostrarResumen() {
     var nomEquipo = $('#nombreEquipo').val().trim();
     var cantJug = $('#cantidadJugadores').val().trim();
     var fecha = $('#fechaPreview').val().trim();
-    var precio = $('#precioHidden' + $('#horaSeleccionada').val()).val();
-    if(precio == undefined) {
+    var precio = $("#precioSelectDef").val();
+    if(precio == -1) {
         toastr.info('Por favor, seleccione una fecha');
     } else if(cantJug < 6 || cantJug > 16) {
         toastr.info('La cantidad de jugadores debe ser<br>mayor a 6 y menor a 16');
@@ -453,6 +454,7 @@ function mostrarResumen() {
 }*/
 
 function enviarReserva() {
+    
     $('#btnProponer').attr('disabled', 'disabled');
     var cantidadJugadores = $('#cantidadJugadores').val();
     var nombreEquipo = $('#nombreEquipo').val();

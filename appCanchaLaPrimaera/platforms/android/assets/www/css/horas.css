@@ -152,6 +152,9 @@ input[content=filled]:disabled+label {
     min-height: 75vh !important;
 }
 
+#formNuevoReto .input-field {
+    margin-right: 15px;
+}
 
 /* Esto es si se le pone imagen */
 .container {

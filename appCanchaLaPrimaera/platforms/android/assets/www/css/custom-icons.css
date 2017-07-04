@@ -20,6 +20,15 @@
     font-feature-settings: 'liga';
 }
 
+.custom-icon-menu {
+    background-size: 20px;
+    margin-right: 10px !important;
+}
+
+.custom-icon-black {
+    color: black !important;
+}
+
 .icono-retoA {
     background-image: url(../img/icons-soccer/010-retoA.png);
     background-position: center center;
@@ -37,5 +46,10 @@
 
 .icono-reserva {
     background-image: url(../img/icons-soccer/game.png);
+    background-position: center center;
+}
+
+.icono-calendario {
+    background-image: url(../img/calendar.png);
     background-position: center center;
 }

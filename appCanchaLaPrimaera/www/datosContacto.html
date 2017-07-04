@@ -12,14 +12,14 @@
         <link  rel="stylesheet" type="text/css" href="css/toastr.min.css">
         <link  rel="stylesheet" type="text/css" href="css/common.css">
         <link  rel="stylesheet" type="text/css" href="css/custom-icons.css">
-        <link  rel="stylesheet" type="text/css" href="css/home.css">
+        <link  rel="stylesheet" type="text/css" href="css/datosContacto.css">
         
     </head>
     
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="index.html" class="brand-logo">Mis reservas</a>
+                <a href="index.html" class="brand-logo">Contáctenos</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="home.html">Mis reservas</a></li>
@@ -32,30 +32,29 @@
         </nav>
         <ul class="side-nav" id="mobile-demo">
             <li class="fondoColorComplementario"><a href="usuario.html" id="usuario" class="letraBlanca"></a></li>
-            <li class='active'><a href="home.html"><i class="custom-icon custom-icon-menu icono-calendario"></i> Mis reservas</a></li>
+            <li><a href="home.html"><i class="custom-icon custom-icon-menu icono-calendario"></i> Mis reservas</a></li>
             <li><a href="retos.html"><i class="custom-icon custom-icon-menu icono-retoA"></i>Mis retos</a></li>
             <li><a href="retosPropuestos.html"><i class="custom-icon custom-icon-menu icono-player-waiting"></i>Retos disponibles</a></li>
             <li><a href="retosAceptados.html"><i class="custom-icon custom-icon-menu icono-contra"></i>Retos que acepté</a></li>
-            <li><a href="datosContacto.html"><i class="material-icons custom-icon-black">info</i>Contáctenos</a></li>
+            <li class='active'><a href="datosContacto.html"><i class="material-icons custom-icon-black">info</i>Contáctenos</a></li>
             <li><a onclick="logout()">Salir</a></li>
         </ul>
     </header>
     
     <body>
         <div class="container">
-            
-            <div id="listaReservas">
-                
-                <a href="nuevaReserva.html" class="waves-effect waves-light btn"><i class="material-icons right btnAddIcon">add</i>Reservar</a>
-
-                <ul id="ulReservas">
-                    
-                </ul>
-            
-            <!--<div id="listaRetos">
-                <h4>Mis retos</h4>
-                
-            </div>-->
+            <div id="divDatosContacto">
+                <p>
+                    No dudes en contactarnos.
+                    <br>
+                    ¡Atenderemos todas tus consultas con gusto!
+                    <br>
+                    <br>
+                    <b>Teléfono: </b><span id="telefono"></span>
+                    <br>
+                    <b>Correo: </b><span id="correo"></span>
+                    <br>
+                </p>
             </div>
         </div>
         <div class="fixed-action-btn toolbar">
@@ -65,25 +64,16 @@
             <ul>
                 <li class="waves-effect waves-light">
                     <a href="#!">
-                        En esta página puedes hacer reservas en la cancha sintética
+                        Aquí puedes ver los datos para contactar a la administación de la cancha
                     </a>
                 </li>
             </ul>
         </div>
-        <div id="modalEliminarReserva" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <h4>¿Está seguro que desea cancelar esta reserva?</h4>
-                <span id="infoReservaEliminando"></span>
-            </div>
-            <div class="modal-footer footer-resumen">
-                <a href="#!" class="modal-action modal-close waves-effect btn-flat " id="btnCancelar">Sí</a>
-                <a href="#!" class="modal-action modal-close waves-effect btn-flat ">No</a>
-            </div>
-        </div>
+        
         <script src="js/jquery.min.js"></script>
         <script src="js/toastr.min.js"></script>
         <script src="js/materialize.min.js"></script>
         <script src="js/common.js"></script>
-        <script src="js/reservas.js"></script>
+        <script src="js/datosContacto.js"></script>
     </body>
 </html> 
