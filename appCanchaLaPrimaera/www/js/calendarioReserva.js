@@ -456,6 +456,8 @@ function mostrarResumen() {
 function enviarReserva() {
     
     $('#btnProponer').attr('disabled', 'disabled');
+     $('#btnContinuar').attr('disabled', 'disabled');
+    
     var cantidadJugadores = $('#cantidadJugadores').val();
     var nombreEquipo = $('#nombreEquipo').val();
     var fechaSeleccionada = $('#fechaSeleccionada').val();
@@ -490,6 +492,7 @@ function enviarReserva() {
         error: function(a, b, c) {
             toastr.error('Error al momento de reservar, intentelo de nuevo ');
             $('#btnProponer').removeAttr('disabled');
+            $('#btnContinuar').removeAttr('disabled');
         }
     });
 }
