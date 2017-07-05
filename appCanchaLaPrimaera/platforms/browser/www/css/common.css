@@ -138,6 +138,16 @@ li #usuario {
     background-color: white;
 }
 
+.toast {
+    opacity: 1 !important;
+    background-color: #212121 !important;   
+}
+
+.toast-progress {
+    background-color: white !important;  
+    opacity: 1;
+}
+
 @media (max-width: 600px) {
     li #usuario {
         height: 56px;

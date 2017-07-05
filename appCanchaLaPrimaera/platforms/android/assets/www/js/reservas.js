@@ -130,7 +130,7 @@ function eliminar(i) {
 
         $.ajax({
             type: 'GET',
-            url: 'https://cancha-la-primavera-dilearmo.c9users.io/index.php/WsReservas/cancelarApp?id='+i,
+            url: base_url+'index.php/WsReservas/cancelarApp?id='+i,
              dataType: 'jsonp',
               timeout: 10000,
             success: function(response) {
