@@ -130,16 +130,15 @@ function eliminar(i) {
 
         $.ajax({
             type: 'GET',
-            url: base_url+'index.php/WsReservas/cancelarApp?id='+i,
+            url: base_url+'WsReservas/cancelarApp?id='+i,
              dataType: 'jsonp',
               timeout: 10000,
             success: function(response) {
-           
-               //alert(response);  
+                toastr.success('Reserva cancelada con éxito');
                location.reload();
             },
             error: function(error) {
-                alert('error');
+                toastr.error('Error al cancelar la reserva');
             }
         });
    
