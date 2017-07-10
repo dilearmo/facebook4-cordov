@@ -45,7 +45,10 @@ function listarRetosAceptadosPorUsuario() {
                     + "<br>"
                     + "<label class='labelInfo'><b>Contrincante: </b>" + nombre + " " + apellidos + "</label>"
                     + "<br>"
-                    + "<label class='labelInfo'><b>Equipo contrincante: </b>" + this.Equipo_rival + "</label>");
+                    + "<label class='labelInfo'><b>Equipo contrincante: </b>" + this.Equipo_rival + "</label>"
+                     + "<br>"
+                    /*+ "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiEliminar(" + argumentos + ")'>"
+                    + "<i class='material-icons right'>cancel</i>Cancelar</a>"*/);
                     li.appendChild(divHeader);
                     li.appendChild(divBody);
                     $('#ulRetosAcep').append(li);
@@ -60,6 +63,32 @@ function listarRetosAceptadosPorUsuario() {
         }, 
         error: function() {
             toastr.error('Error al recuperar los retos<br>aceptados');
+        }
+    });
+}
+
+
+function preguntarSiEliminar(IdReserva, fecha, hora) {
+    $('#btnCancelar').attr('onclick', 'cancelarReto(' + IdReserva + ')');
+    $("#infoRetoEliminando").text('Reto propuesto para el ' + fecha + ' a las ' + hora);
+    $('#modalEliminarReto').modal('open');
+}
+
+function cancelarReto(i) {
+    $.ajax({
+        url: base_url + 'WsReservas/cancelarApp?id='+i,
+        timeout: 10000,
+        dataType: 'jsonp',
+        success: function(result) {
+            if(result == true) {
+                $('#li' + i).remove();
+                toastr.success('Reto cancelado');
+            } else {
+                toastr.error('Error al cancelar el reto');
+            }
+        },
+        error: function() {
+            toastr.error('Error de conexión con la base de datos');
         }
     });
 }

@@ -415,7 +415,7 @@ function enviarReto() {
                     + '<li>No tendrás que pagar la cancha a menos que alguien acepte el reto</li>'
                     + '<li>El total a pagar puede ser dividido entre tú y quien acepte tu reto</li></ul><br>'
                     + 'Muchas gracias por preferirnos<br>');
-                toastr.success('¡Se ha propuesto tu reto!<br>Se ha enviado una confirmación a tu correo<br>' + localStorage.getItem('Correo'));
+                toastr.success('¡Se ha propuesto tu reto!<br>Confirmación enviada a tu correo<br>' + localStorage.getItem('Correo'));
                 setTimeout(
                     function() {
                         window.location.href = 'retos.html';

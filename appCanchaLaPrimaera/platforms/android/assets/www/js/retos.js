@@ -86,6 +86,7 @@ function listarRetosAceptados() {
                     + this.NombreDia + ' ' + fecha[2] + '-' + fecha[1]
                     + ' <b>Hora:</b> ' + convertirHora(this.Hora));
                     var divBody = document.createElement('div');
+                    
                     var argumentos = this.IdReserva + ', "' + this.NombreDia + " " + fecha[2] + "-" + fecha[1] + '", "' + convertirHora(this.Hora) + '"';
                     divBody.setAttribute('class', 'collapsible-body');
                     $(divBody).html("<label class='labelInfo'><b>Retador: </b>" + nombre + " " + apellidos + "</label>"
@@ -99,7 +100,10 @@ function listarRetosAceptados() {
                     + "<br>"
                     + "<label class='labelInfo'><b>Contrincante: </b>" + this.NombreContrincante + " " + this.ApellidosContrincante + "</label>"
                     + "<br>"
-                    + "<label class='labelInfo'><b>Equipo contrincante: </b>" + this.Equipo_rival + "</label>");
+                    + "<label class='labelInfo'><b>Equipo contrincante: </b>" + this.Equipo_rival + "</label>"
+                     + "<br>"
+                    + "<a class='waves-effect waves-light btn btnEliminarReto' onclick='preguntarSiEliminarAceptados(" + argumentos + ")'>"
+                    + "<i class='material-icons right'>cancel</i>Cancelar</a>");
                     li.appendChild(divHeader);
                     li.appendChild(divBody);
                     $('#ulRetosAceptados').append(li);
@@ -168,15 +172,40 @@ function preguntarSiEliminar(idReto, fecha, hora) {
     $("#infoRetoEliminando").text('Reto propuesto para el ' + fecha + ' a las ' + hora);
     $('#modalEliminarReto').modal('open');
 }
+function preguntarSiEliminarAceptados(idReto, fecha, hora) {
+    $('#btnCancelar').attr('onclick', 'cancelarRetoAceptadp(' + idReto + ')');
+    $("#infoRetoEliminando").text('Reto propuesto para el ' + fecha + ' a las ' + hora);
+    $('#modalEliminarReto').modal('open');
+}
 
-function cancelarReto(idReto) {
+
+function cancelarReto(i) {
     $.ajax({
-        url: base_url + 'WSRetos/cancelarReto?idReto=' + idReto,
+        url: base_url + 'WSRetos/cancelarReto?idReto='+i,
         timeout: 10000,
         dataType: 'jsonp',
         success: function(result) {
             if(result == true) {
-                $('#li' + idReto).remove();
+                $('#li' + i).remove();
+                toastr.success('Reto cancelado');
+            } else {
+                toastr.error('Error al cancelar el reto');
+            }
+        },
+        error: function() {
+            toastr.error('Error de conexión con la base de datos');
+        }
+    });
+}
+
+function cancelarRetoAceptadp(i) {
+    $.ajax({
+        url: base_url + 'WsReservas/cancelarApp?id='+i,
+        timeout: 10000,
+        dataType: 'jsonp',
+        success: function(result) {
+            if(result == true) {
+                $('#li' + i).remove();
                 toastr.success('Reto cancelado');
             } else {
                 toastr.error('Error al cancelar el reto');

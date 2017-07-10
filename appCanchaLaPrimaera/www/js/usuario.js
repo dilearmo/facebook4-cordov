@@ -111,8 +111,7 @@ var base_url = "https://cancha-la-primavera-dilearmo.c9users.io/index.php/";
     
     function camposValidos() {
         if( $.trim($('#nombre').val()).length > 0 && $.trim($('#apellidos').val()).length > 0 
-            && $.trim($('#telefono').val()).length > 0 && $.trim($('#correo').val()).length > 0 
-            && $.trim($('#contrasena').val()).length > 0 && $.trim($('#contrasena2').val()).length > 0) {
+            && $.trim($('#telefono').val()).length > 0 && $.trim($('#correo').val()).length > 0) {
             return true;
         } else {
             return false;
